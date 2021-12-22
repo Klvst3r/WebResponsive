@@ -1,0 +1,41 @@
+Diseño Web responsive
+
+Es un enfoque en el diseño de sitios web que ofrece una forma facil de navegación en los diferentes dispositivos de visualización y sus diferentes resoluciones.
+
+Los Sitios responsive adaptan la visualización de sus contenidos a televisiones Smart TV, Tlablets, y Smartphones.
+
+El diseño adapta sus contenidos dependiendo de la ventana y el ancho del dispositivo.
+
+
+Dispositivos para los que se hace un diseño responsive:
+
+PC's de escritorio
+Laptops
+Mini Laptops
+Ipads/Tablets
+Minitablets
+Smartphones
+
+Tips para el disño responsive:
+Diseño o Layouts simples
+Usar HTML5 y sus nuevas funcionlidades
+Usar porcentajes en vez de pixeles para crear contenidos fluidos
+Usar CSS3 media _Queries: Permiten la creación de estilos diferentes para resoluciones diferentes.
+
+Tecnologias empleadas:
+
+HTML5, CSS3 y Bootstrap
+No es necesario conocimiento por que se revisa los fundamentos de HTML5 con los proyectos asi como CSS3.
+
+Instalar Sublime Text
+
+Google: Sublime Text
+
+En la pestaña Download, recomendado la version 2.
+
+1. Descargar apara la plataforma deseada,
+
+2. Instsalar.
+
+3. Configurar los plugins necesarios
+
