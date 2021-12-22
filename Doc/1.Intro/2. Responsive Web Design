@@ -39,3 +39,71 @@ En la pestaña Download, recomendado la version 2.
 
 3. Configurar los plugins necesarios
 
+En el caso y al momento de instalar los ploug ins Sublime puege generar un conflicto con la region 
+
+Si sale un aleyenda como:
+
+--------------
+Package Control
+
+Your system's locale is set to a value that can not handle non-ASCII characters. Package Control can not properly work unless this is fixed.
+
+On Linux, please reference your distribution's docs for information on properly setting the LANG environmental variable. As a temporary work-around, you can launch Sublime Text from the terminal with:
+
+LANG=en_US.UTF-8 sublime_text
+--------------
+
+Podremos hacer lo siguiente:
+
+in /etc/locale.conf:
+
+LANG="en_US.UTF-8"
+
+
+
+0
+vim /etc/locale.gen
+
+en_US.UTF-8 UTF-8  
+en_US ISO-8859-1 
+
+locale-gen
+
+vim /etc/locale.conf
+
+LANG=en_US.UTF-8
+
+locale
+
+LANG=en_US.UTF-8
+LC_CTYPE="en_US.UTF-8"
+LC_NUMERIC="en_US.UTF-8"
+LC_TIME="en_US.UTF-8"
+LC_COLLATE="en_US.UTF-8"
+LC_MONETARY="en_US.UTF-8"
+LC_MESSAGES="en_US.UTF-8"
+LC_PAPER="en_US.UTF-8"
+LC_NAME="en_US.UTF-8"
+LC_ADDRESS="en_US.UTF-8"
+LC_TELEPHONE="en_US.UTF-8"
+LC_MEASUREMENT="en_US.UTF-8"
+LC_IDENTIFICATION="en_US.UTF-8"
+LC_ALL=
+
+OR Simply run this command
+
+localectl set-locale LANG=en_US.UTF-8
+
+Then reboot the system.
+
+Reforzamos con la configuracion de la region n mi caso desde System Settings/Language
+
+Formatos 
+Systems settings/Formts
+	United States - American English (en_US)
+
+
+Reiniciamos y podremos agregar los plugins ncesarios
+
+	
+
