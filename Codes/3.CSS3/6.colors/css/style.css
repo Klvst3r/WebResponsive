@@ -1,5 +1,8 @@
-.caja1{
+#caja1{
 	width: 100px;
 	height: 100px;
-	background-image:  url(../img/imagen.jpeg);
+	color:  white;
+	background-color: green;
+	float: right;
+	text-align: center;
 }
