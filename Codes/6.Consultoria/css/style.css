@@ -16,7 +16,8 @@ body{
 }
 
 #contenedor-cabecera{
-	background-image: url("../img/fondo_cabecera.jpg");
+	width: 100%;
+	background-image: url("../img/fondo_cabecera2.jpg");
 	background-repeat: no-repeat;
 	padding-top: 20px;
 }
