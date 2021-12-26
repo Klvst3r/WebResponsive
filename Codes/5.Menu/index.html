@@ -5,6 +5,16 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Menu</title>
 	<link rel="stylesheet" href="css/style.css">
+	<!-- <link rel="stylesheet" href="css/estilo.css"> -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script>
+			$(document).ready(function(){
+				$("#menu-principal").prepend('<div id="menu-entrada">Menu</div>');
+				$("#menu-entrada").on('click', function(){
+					$('#menu').slideToggle();
+				});
+			});
+		</script>		
 </head>
 <body>
 	<nav id="menu-principal">
@@ -12,25 +22,25 @@
 			<li><a href="#">Inicio</a></li>
 			<li><a href="#">Nosotros</a></li>
 		<li>
-			<a href="#">Servicios</a>
-				<ul>
-					<li><a href="#">Diseño Web</a>
-						<ul>
-							<li><a href="#">HTML5</a></li>
-							<li><a href="#">CSS3</a></li>
-							<li><a href="#">JS</a></li>
-						</ul>
-					</li>
-			
-					<li>
-						<a href="">Programación Web</a>
-						<ul>
-							<li><a href="#">PHP</a></li>
-							<li><a href="#">Python</a></li>
-							<li><a href="#">Ruby</a></li>
-						</ul>
-					</li>
-				</ul>
+				<a href="#">Servicios</a>
+			<ul>
+				<li><a href="#">Diseño Web</a>
+					<ul>
+						<li><a href="#">HTML5</a></li>
+						<li><a href="#">CSS3</a></li>
+						<li><a href="#">JS</a></li>
+					</ul>
+				</li>
+		
+				<li>
+					<a href="">Programación Web</a>
+					<ul>
+						<li><a href="#">PHP</a></li>
+						<li><a href="#">Python</a></li>
+						<li><a href="#">Ruby</a></li>
+					</ul>
+				</li>
+			</ul>
 			</li>
 				<li><a href="#">Hosting</a></li>
 				<li><a href="#">Dominio</a></li>
