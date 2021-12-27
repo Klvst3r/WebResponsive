@@ -22,6 +22,12 @@ body{
 	padding-top: 20px;
 }
 
+#contenedor-cabecera img{
+	width: 30%;
+	padding-left: 8px;
+	padding-bottom: 8px;
+}
+
 .cabecera-principal #Logo{
 	width: 30%;
 	display: block;
@@ -140,4 +146,225 @@ footer p{
 	margin: 0;
 	padding: 10px 0 0 0;
 	text-align: center;
+}
+
+/*Media Queries*/
+
+/*Tabled Size*/
+@media only screen and (min-width: 768px) and (max-width: 960px){
+	#contenedor{
+		width: 95%;
+	}
+
+	#contenedor-cabecera{
+		width: 100%;
+		background-image: url("../img/fondo_cabecera.jpg");
+		background-repeat: no-repeat;
+		padding-top: 20px;
+	}
+
+
+	#contenedor-cabecera img{
+		width: 40%;
+		padding-left: 8px;
+		padding-bottom: 8px;
+	}
+
+	.cabecera-principal img#Logo{
+		margin: auto;
+		display: block;
+		width: 50%;
+		padding-bottom: 10px;
+	}
+
+	#contenido{
+		width: 100%;
+		float: none;
+	}
+
+	#lateral{
+		width: 100%;
+		float: none;	
+	}
+
+	#lateral .bloque{
+		margin-left: 0;
+		float: left;
+		/*margin-right: 10px;*/
+	}
+	#lateral .bloque img{
+		width: 50%;
+		float: left;
+		margin-right: 10px;
+	}
+}
+
+/*Tablets Portrait and Landscape Size*/
+@media only screen and (min-width: 569px) and (max-width: 767px){
+	#contenedor{
+		width: 95%;
+	}
+
+	#contenedor-cabecera{
+		width: 100%;
+		background-image: url("../img/fondo_cabecera.jpg");
+		background-repeat: no-repeat;
+		padding-top: 20px;
+	}
+
+	#contenedor-cabecera img{
+		width: 50%;
+		padding-left: 8px;
+		padding-bottom: 8px;
+	}
+
+
+
+	.cabecera-principal img#Logo{
+		margin: auto;
+		display: block;
+		width: 50%;
+		padding-bottom: 10px;
+	}
+
+	.cabecera-principal .nav-principal{
+		height: auto;
+		display: block;
+		overflow: hidden;
+		width: 99%;
+	}
+
+	.cabecera-principal .nav-principal ul{
+		padding: 2% 1%;
+		text-align: center;
+		width: 98%;
+	}
+
+	.cabecera-principal .nav-principal li{
+		float: none;
+		display: block;
+		margin-right: 0;
+		width: 100%;
+		border-bottom: 1px solid #a3293b;
+	}
+
+	.cabecera-principal .nav-principal li a{
+		margin-bottom: 2px;
+		text-align: center;
+	}
+
+	.cabecera-principal .nav-principal li a:hover, .cabecera-principal .nav-principal li a:active{
+		display: block;
+	}
+
+	#contenido{
+		width: 100%;
+		float: none;
+	}
+
+	#contenido article img{
+		width: 100%;
+		float: none;
+	}
+
+	#lateral{
+		width: 100%;
+		float: none;	
+	}
+
+	#lateral .bloque{
+		margin-left: 0;
+		
+	}
+	#lateral .bloque img{
+	width: 60%;
+	/*margin-left: 0;*/
+	float: left;
+	margin-right: 10px;
+
+}
+}
+
+/*Smartphones*/
+@media only screen and (min-width: 240px) and (max-width: 568px){
+
+	#contenedor{
+		width: 95%;
+	}
+
+	#contenedor-cabecera{
+		width: 100%;
+		background-image: url("../img/fondo_cabecera3.jpg");
+		background-repeat: no-repeat;
+		padding-top: 20px;
+	}
+
+	#contenedor-cabecera img{
+		width: 50%;
+		padding-left: 100px;
+		padding-bottom: 2px;
+	}
+
+
+	.cabecera-principal img#Logo{
+		margin: auto;
+		display: block;
+		width: 90%;
+		padding-bottom: 10px;
+	}
+
+	.cabecera-principal .nav-principal{
+		height: auto;
+		display: block;
+		overflow: hidden;
+		width: 99%;
+	}
+
+	.cabecera-principal .nav-principal ul{
+		padding: 2% 1%;
+		text-align: center;
+		width: 98%;
+	}
+
+	.cabecera-principal .nav-principal li{
+		float: none;
+		display: block;
+		margin-right: 0;
+		width: 100%;
+		border-bottom: 1px solid #a3293b;
+	}
+
+	.cabecera-principal .nav-principal li a{
+		margin-bottom: 2px;
+		text-align: center;
+	}
+
+	.cabecera-principal .nav-principal li a:hover, .cabecera-principal .nav-principal li a:active{
+		display: block;
+	}
+
+	#contenido{
+		width: 100%;
+		float: none;
+	}
+
+	#contenido article img{
+		width: 100%;
+		float: none;
+	}
+
+	#lateral{
+		width: 100%;
+		float: none;	
+	}
+
+	#lateral .bloque{
+		margin-left: 0;
+		
+	}
+	#lateral .bloque img{
+		width: 100%;
+		margin-left: 0;
+		float: left;
+	}
 }
