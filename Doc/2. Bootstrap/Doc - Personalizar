@@ -1,0 +1,1193 @@
+Personaliza y descarga
+Personalice los componentes de Bootstrap, Less variables y los complementos de jQuery para obtener su propia versión. Requiere IE9 + o la versión más reciente de Safari, Chrome o Firefox.
+
+
+¿Tiene una configuración existente? Sube tu config.jsonpara importarlo.
+
+
+¿No tienes uno? Está bien, simplemente comience a personalizar los campos a continuación.
+
+
+
+Menos archivos
+Elija qué archivos Less compilar en su compilación personalizada de Bootstrap. ¿No estás seguro de qué archivos usar? Lea las páginas de CSS y componentes en los documentos.
+
+CSS común
+Estilos de medios de impresión
+Tipografía
+Código
+Sistema de red
+Mesas
+Formularios
+Botones
+Utilidades receptivas
+Componentes
+Glifos
+Grupos de botones
+Grupos de entrada
+Navs
+Barra de navegación
+Migas de pan
+Paginación
+Buscapersonas
+Etiquetas
+Insignias
+Jumbotron
+Miniaturas
+Alertas
+Barras de progreso
+Elementos multimedia
+Lista de grupos
+Paneles
+Inserción receptiva
+Wells
+Cerrar icono
+Componentes de JavaScript
+Animaciones de componentes (para JS)
+(incluye Collapse)
+Desplegable
+Descripción emergente
+Popover
+Modal
+Carrusel
+Complementos de jQuery
+Elija qué complementos de jQuery deben incluirse en sus archivos JavaScript personalizados. ¿No estás seguro de qué incluir? Lea la página de JavaScript en los documentos.
+
+Vinculado a componentes
+Despido de alerta
+Botones avanzados
+Funcionalidad carrusel
+Listas deplegables
+Modales
+Información sobre herramientas
+Popovers (requiere información sobre herramientas)
+Pestañas alternables
+magia
+Afijo
+Colapso
+Scrollspy
+Transiciones (requerido para cualquier tipo de animación)
+Produce dos archivos
+Todos los complementos bootstrap.jsmarcados se compilarán en un archivo legible y minificado bootstrap.min.js. Le recomendamos que utilice la versión minificada en producción.
+
+jQuery requerido
+Todos los complementos requieren que se incluya la última versión de jQuery .
+
+Menos variables
+Personalice Menos variables para definir colores, tamaños y más dentro de sus hojas de estilo CSS personalizadas.
+
+Colores
+Colores grises y de marca para usar en Bootstrap.
+
+@ gris-base
+#000
+@ gris-más oscuro
+lighten(@gray-base, 13.5%)
+@ gris-oscuro
+lighten(@gray-base, 20%)
+@gris
+lighten(@gray-base, 33.5%)
+@ gris-claro
+lighten(@gray-base, 46.7%)
+@ gris claro
+lighten(@gray-base, 93.5%)
+@ brand-primary
+darken(#428bca, 6.5%)
+@ marca-éxito
+#5cb85c
+@ brand-info
+#5bc0de
+@ advertencia de marca
+#f0ad4e
+@ marca-peligro
+#d9534f
+Andamio
+Configuraciones para algunos de los estilos más globales.
+
+@ cuerpo-bg
+#fff
+Color de fondo para <body>.
+
+@color de texto
+@gray-dark
+Color de texto global activado <body>.
+
+@Color de enlace
+@brand-primary
+Color del enlace textual global.
+
+@ link-hover-color
+darken(@link-color, 15%)
+Enlace de color de desplazamiento establecido a través de la darken()función.
+
+@ link-hover-decoration
+underline
+Enlace de decoración flotante.
+
+Tipografía
+Fuente, altura de línea y color para el texto del cuerpo, encabezados y más.
+
+@ font-family-sans-serif
+"Helvetica Neue", Helvetica, Arial, sans-serif
+@ fuente-familia-serif
+Georgia, "Times New Roman", Times, serif
+@ font-family-monospace
+Menlo, Monaco, Consolas, "Courier New", monospace
+Fuentes de espacio sencillo predeterminados para <code>, <kbd>y <pre>.
+
+@ fuente-familia-base
+@font-family-sans-serif
+@ fuente-tamaño-base
+14px
+@ font-size-large
+ceil((@font-size-base * 1.25))
+@ font-size-small
+ceil((@font-size-base * .85))
+@ font-size-h1
+floor((@font-size-base * 2.6))
+@ font-size-h2
+floor((@font-size-base * 2.15))
+@ font-size-h3
+ceil((@font-size-base * 1.7))
+@ font-size-h4
+ceil((@font-size-base * 1.25))
+@ font-size-h5
+@font-size-base
+@ font-size-h6
+ceil((@font-size-base * .85))
+@ line-height-base
+1.428571429
+Sin unidad line-heightpara usar en componentes como botones.
+
+@ line-height-computed
+floor((@font-size-base * @line-height-base))
+Computarizada "line-height" ( font-size* line-height) para el uso con margin, padding, etc.
+
+@ encabezados-familia-fuente
+inherit
+De forma predeterminada, esto hereda de <body>.
+
+@ encabezados-peso-fuente
+500
+@ headings-line-height
+1.1
+@ encabezados-color
+inherit
+Iconografía
+Especifique la ubicación personalizada y el nombre de archivo de la fuente de iconos de Glyphicons incluida. Útil para aquellos que incluyen Bootstrap a través de Bower.
+
+@ icon-font-path
+"../fonts/"
+Cargue fuentes de este directorio.
+
+@ icon-font-name
+"glyphicons-halflings-regular"
+Nombre de archivo para todos los archivos de fuentes.
+
+@ icono-fuente-svg-id
+"glyphicons_halflingsregular"
+ID de elemento dentro del archivo de icono SVG.
+
+Componentes
+Defina tamaños de radio de borde y relleno comunes y más. Valores basados ​​en texto de 14px y altura de línea de 1.428 (~ 20px para comenzar).
+
+@ padding-base-vertical
+6px
+@ padding-base-horizontal
+12px
+@ padding-large-vertical
+10px
+@ padding-large-horizontal
+16px
+@ padding-pequeño-vertical
+5px
+@ padding-small-horizontal
+10px
+@ padding-xs-vertical
+1px
+@ padding-xs-horizontal
+5px
+@ line-height-large
+1.3333333
+@ line-height-small
+1.5
+@ borde-radio-base
+4px
+@ border-radius-large
+6px
+@ border-radius-small
+3px
+@ componente-activo-color
+#fff
+Color global para elementos activos (por ejemplo, navegadores o menús desplegables).
+
+@ componente-activo-bg
+@brand-primary
+Color de fondo global para elementos activos (por ejemplo, navegadores o menús desplegables).
+
+@ caret-ancho-base
+4px
+Ancho del borderpara generar signos de intercalación que indican menús desplegables.
+
+@ ancho-de-intercalación-grande
+5px
+Las caretas aumentan ligeramente de tamaño para componentes más grandes.
+
+Mesas
+Personaliza el .tablecomponente con valores básicos, cada uno utilizado en todas las variaciones de la tabla.
+
+@ table-cell-padding
+8px
+Acolchado para <th>s y <td>s.
+
+@ table-condensed-cell-padding
+5px
+Acolchado para celdas en .table-condensed.
+
+@ mesa-bg
+transparent
+Color de fondo predeterminado utilizado para todas las tablas.
+
+@ table-bg-acento
+#f9f9f9
+Color de fondo utilizado para .table-striped.
+
+@ table-bg-hover
+#f5f5f5
+Color de fondo utilizado para .table-hover.
+
+@ table-bg-active
+@table-bg-hover
+@ table-border-color
+#ddd
+Color del borde para los bordes de la tabla y la celda.
+
+Botones
+Para cada uno de los botones de Bootstrap, defina el color del texto, el fondo y el borde.
+
+@ btn-font-weight
+normal
+@ btn-color-predeterminado
+#333
+@ btn-default-bg
+#fff
+@ btn-default-border
+#ccc
+@ btn-color-primario
+#fff
+@ btn-primario-bg
+@brand-primary
+@ btn-primary-border
+darken(@btn-primary-bg, 5%)
+@ btn-éxito-color
+#fff
+@ btn-éxito-bg
+@brand-success
+@ btn-éxito-frontera
+darken(@btn-success-bg, 5%)
+@ btn-info-color
+#fff
+@ btn-info-bg
+@brand-info
+@ btn-info-border
+darken(@btn-info-bg, 5%)
+@ btn-color-de-advertencia
+#fff
+@ btn-advertencia-bg
+@brand-warning
+@ btn-warning-border
+darken(@btn-warning-bg, 5%)
+@ btn-peligro-color
+#fff
+@ btn-peligro-bg
+@brand-danger
+@ btn-peligro-frontera
+darken(@btn-danger-bg, 5%)
+@ btn-link-disabled-color
+@gray-light
+@ btn-border-radius-base
+@border-radius-base
+@ btn-border-radius-large
+@border-radius-large
+@ btn-border-radius-small
+@border-radius-small
+Formularios
+@ input-bg
+#fff
+<input> color de fondo
+
+@ input-bg-disabled
+@gray-lighter
+<input disabled> color de fondo
+
+@ input-color
+@gray
+Color de texto para <input>s
+
+@ input-border
+#ccc
+<input> color del borde
+
+@ input-border-radius
+@border-radius-base
+.form-controlRadio de borde predeterminado
+
+@ input-border-radius-large
+@border-radius-large
+Gran .form-controlradio de borde
+
+@ input-border-radius-small
+@border-radius-small
+.form-controlRadio de borde pequeño
+
+@ input-border-focus
+#66afe9
+Color de borde para entradas enfocadas
+
+@ input-color-placeholder
+#999
+Color del texto del marcador de posición
+
+@ input-height-base
+(@line-height-computed + (@padding-base-vertical * 2) + 2)
+.form-controlAltura predeterminada
+
+@ input-height-large
+(ceil(@font-size-large * @line-height-large) + (@padding-large-vertical * 2) + 2)
+Gran .form-controlaltura
+
+@ input-height-small
+(floor(@font-size-small * @line-height-small) + (@padding-small-vertical * 2) + 2)
+Pequeña .form-controlaltura
+
+@ form-group-margin-bottom
+15px
+.form-group margen
+
+@ leyenda-color
+@gray-dark
+@ legend-border-color
+#e5e5e5
+@ input-group-addon-bg
+@gray-lighter
+Color de fondo para complementos de entrada de texto
+
+@ input-group-addon-border-color
+@input-border
+Color de borde para complementos de entrada de texto
+
+@ cursor-desactivado
+not-allowed
+Cursor desactivado para botones y controles de formulario.
+
+Listas deplegables
+Contenedor y contenido del menú desplegable.
+
+@ dropdown-bg
+#fff
+Fondo para el menú desplegable.
+
+@ dropdown-border
+rgba(0, 0, 0, .15)
+Menú desplegable border-color.
+
+@ dropdown-fallback-border
+#ccc
+Menú desplegable border-color para IE8 .
+
+@ dropdown-divider-bg
+#e5e5e5
+Color del divisor entre elementos desplegables.
+
+@ dropdown-link-color
+@gray-dark
+Color del texto del enlace desplegable.
+
+@ dropdown-link-hover-color
+darken(@gray-dark, 5%)
+Coloca el cursor sobre el color de los enlaces desplegables.
+
+@ dropdown-link-hover-bg
+#f5f5f5
+Coloca el cursor sobre el fondo para ver los enlaces desplegables.
+
+@ dropdown-link-active-color
+@component-active-color
+Color del texto del elemento del menú desplegable activo.
+
+@ dropdown-link-active-bg
+@component-active-bg
+Color de fondo del elemento del menú desplegable activo.
+
+@ dropdown-link-disabled-color
+@gray-light
+Color de fondo del elemento del menú desplegable deshabilitado.
+
+@ dropdown-header-color
+@gray-light
+Color de texto para encabezados dentro de menús desplegables.
+
+@ dropdown-caret-color
+#000
+En desuso a @dropdown-caret-colorpartir de v3.1.0
+
+Puntos de interrupción de consultas de medios
+Defina los puntos de interrupción en los que cambiará su diseño, adaptándose a diferentes tamaños de pantalla.
+
+@ pantalla-xs
+480px
+En @screen-xsdesuso a partir de v3.0.1
+
+@ pantalla-xs-min
+@screen-xs
+En @screen-xs-mindesuso a partir de v3.2.0
+
+@ pantalla-teléfono
+@screen-xs-min
+En @screen-phonedesuso a partir de v3.0.1
+
+@ pantalla-sm
+768px
+En @screen-smdesuso a partir de v3.0.1
+
+@ pantalla-sm-min
+@screen-sm
+@ pantalla-tableta
+@screen-sm-min
+En @screen-tabletdesuso a partir de v3.0.1
+
+@ pantalla-md
+992px
+En @screen-mddesuso a partir de v3.0.1
+
+@ pantalla-md-min
+@screen-md
+@ pantalla-escritorio
+@screen-md-min
+En @screen-desktopdesuso a partir de v3.0.1
+
+@ pantalla-lg
+1200px
+En @screen-lgdesuso a partir de v3.0.1
+
+@ pantalla-lg-min
+@screen-lg
+@ pantalla-lg-escritorio
+@screen-lg-min
+En @screen-lg-desktopdesuso a partir de v3.0.1
+
+@ pantalla-xs-max
+(@screen-sm-min - 1)
+@ pantalla-sm-max
+(@screen-md-min - 1)
+@ pantalla-md-max
+(@screen-lg-min - 1)
+Sistema de red
+Defina su cuadrícula de respuesta personalizada.
+
+@ columnas-cuadrícula
+12
+Número de columnas en la cuadrícula.
+
+@ grid-gutter-width
+30px
+Relleno entre columnas. Se divide por la mitad para la izquierda y la derecha.
+
+@ grid-float-breakpoint
+@screen-sm-min
+Punto en el que la barra de navegación no se contrae.
+
+@ grid-float-breakpoint-max
+(@grid-float-breakpoint - 1)
+Punto en el que la barra de navegación comienza a colapsar.
+
+Tamaños de contenedores
+Defina el ancho máximo de .containerpara diferentes tamaños de pantalla.
+
+@ contenedor-tableta
+(720px + @grid-gutter-width)
+@ contenedor-sm
+@container-tablet
+Por @screen-sm-miny más.
+
+@ contenedor-escritorio
+(940px + @grid-gutter-width)
+@ contenedor-md
+@container-desktop
+Por @screen-md-miny más.
+
+@ contenedor-escritorio-grande
+(1140px + @grid-gutter-width)
+@ contenedor-lg
+@container-large-desktop
+Por @screen-lg-miny más.
+
+Barra de navegación
+@ navbar-height
+50px
+@ navbar-margin-bottom
+@line-height-computed
+@ navbar-border-radius
+@border-radius-base
+@ navbar-padding-horizontal
+floor((@grid-gutter-width / 2))
+@ navbar-padding-vertical
+((@navbar-height - @line-height-computed) / 2)
+@ navbar-collapse-max-height
+340px
+@ navbar-color-predeterminado
+#777
+@ navbar-default-bg
+#f8f8f8
+@ navbar-default-border
+darken(@navbar-default-bg, 6.5%)
+@ navbar-default-link-color
+#777
+@ navbar-default-link-hover-color
+#333
+@ navbar-enlace-predeterminado-hover-bg
+transparent
+@ navbar-default-link-active-color
+#555
+@ navbar-enlace-predeterminado-activo-bg
+darken(@navbar-default-bg, 6.5%)
+@ navbar-default-link-disabled-color
+#ccc
+@ navbar-default-link-disabled-bg
+transparent
+@ navbar-default-brand-color
+@navbar-default-link-color
+@ navbar-default-brand-hover-color
+darken(@navbar-default-brand-color, 10%)
+@ navbar-default-brand-hover-bg
+transparent
+@ navbar-default-toggle-hover-bg
+#ddd
+@ navbar-default-toggle-icon-bar-bg
+#888
+@ navbar-default-toggle-border-color
+#ddd
+Barra de navegación invertida
+@ navbar-color-inverso
+lighten(@gray-light, 15%)
+@ navbar-inverse-bg
+#222
+@ navbar-borde-inverso
+darken(@navbar-inverse-bg, 10%)
+@ navbar-color-del-enlace-inverso
+lighten(@gray-light, 15%)
+@ navbar-inverse-link-hover-color
+#fff
+@ navbar-enlace-inverso-hover-bg
+transparent
+@ navbar-vínculo-inverso-color-activo
+@navbar-inverse-link-hover-color
+@ navbar-vínculo-inverso-activo-bg
+darken(@navbar-inverse-bg, 10%)
+@ navbar-inverse-link-disabled-color
+#444
+@ navbar-vínculo-inverso-desactivado-bg
+transparent
+@ navbar-inverse-brand-color
+@navbar-inverse-link-color
+@ navbar-inverse-brand-hover-color
+#fff
+@ navbar-inverse-brand-hover-bg
+transparent
+@ navbar-inverse-toggle-hover-bg
+#333
+@ navbar-inverse-toggle-icon-bar-bg
+#fff
+@ navbar-inverse-toggle-border-color
+#333
+Navs
+Estilos de navegación compartidos
+@ nav-link-padding
+10px 15px
+@ nav-link-hover-bg
+@gray-lighter
+@ nav-disabled-link-color
+@gray-light
+@ nav-disabled-link-hover-color
+@gray-light
+Pestañas
+@ nav-tabs-border-color
+#ddd
+@ nav-tabs-link-hover-border-color
+@gray-lighter
+@ nav-tabs-active-link-hover-bg
+@body-bg
+@ nav-tabs-active-link-hover-color
+@gray
+@ nav-tabs-active-link-hover-border-color
+#ddd
+@ nav-tabs-justified-link-border-color
+#ddd
+@ nav-tabs-justified-active-link-border-color
+@body-bg
+Pastillas
+@ nav-pastillas-radio-borde
+@border-radius-base
+@ nav-píldoras-enlace-activo-hover-bg
+@component-active-bg
+@ nav-píldoras-enlace-activo-hover-color
+@component-active-color
+Paginación
+@ paginación-color
+@link-color
+@ paginación-bg
+#fff
+@ borde de paginación
+#ddd
+@ paginación-hover-color
+@link-hover-color
+@ paginación-hover-bg
+@gray-lighter
+@ paginación-hover-border
+#ddd
+@ paginación-color-activo
+#fff
+@ paginación-activa-bg
+@brand-primary
+@ pagination-active-border
+@brand-primary
+@ paginación-desactivado-color
+@gray-light
+@ paginación-deshabilitada-bg
+#fff
+@ paginación-deshabilitado-borde
+#ddd
+Buscapersonas
+@ pager-bg
+@pagination-bg
+@ pager-border
+@pagination-border
+@ pager-border-radius
+15px
+@ pager-hover-bg
+@pagination-hover-bg
+@ buscapersonas-activo-bg
+@pagination-active-bg
+@ pager-active-color
+@pagination-active-color
+@ pager-disabled-color
+@pagination-disabled-color
+Jumbotron
+@ jumbotron-padding
+30px
+@ jumbotron-color
+inherit
+@ jumbotron-bg
+@gray-lighter
+@ jumbotron-cabecera-color
+inherit
+@ jumbotron-tamaño-de-fuente
+ceil((@font-size-base * 1.5))
+@ jumbotron-header-font-size
+ceil((@font-size-base * 4.5))
+Estados de formulario y alertas
+Defina colores para los estados de comentarios de los formularios y, de forma predeterminada, las alertas.
+
+@ state-success-text
+#3c763d
+@ estado-éxito-bg
+#dff0d8
+@ state-success-border
+darken(spin(@state-success-bg, -10), 5%)
+@ state-info-text
+#31708f
+@ state-info-bg
+#d9edf7
+@ state-info-border
+darken(spin(@state-info-bg, -10), 7%)
+@ state-warning-text
+#8a6d3b
+@ state-warning-bg
+#fcf8e3
+@ state-warning-border
+darken(spin(@state-warning-bg, -10), 5%)
+@ estado-peligro-texto
+#a94442
+@ estado-peligro-bg
+#f2dede
+@ state-danger-border
+darken(spin(@state-danger-bg, -10), 5%)
+Información sobre herramientas
+@ tooltip-max-width
+200px
+Ancho máximo de la información sobre herramientas
+
+@ tooltip-color
+#fff
+Color del texto de la información sobre herramientas
+
+@ tooltip-bg
+#000
+Color de fondo de la información sobre herramientas
+
+@ información sobre herramientas-opacidad
+.9
+@ tooltip-arrow-width
+5px
+Ancho de la flecha de información sobre herramientas
+
+@ tooltip-arrow-color
+@tooltip-bg
+Color de flecha de información sobre herramientas
+
+Popovers
+@ popover-bg
+#fff
+Color de fondo del cuerpo de popover
+
+@ popover-max-ancho
+276px
+Ancho máximo de popover
+
+@ popover-border-color
+rgba(0, 0, 0, .2)
+Color del borde de la ventana emergente
+
+@ popover-fallback-border-color
+#ccc
+Color de borde de respaldo de popover
+
+@ popover-titulo-bg
+darken(@popover-bg, 3%)
+Color de fondo del título de la ventana emergente
+
+@ popover-arrow-width
+10px
+Ancho de la flecha del popover
+
+@ popover-flecha-color
+@popover-bg
+Color de la flecha del popover
+
+@ popover-flecha-ancho-exterior
+(@popover-arrow-width + 1)
+Ancho de la flecha exterior del popover
+
+@ popover-flecha-color-exterior
+fadein(@popover-border-color, 5%)
+Color de la flecha exterior del popover
+
+@ popover-flecha-exterior-color de respaldo
+darken(@popover-fallback-border-color, 20%)
+Color de retroceso de la flecha exterior de la ventana emergente
+
+Etiquetas
+@ label-default-bg
+@gray-light
+Color de fondo de etiqueta predeterminado
+
+@ etiqueta-primaria-bg
+@brand-primary
+Color de fondo de la etiqueta principal
+
+@ etiqueta-éxito-bg
+@brand-success
+Color de fondo de la etiqueta de éxito
+
+@ label-info-bg
+@brand-info
+Color de fondo de la etiqueta de información
+
+@ label-warning-bg
+@brand-warning
+Color de fondo de la etiqueta de advertencia
+
+@ etiqueta-peligro-bg
+@brand-danger
+Color de fondo de la etiqueta de peligro
+
+@ label-color
+#fff
+Color de texto de etiqueta predeterminado
+
+@ label-link-hover-color
+#fff
+Color de texto predeterminado de una etiqueta vinculada
+
+Modales
+@ modal-interior-padding
+15px
+Acolchado aplicado al cuerpo modal
+
+@ modal-title-padding
+15px
+Relleno aplicado al título modal
+
+@ modal-title-line-height
+@line-height-base
+Altura de línea de título modal
+
+@ modal-contenido-bg
+#fff
+Color de fondo del área de contenido modal
+
+@ modal-content-border-color
+rgba(0, 0, 0, .2)
+Color del borde del contenido modal
+
+@ modal-content-fallback-border-color
+#999
+Color del borde del contenido modal para IE8
+
+@ modal-telón de fondo-bg
+#000
+Color de fondo del telón de fondo modal
+
+@ modal-opacidad-de-fondo
+.5
+Opacidad de fondo modal
+
+@ modal-header-border-color
+#e5e5e5
+Color del borde del encabezado modal
+
+@ modal-footer-border-color
+@modal-header-border-color
+Color del borde del pie de página modal
+
+@ modal-lg
+900px
+@ modal-md
+600px
+@ modal-sm
+300px
+Alertas
+Defina colores de alerta, radio de borde y relleno.
+
+@ alert-padding
+15px
+@ alert-border-radius
+@border-radius-base
+@ alert-link-font-weight
+bold
+@ alerta-éxito-bg
+@state-success-bg
+@ alerta-texto-exitoso
+@state-success-text
+@ alerta-frontera-de-éxito
+@state-success-border
+@ alerta-info-bg
+@state-info-bg
+@ alerta-info-texto
+@state-info-text
+@ alert-info-border
+@state-info-border
+@ alerta-advertencia-bg
+@state-warning-bg
+@ alerta-texto-de-advertencia
+@state-warning-text
+@ alerta-advertencia-frontera
+@state-warning-border
+@ alerta-peligro-bg
+@state-danger-bg
+@ alerta-peligro-texto
+@state-danger-text
+@ alerta-peligro-frontera
+@state-danger-border
+Barras de progreso
+@ progreso-bg
+#f5f5f5
+Color de fondo de todo el componente de progreso
+
+@ barra-de-progreso-color
+#fff
+Color del texto de la barra de progreso
+
+@ progress-border-radius
+@border-radius-base
+Variable para configurar esquinas redondeadas en la barra de progreso.
+
+@ barra-de-progreso-bg
+@brand-primary
+Color de la barra de progreso predeterminado
+
+@ barra-de-progreso-éxito-bg
+@brand-success
+Color de la barra de progreso de éxito
+
+@ barra-de-progreso-advertencia-bg
+@brand-warning
+Color de la barra de progreso de advertencia
+
+@ barra-de-progreso-peligro-bg
+@brand-danger
+Color de la barra de progreso de peligro
+
+@ barra-de-progreso-info-bg
+@brand-info
+Color de la barra de progreso de información
+
+Grupo de lista
+@ lista-grupo-bg
+#fff
+Color de fondo activado .list-group-item
+
+@ list-group-border
+#ddd
+.list-group-item color del borde
+
+@ list-group-border-radius
+@border-radius-base
+Radio del borde del grupo de lista
+
+@ lista-grupo-hover-bg
+#f5f5f5
+Color de fondo de los elementos de una sola lista al desplazar el cursor
+
+@ lista-grupo-color-activo
+@component-active-color
+Color del texto de los elementos de la lista activa
+
+@ lista-grupo-activo-bg
+@component-active-bg
+Color de fondo de los elementos de la lista activa
+
+@ list-group-active-border
+@list-group-active-bg
+Color del borde de los elementos de la lista activa
+
+@ list-group-active-text-color
+lighten(@list-group-active-bg, 40%)
+Color del texto del contenido dentro de los elementos de la lista activa
+
+@ list-group-disabled-color
+@gray-light
+Color del texto de los elementos de la lista deshabilitados
+
+@ list-group-disabled-bg
+@gray-lighter
+Color de fondo de los elementos de la lista deshabilitados
+
+@ list-group-disabled-text-color
+@list-group-disabled-color
+Color de texto para el contenido dentro de los elementos de la lista deshabilitados
+
+@ lista-grupo-enlace-color
+#555
+@ list-group-link-hover-color
+@list-group-link-color
+@ list-group-link-header-color
+#333
+Paneles
+@ panel-bg
+#fff
+@ panel-body-padding
+15px
+@ panel-header-padding
+10px 15px
+@ panel-footer-padding
+@panel-heading-padding
+@ panel-border-radius
+@border-radius-base
+@ panel-inner-border
+#ddd
+Color de borde para elementos dentro de paneles
+
+@ panel-footer-bg
+#f5f5f5
+@ panel-texto-predeterminado
+@gray-dark
+@ panel-default-border
+#ddd
+@ panel-default-header-bg
+#f5f5f5
+@ panel-texto-primario
+#fff
+@ panel-primary-border
+@brand-primary
+@ panel-encabezado-primario-bg
+@brand-primary
+@ panel-éxito-texto
+@state-success-text
+@ panel-success-border
+@state-success-border
+@ panel-éxito-encabezado-bg
+@state-success-bg
+@ panel-info-texto
+@state-info-text
+@ panel-info-border
+@state-info-border
+@ panel-info-header-bg
+@state-info-bg
+@ panel-warning-text
+@state-warning-text
+@ panel-warning-border
+@state-warning-border
+@ panel-warning-header-bg
+@state-warning-bg
+@ panel-peligro-texto
+@state-danger-text
+@ panel-peligro-frontera
+@state-danger-border
+@ panel-peligro-encabezado-bg
+@state-danger-bg
+Miniaturas
+@ relleno de miniaturas
+4px
+Relleno alrededor de la imagen en miniatura
+
+@ miniatura-bg
+@body-bg
+Color de fondo de la miniatura
+
+@ borde-miniatura
+#ddd
+Color del borde de la miniatura
+
+@ thumbnail-border-radius
+@border-radius-base
+Radio del borde de la miniatura
+
+@ thumbnail-caption-color
+@text-color
+Color de texto personalizado para subtítulos en miniatura
+
+@ thumbnail-caption-padding
+9px
+Relleno alrededor de la leyenda de la miniatura
+
+Wells
+@ bien-bg
+#f5f5f5
+@ well-border
+darken(@well-bg, 7%)
+Insignias
+@ insignia-color
+#fff
+@ badge-link-hover-color
+#fff
+Color del texto de la insignia vinculada al pasar el mouse
+
+@ insignia-bg
+@gray-light
+@ insignia-color-activo
+@link-color
+Color del texto de la insignia en el enlace de navegación activo
+
+@ insignia-activo-bg
+#fff
+Color de fondo de la insignia en el enlace de navegación activo
+
+@ insignia-fuente-peso
+bold
+@ badge-line-height
+1
+@ placa-borde-radio
+10px
+Migas de pan
+@ breadcrumb-padding-vertical
+8px
+@ breadcrumb-padding-horizontal
+15px
+@ breadcrumb-bg
+#f5f5f5
+Color de fondo de migas de pan
+
+@ breadcrumb-color
+#ccc
+Color del texto de la ruta de navegación
+
+@ breadcrumb-active-color
+@gray-light
+Color del texto de la página actual en la ruta de navegación
+
+@ separador-de-migas
+"/"
+Separador textual entre elementos de ruta de navegación
+
+Carrusel
+@ carrusel-texto-sombra
+0 1px 2px rgba(0, 0, 0, .6)
+@ carrusel-control-color
+#fff
+@ carrusel-control-width
+15%
+@ carrusel-control-opacidad
+.5
+@ carrusel-control-tamaño-de-fuente
+20px
+@ carrusel-indicador-activo-bg
+#fff
+@ carrusel-indicador-color del borde
+#fff
+@ carrusel-caption-color
+#fff
+Cerca
+@ close-font-weight
+bold
+@ close-color
+#000
+@ cerrar-texto-sombra
+0 1px 0 #fff
+Código
+@ código-color
+#c7254e
+@ code-bg
+#f9f2f4
+@ kbd-color
+#fff
+@ kbd-bg
+#333
+@ pre-bg
+#f5f5f5
+@ pre-color
+@gray-dark
+@ pre-border-color
+#ccc
+@ pre-scrollable-max-height
+340px
+Escribe
+@ componente-desplazamiento-horizontal
+180px
+Desplazamiento horizontal para formularios y listas.
+
+@ texto-silenciado
+@gray-light
+Color de texto silenciado
+
+@ abbr-border-color
+@gray-light
+Color de borde de abreviaturas y acrónimos
+
+@ encabezados-pequeño-color
+@gray-light
+Encabezados de color pequeño
+
+@ blockquote-pequeño-color
+@gray-light
+Blockquote pequeño color
+
+@ blockquote-font-size
+(@font-size-base * 1.25)
+Tamaño de fuente de blockquote
+
+@ blockquote-border-color
+@gray-lighter
+Color del borde de la cita en bloque
+
+@ page-header-border-color
+@gray-lighter
+Color del borde del encabezado de la página
+
+@ dl-desplazamiento-horizontal
+@component-offset-horizontal
+Ancho de los títulos de la lista de descripción horizontal
+
+@ dl-horizontal-breakpoint
+@grid-float-breakpoint
+Punto en el que .dl-horizontal se vuelve horizontal
+
+@ hr-border
+@gray-lighter
+Color de línea horizontal.
+
+Descargar
+¡Hurra! Su versión personalizada de Bootstrap ahora está lista para compilarse. Simplemente haga clic en el botón de abajo para finalizar el proceso.
+
+
+
