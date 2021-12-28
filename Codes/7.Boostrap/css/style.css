@@ -9,3 +9,12 @@ body {
   color: white;
   height: 40px;  
 }
+
+.img2{
+  background: none;
+  border: 0;
+}
+
+table{
+  color: black;
+}
