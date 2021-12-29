@@ -68,7 +68,7 @@ footer{
 
 footer li{
   float: left;
-  outline-style: none;
+  list-style: none;
   padding:  0 10px 0 10px;
 }
 
@@ -77,11 +77,16 @@ footer a{
 }
 
 footer a: hover{
-  color: #fff;
+  /*color: #fff;*/
   text-decoration: none;
   color: #eee;
 }
 
 footer p{
   float: right;
+}
+
+section#barra-titulo{
+  background: #37befe;
+  color: #fff;
 }
