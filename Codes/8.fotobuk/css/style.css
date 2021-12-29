@@ -1,0 +1,23 @@
+body {
+  padding-top: 50px;
+  
+}
+
+section{
+  padding:  40px 0 40px 0;
+}
+
+p{
+  text-align: center;
+}
+
+.jumbotron{
+  background: #1b222a url("../img/header.jpg") no-repeat top center;
+  color: #fff;
+  height: 598px;
+  overflow: none;
+}
+
+.buk-text{
+  color: #124290 !important;
+}
