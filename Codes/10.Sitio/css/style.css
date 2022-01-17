@@ -69,6 +69,30 @@ body{
   color: #ffffff;
 }
 
+/* Estilos personalizados */
+#header{
+  background: #282828;
+  color: #fff;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+#header .crear{
+  padding-top: 20px;
+}
+
+/*Section#main
+  List-group
+  col-md-3
+*/
+
+.color-principal{
+  background-color: #eb6f31 !important;
+  border-color: #eb6f31 !important;
+  color: #fff;
+
+}
+
 
 /*Media Queries twbs color*/
 @media (max-width: 767px) {
@@ -86,3 +110,5 @@ body{
     background-color: #ab5226;
   }
 }
+
+/*https://getbootstrap.com/docs/3.4/components/#dropdowns*/
