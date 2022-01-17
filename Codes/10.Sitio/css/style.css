@@ -98,6 +98,16 @@ body{
   color:  #fff;
 }
 
+
+/*footer*/
+#footer{
+  background: #282828;
+  color: #fff;
+  text-align: 20px;
+  padding: 30px;
+  margin-top: 30px;
+}
+
 /*Media Queries twbs color*/
 @media (max-width: 767px) {
   .navbar-default .navbar-nav .open .dropdown-menu > li > a {
