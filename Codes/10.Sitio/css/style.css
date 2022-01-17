@@ -93,6 +93,10 @@ body{
 
 }
 
+.barra-progreso{
+  background: #333333;
+  color:  #fff;
+}
 
 /*Media Queries twbs color*/
 @media (max-width: 767px) {
