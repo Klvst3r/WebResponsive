@@ -86,7 +86,7 @@ body{
   col-md-3
 */
 
-.color-principal{
+.color-principal, .panel-default > .panel-heading{
   background-color: #eb6f31 !important;
   border-color: #eb6f31 !important;
   color: #fff;
