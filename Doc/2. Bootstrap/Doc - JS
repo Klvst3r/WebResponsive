@@ -1,0 +1,1463 @@
+JavaScript
+Dé vida a los componentes de Bootstrap con más de una docena de complementos personalizados de jQuery. Inclúyelos todos fácilmente, o uno por uno.
+
+ads via CarbonShortcut provides speedy task management, reporting, and collaboration for developers. Try it free today.
+ads via Carbon
+Descripción general
+Individual o compilado
+Los complementos se pueden incluir individualmente (usando los *.jsarchivos individuales de Bootstrap ), o todos a la vez (usando bootstrap.jso el minificado bootstrap.min.js).
+
+Usando el JavaScript compilado
+Ambos bootstrap.jsy bootstrap.min.jscontienen todos los complementos en un solo archivo. Incluya solo uno.
+
+Dependencias de complementos
+Algunos complementos y componentes CSS dependen de otros complementos. Si incluye plugins individualmente, asegúrese de comprobar si existen estas dependencias en los documentos. También tenga en cuenta que todos los complementos dependen de jQuery (esto significa que jQuery debe incluirse antes de los archivos del complemento). Consulte nuestrobower.json para ver qué versiones de jQuery son compatibles.
+
+Atributos de datos
+Puede usar todos los complementos de Bootstrap únicamente a través de la API de marcado sin escribir una sola línea de JavaScript. Esta es la API de primera clase de Bootstrap y debe ser su primera consideración al usar un complemento.
+
+Dicho esto, en algunas situaciones puede ser conveniente desactivar esta funcionalidad. Por lo tanto, también brindamos la capacidad de deshabilitar la API de atributos de datos al desvincular todos los eventos en el documento con el espacio de nombres data-api. Esto se ve así:
+
+Dupdo
+$(document).off('.data-api')
+Alternativamente, para apuntar a un complemento específico, simplemente incluya el nombre del complemento como un espacio de nombres junto con el espacio de nombres de data-api como este:
+
+Dupdo
+$(document).off('.alert.data-api')
+Solo un complemento por elemento a través de atributos de datos
+No utilice atributos de datos de varios complementos en el mismo elemento. Por ejemplo, un botón no puede tener una información sobre herramientas y alternar un modal. Para lograr esto, use un elemento de envoltura.
+
+API programática
+También creemos que debería poder utilizar todos los complementos de Bootstrap únicamente a través de la API de JavaScript. Todas las API públicas son métodos únicos que se pueden encadenar y devuelven la colección sobre la que se actuó.
+
+Dupdo
+$('.btn.danger').button('toggle').addClass('fat')
+Todos los métodos deben aceptar un objeto de opciones opcional, una cadena que apunta a un método en particular, o nada (que inicia un complemento con comportamiento predeterminado):
+
+Dupdo
+$('#myModal').modal()                      // initialized with defaults
+$('#myModal').modal({ keyboard: false })   // initialized with no keyboard
+$('#myModal').modal('show')                // initializes and invokes show immediately
+Cada plugin también expone su constructor crudo sobre una Constructorpropiedad: $.fn.popover.Constructor. Si desea obtener una instancia del complemento en particular, recuperar directamente de un elemento: $('[rel="popover"]').data('popover').
+
+Configuración por defecto
+Puede cambiar la configuración predeterminada de un complemento modificando el Constructor.DEFAULTSobjeto del complemento :
+
+Dupdo
+$.fn.modal.Constructor.DEFAULTS.keyboard = false // changes default for the modal plugin's `keyboard` option to false
+No conflicto
+A veces es necesario utilizar complementos de Bootstrap con otros marcos de interfaz de usuario. En estas circunstancias, pueden ocurrir ocasionalmente colisiones de espacios de nombres. Si esto sucede, puede llamar .noConflictal complemento cuyo valor desea revertir.
+
+Dupdo
+var bootstrapButton = $.fn.button.noConflict() // return $.fn.button to previously assigned value
+$.fn.bootstrapBtn = bootstrapButton            // give $().bootstrapBtn the Bootstrap functionality
+Eventos
+Bootstrap proporciona eventos personalizados para la mayoría de las acciones únicas de los complementos. Generalmente, estos vienen en forma de infinitivo y participio pasado, donde el infinitivo (ej. show) Se activa al comienzo de un evento, y su forma de participio pasado (ej. shown) Se activa al completar una acción.
+
+A partir de la versión 3.0.0, todos los eventos de Bootstrap tienen un espacio de nombres.
+
+Todos los eventos infinitivos proporcionan preventDefaultfuncionalidad. Esto proporciona la capacidad de detener la ejecución de una acción antes de que comience.
+
+Dupdo
+$('#myModal').on('show.bs.modal', function (e) {
+  if (!data) return e.preventDefault() // stops modal from being shown
+})
+Desinfectante
+La información sobre herramientas y las ventanas emergentes utilizan nuestro desinfectante integrado para desinfectar las opciones que aceptan HTML.
+
+El whiteListvalor predeterminado es el siguiente:
+
+Dupdo
+var ARIA_ATTRIBUTE_PATTERN = /^aria-[\w-]*$/i
+var DefaultWhitelist = {
+  // Global attributes allowed on any supplied element below.
+  '*': ['class', 'dir', 'id', 'lang', 'role', ARIA_ATTRIBUTE_PATTERN],
+  a: ['target', 'href', 'title', 'rel'],
+  area: [],
+  b: [],
+  br: [],
+  col: [],
+  code: [],
+  div: [],
+  em: [],
+  hr: [],
+  h1: [],
+  h2: [],
+  h3: [],
+  h4: [],
+  h5: [],
+  h6: [],
+  i: [],
+  img: ['src', 'alt', 'title', 'width', 'height'],
+  li: [],
+  ol: [],
+  p: [],
+  pre: [],
+  s: [],
+  small: [],
+  span: [],
+  sub: [],
+  sup: [],
+  strong: [],
+  u: [],
+  ul: []
+}
+Si desea agregar nuevos valores a este valor predeterminado whiteList, puede hacer lo siguiente:
+
+Dupdo
+var myDefaultWhiteList = $.fn.tooltip.Constructor.DEFAULTS.whiteList
+
+// To allow table elements
+myDefaultWhiteList.table = []
+
+// To allow td elements and data-option attributes on td elements
+myDefaultWhiteList.td = ['data-option']
+
+// You can push your custom regex to validate your attributes.
+// Be careful about your regular expressions being too lax
+var myCustomRegex = /^data-my-app-[\w-]+/
+myDefaultWhiteList['*'].push(myCustomRegex)
+Si desea omitir nuestro desinfectante porque prefiere usar una biblioteca dedicada, por ejemplo DOMPurify , debe hacer lo siguiente:
+
+Dupdo
+$('#yourTooltip').tooltip({
+  sanitizeFn: function (content) {
+    return DOMPurify.sanitize(content)
+  }
+})
+Navegadores sin document.implementation.createHTMLDocument
+En el caso de los navegadores que no son compatibles document.implementation.createHTMLDocument, como Internet Explorer 8, la función de desinfección incorporada devuelve el HTML tal como está.
+
+Si desea realizar una desinfección en este caso, especifique sanitizeFny use una biblioteca externa como DOMPurify .
+
+Números de versión
+Se puede acceder a la versión de cada uno de los complementos jQuery de Bootstrap a través de la VERSIONpropiedad del constructor del complemento. Por ejemplo, para el complemento de información sobre herramientas:
+
+Dupdo
+$.fn.tooltip.Constructor.VERSION // => "3.4.1"
+No hay alternativas especiales cuando JavaScript está deshabilitado
+Los complementos de Bootstrap no retroceden de manera particularmente elegante cuando JavaScript está deshabilitado. Si le importa la experiencia del usuario en este caso, utilícelo <noscript>para explicar la situación (y cómo volver a habilitar JavaScript) a sus usuarios y / o agregue sus propias alternativas personalizadas.
+
+Bibliotecas de terceros
+Bootstrap no admite oficialmente bibliotecas de JavaScript de terceros como Prototype o jQuery UI. A pesar de los .noConflicteventos de espacio de nombres, puede haber problemas de compatibilidad que deba solucionar por su cuenta.
+
+Transiciones transición.js
+Acerca de las transiciones
+Para efectos de transición simples, incluya transition.jsuna vez junto con los otros archivos JS. Si está utilizando el compilado (o minimizado) bootstrap.js, no es necesario incluirlo, ya está allí.
+
+Qué hay adentro
+Transition.js es un ayudante básico para transitionEndeventos, así como un emulador de transición CSS. Los otros complementos lo utilizan para verificar el soporte de transición CSS y para detectar transiciones colgantes.
+
+Deshabilitar transiciones
+Las transiciones se pueden deshabilitar globalmente utilizando el siguiente fragmento de JavaScript, que debe venir después transition.js( bootstrap.jso bootstrap.min.js, según sea el caso) de que se haya cargado:
+
+Dupdo
+$.support.transition = false
+Modales modal.js
+Los modales son mensajes de diálogo optimizados, pero flexibles, con la funcionalidad mínima requerida y valores predeterminados inteligentes.
+
+No se admiten varios modales abiertos
+Asegúrese de no abrir un modal mientras otro aún esté visible. Mostrar más de un modal a la vez requiere un código personalizado.
+
+Colocación de marcado modal
+Siempre intente colocar el código HTML de un modal en una posición de nivel superior en su documento para evitar que otros componentes afecten la apariencia y / o funcionalidad del modal.
+
+Advertencias sobre dispositivos móviles
+Hay algunas advertencias sobre el uso de modales en dispositivos móviles. Consulte nuestros documentos de soporte del navegador para obtener más detalles.
+
+Debido a cómo HTML5 define su semántica, el autofocusatributo HTML no tiene ningún efecto en los modales de Bootstrap. Para lograr el mismo efecto, use JavaScript personalizado:
+
+Dupdo
+$('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').focus()
+})
+Ejemplos de
+Ejemplo estático
+Un modal renderizado con encabezado, cuerpo y conjunto de acciones en el pie de página.
+
+×
+Título modal
+Un buen cuerpo ...
+
+ 
+Dupdo
+<div class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <p>One fine body&hellip;</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+Demo en vivo
+Alternar un modal a través de JavaScript haciendo clic en el botón de abajo. Se deslizará hacia abajo y aparecerá gradualmente desde la parte superior de la página.
+
+Dupdo
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+Hacer accesibles los modales
+Asegúrese de agregar role="dialog"y aria-labelledby="...", haciendo referencia al título modal, a .modaly role="document"al .modal-dialogmismo.
+
+Además, puede dar una descripción de su diálogo modal con aria-describedbyon .modal.
+
+Incrustar videos de YouTube
+Incrustar videos de YouTube en modales requiere JavaScript adicional, no en Bootstrap, para detener automáticamente la reproducción y más. Consulte esta publicación útil de Stack Overflow para obtener más información.
+
+Tamaños opcionales
+Los modales tienen dos tamaños opcionales, disponibles a través de clases de modificadores para colocarlos en un .modal-dialog.
+
+ 
+Dupdo
+<!-- Large modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Large modal</button>
+
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      ...
+    </div>
+  </div>
+</div>
+
+<!-- Small modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button>
+
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      ...
+    </div>
+  </div>
+</div>
+Quitar animación
+Para los modales que simplemente aparecen en lugar de aparecer gradualmente en la vista, elimine la .fadeclase de su marcado modal.
+
+Dupdo
+<div class="modal" tabindex="-1" role="dialog" aria-labelledby="...">
+  ...
+</div>
+Usando el sistema de cuadrícula
+Para aprovechar el sistema de cuadrícula Bootstrap dentro de un modal, simplemente anide .rows dentro de .modal-bodyy luego use las clases normales del sistema de cuadrícula.
+
+Dupdo
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="gridSystemModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-4">.col-md-4</div>
+          <div class="col-md-4 col-md-offset-4">.col-md-4 .col-md-offset-4</div>
+        </div>
+        <div class="row">
+          <div class="col-md-3 col-md-offset-3">.col-md-3 .col-md-offset-3</div>
+          <div class="col-md-2 col-md-offset-4">.col-md-2 .col-md-offset-4</div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3">.col-md-6 .col-md-offset-3</div>
+        </div>
+        <div class="row">
+          <div class="col-sm-9">
+            Level 1: .col-sm-9
+            <div class="row">
+              <div class="col-xs-8 col-sm-6">
+                Level 2: .col-xs-8 .col-sm-6
+              </div>
+              <div class="col-xs-4 col-sm-6">
+                Level 2: .col-xs-4 .col-sm-6
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+Contenido modal variable según el botón de activación
+¿Tiene un montón de botones que activan el mismo modal, solo que con contenidos ligeramente diferentes? Use event.relatedTargety atributos HTMLdata-* (posiblemente a través de jQuery ) para variar el contenido del modal según el botón en el que se hizo clic. Consulte los documentos de Eventos modales para obtener detalles sobre relatedTarget,
+
+   ... más botones ...Dupdo
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">Open modal for @fat</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Open modal for @getbootstrap</button>
+...more buttons...
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">New message</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="control-label">Recipient:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="control-label">Message:</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send message</button>
+      </div>
+    </div>
+  </div>
+</div>
+Dupdo
+$('#exampleModal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) // Button that triggered the modal
+  var recipient = button.data('whatever') // Extract info from data-* attributes
+  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+  var modal = $(this)
+  modal.find('.modal-title').text('New message to ' + recipient)
+  modal.find('.modal-body input').val(recipient)
+})
+Uso
+El complemento modal alterna su contenido oculto a pedido, a través de atributos de datos o JavaScript. También se suma .modal-openal <body>para anular el comportamiento de desplazamiento predeterminado y genera un .modal-backdroppara proporcionar un área de clic para descartar los modales mostrados al hacer clic fuera del modal.
+
+A través de atributos de datos
+Activar un modal sin escribir JavaScript. Establecer data-toggle="modal"en un elemento de controlador, como un botón, junto con data-target="#foo"o href="#foo"para apuntar a un modal específico para alternar.
+
+Dupdo
+<button type="button" data-toggle="modal" data-target="#myModal">Launch modal</button>
+A través de JavaScript
+Llame a un modal con id myModalcon una sola línea de JavaScript:
+
+Dupdo
+$('#myModal').modal(options)
+Opciones
+Las opciones se pueden pasar a través de atributos de datos o JavaScript. Para los atributos de datos, agregue el nombre de la opción a data-, como en data-backdrop="".
+
+Nombre	escribe	defecto	descripción
+fondo	booleano o la cadena 'static'	cierto	Incluye un elemento de fondo modal. Alternativamente, especifique staticun fondo que no cierre el modal al hacer clic.
+teclado	booleano	cierto	Cierra el modal cuando se presiona la tecla Escape
+show	booleano	cierto	Muestra el modal cuando se inicializa.
+remoto	sendero	falso	
+Esta opción está obsoleta desde v3.3.0 y se ha eliminado en v4. En su lugar, recomendamos usar plantillas del lado del cliente o un marco de enlace de datos, o llamar a jQuery.load usted mismo.
+
+Si se proporciona una URL remota, el contenido se cargará una vez a través del loadmétodo de jQuery y se inyectará en el .modal-contentdiv. Si está utilizando la API de datos, puede utilizar alternativamente el hrefatributo para especificar la fuente remota. A continuación se muestra un ejemplo de esto:
+
+Dupdo
+<a data-toggle="modal" href="remote.html" data-target="#modal">Click me</a>
+Métodos
+.modal(options)
+Activa tu contenido como modal. Acepta opciones opcionales object.
+
+Dupdo
+$('#myModal').modal({
+  keyboard: false
+})
+.modal('toggle')
+Cambia manualmente un modal. Vuelve a la persona que llama antes de que el modal realmente se haya mostrado u ocultado (es decir, antes de que ocurra el evento shown.bs.modalo hidden.bs.modal).
+
+Dupdo
+$('#myModal').modal('toggle')
+.modal('show')
+Abre manualmente un modal. Vuelve a la persona que llama antes de que se haya mostrado realmente el modal (es decir, antes de shown.bs.modalque ocurra el evento).
+
+Dupdo
+$('#myModal').modal('show')
+.modal('hide')
+Oculta manualmente un modal. Vuelve a la persona que llama antes de que el modal se haya ocultado realmente (es decir, antes de hidden.bs.modalque ocurra el evento).
+
+Dupdo
+$('#myModal').modal('hide')
+.modal('handleUpdate')
+Reajusta la posición del modal para contrarrestar una barra de desplazamiento en caso de que aparezca una, lo que haría que el modal saltara a la izquierda.
+
+Solo es necesario cuando la altura del modal cambia mientras está abierto.
+
+Dupdo
+$('#myModal').modal('handleUpdate')
+Eventos
+La clase modal de Bootstrap expone algunos eventos para conectarse a la funcionalidad modal.
+
+Todos los eventos modales se disparan en el propio modal (es decir, en el <div class="modal">).
+
+Tipo de evento	Descripción
+show.bs.modal	Este evento se activa inmediatamente cuando showse llama al método de instancia. Si es causado por un clic, el elemento en el que se hizo clic está disponible como relatedTargetpropiedad del evento.
+mostrado.bs.modal	Este evento se activa cuando el modal se ha hecho visible para el usuario (esperará a que se completen las transiciones CSS). Si es causado por un clic, el elemento en el que se hizo clic está disponible como relatedTargetpropiedad del evento.
+hide.bs.modal	Este evento se activa inmediatamente cuando hidese llama al método de instancia.
+hidden.bs.modal	Este evento se activa cuando el modal ha terminado de ocultarse al usuario (esperará a que se completen las transiciones CSS).
+cargado.bs.modal	Este evento se dispara cuando el modal ha cargado contenido usando la remoteopción.Dupdo
+$('#myModal').on('hidden.bs.modal', function (e) {
+  // do something...
+})
+Menú desplegable dropdown.js
+Ejemplos de
+Agregue menús desplegables a casi cualquier cosa con este simple complemento, incluida la barra de navegación, las pestañas y las píldoras.
+
+Dentro de una barra de navegación
+Nombre del proyecto
+Desplegable 
+Desplegable 
+Desplegable 
+Dentro de las pastillas
+Enlace regular
+Desplegable 
+Desplegable 
+Desplegable 
+Uso
+A través de atributos de datos o JavaScript, el complemento desplegable alterna el contenido oculto (menús desplegables) al alternar la .openclase en el elemento de la lista principal.
+
+En dispositivos móviles, abrir un menú desplegable agrega un .dropdown-backdropárea de toque para cerrar los menús desplegables al tocar fuera del menú, un requisito para la compatibilidad adecuada con iOS. Esto significa que cambiar de un menú desplegable abierto a un menú desplegable diferente requiere un toque adicional en el móvil.
+
+Nota: El data-toggle="dropdown"atributo se utiliza para cerrar menús desplegables a nivel de aplicación, por lo que es una buena idea usarlo siempre.
+
+A través de atributos de datos
+Agregar data-toggle="dropdown"a un enlace o botón para alternar un menú desplegable.
+
+Dupdo
+<div class="dropdown">
+  <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Dropdown trigger
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dLabel">
+    ...
+  </ul>
+</div>
+Para mantener intactas las URL con botones de enlace, utilice el data-targetatributo en lugar de href="#".
+
+Dupdo
+<div class="dropdown">
+  <a id="dLabel" data-target="#" href="http://example.com/" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+    Dropdown trigger
+    <span class="caret"></span>
+  </a>
+
+  <ul class="dropdown-menu" aria-labelledby="dLabel">
+    ...
+  </ul>
+</div>
+A través de JavaScript
+Llame a los menús desplegables a través de JavaScript:
+
+Dupdo
+$('.dropdown-toggle').dropdown()
+data-toggle="dropdown" todavía se requiere
+Independientemente de si llama a su menú desplegable a través de JavaScript o, en su lugar, usa la API de datos, data-toggle="dropdown"siempre se requiere que esté presente en el elemento disparador del menú desplegable.
+
+Opciones
+Ninguna
+
+Métodos
+$().dropdown('toggle')
+Alterna el menú desplegable de una determinada barra de navegación o navegación con pestañas.
+
+Eventos
+Todos los eventos desplegables se activan en el .dropdown-menuelemento padre de.
+
+Todos los eventos desplegables tienen una relatedTargetpropiedad, cuyo valor es el elemento de ancla de alternancia.
+
+Tipo de evento	Descripción
+show.bs.dropdown	Este evento se activa inmediatamente cuando se llama al método show instance.
+shown.bs.dropdown	Este evento se activa cuando el menú desplegable se ha hecho visible para el usuario (esperará a que se completen las transiciones CSS).
+hide.bs.dropdown	Este evento se dispara inmediatamente cuando se llama al método de la instancia oculta.
+hidden.bs.dropdown	Este evento se activa cuando el menú desplegable ha terminado de ocultarse al usuario (esperará a que se completen las transiciones CSS).Dupdo
+$('#myDropdown').on('show.bs.dropdown', function () {
+  // do something…
+})
+ScrollSpy scrollspy.js
+Ejemplo en la barra de navegación
+El complemento ScrollSpy sirve para actualizar automáticamente los objetivos de navegación en función de la posición de desplazamiento. Desplácese por el área debajo de la barra de navegación y observe cómo cambia la clase activa. Los subelementos del menú desplegable también se resaltarán.
+
+Nombre del proyecto
+@gordo
+@mdo
+Desplegable 
+@gordo
+Ad leggings keytar, brunch id art party dolor labore. Pitchfork yr enim lo-fi antes de que se agotaran qui. Tumblr derechos de bicicletas de la granja a la mesa lo que sea. Cárdigan anim keffiyeh carles. Fotomatón de velit seitan mcsweeney 3 wolf moon irure. Cosby sweater lomo jean shorts, williamsburg hoodie minim qui probablemente no hayas oído hablar de ellos et cardigan trust fund culpa biodiesel wes anderson aesthetic. Nihil tatuado accusamus, cred ironía biodiesel keffiyeh artesano ullamco consequat.
+
+@mdo
+Monopatín de bigote de veniam marfa, una barba de horquilla fugiat velit adipisicing. Freegan beard aliqua cupidatat mcsweeney's vero. Cupidatat cuatro loko nisi, ea helvetica nulla carles. Camión de comida con suéter cosby tatuado, vinilo quis non freegan de mcsweeney. Lo-fi wes anderson +1 sartorial. Carles quisiera gentrificar la ejercitación no estética. Brooklyn adipisicing cerveza artesanal vice keytar deserunt.
+
+una
+Occaecat commodo aliqua delectus. Fap cerveza artesanal deserunt monopatín ea. Lomo bike rights adipisicing banh mi, velit ea sunt siguiente nivel locavore café de origen único en magna veniam. Vinilo high life id, echo park consequat quis aliquip banh mi tridente. Vero VHS est adipisicing. Bolso bandolera Consectetur nisi DIY minim. Cred ex in, riñonera iphone sostenible delectus consectetur.
+
+dos
+In incididunt echo park, officia deserunt mcsweeney's proident master cleanse thundercats sapiente veniam. Excepteur VHS elit, proident shoreditch +1 biodiesel laborum craft beer. Single-origin coffee wayfarers irure four loko, cupidatat terry richardson master cleanse. Assumenda you probably haven't heard of them art party fanny pack, tattooed nulla cardigan tempor ad. Proident wolf nesciunt sartorial keffiyeh eu banh mi sustainable. Elit wolf voluptate, lo-fi ea portland before they sold out four loko. Locavore enim nostrud mlkshk brooklyn nesciunt.
+
+three
+Ad leggings keytar, brunch id art party dolor labore. Pitchfork yr enim lo-fi before they sold out qui. Tumblr farm-to-table bicycle rights whatever. Anim keffiyeh carles cardigan. Velit seitan mcsweeney's photo booth 3 wolf moon irure. Cosby sweater lomo jean shorts, williamsburg hoodie minim qui you probably haven't heard of them et cardigan trust fund culpa biodiesel wes anderson aesthetic. Nihil tattooed accusamus, cred irony biodiesel keffiyeh artisan ullamco consequat.
+
+Blog keytar twee, bolsa de mensajero culpa marfa cualquier camión de comida delectus. Sapiente synth id assumenda. Locavore sed helvetica cliché ironía, thundercats probablemente no hayas oído hablar de ellos consequat hoodie lo-fi fap aliquip sin gluten. Labore elit placeat antes de que se agotaran, terry richardson proident brunch nesciunt quis cosby sweater pariatur keffiyeh ut helvetica artisan. Cardigan cerveza artesanal seitán readymade velit. VHS chambray laboris tempor veniam. Anim mollit minim commodo ullamco thundercats.
+
+Uso
+Requiere navegador Bootstrap
+Scrollspy actualmente requiere el uso de un componente de navegación Bootstrap para resaltar adecuadamente los enlaces activos.
+
+Se requieren objetivos de identificación que se puedan resolver
+Los enlaces de la barra de navegación deben tener objetivos de identificación que se puedan resolver. Por ejemplo, <a href="#home">home</a>debe corresponder a algo en el DOM como <div id="home"></div>.
+
+:visibleElementos no objetivo ignorados
+Los elementos de destino que no están de :visibleacuerdo con jQuery se ignorarán y sus elementos de navegación correspondientes nunca se resaltarán.
+
+Requiere posicionamiento relativo
+No importa el método de implementación, scrollspy requiere el uso de position: relative;en el elemento que está espiando. En la mayoría de los casos, este es el <body>. Al hacer scroll en otros elementos que no sean <body>, asegúrese de tener un heightset y overflow-y: scroll;aplicado.
+
+A través de atributos de datos
+Para agregar fácilmente el comportamiento scrollspy a la navegación de la barra superior, agréguelo data-spy="scroll"al elemento que desea espiar (por lo general, este sería el <body>). Luego agregue el data-targetatributo con el ID o la clase del elemento principal de cualquier .navcomponente de Bootstrap .
+
+Dupdo
+body {
+  position: relative;
+}
+Dupdo
+<body data-spy="scroll" data-target="#navbar-example">
+  ...
+  <div id="navbar-example">
+    <ul class="nav nav-tabs" role="tablist">
+      ...
+    </ul>
+  </div>
+  ...
+</body>
+A través de JavaScript
+Después de agregar position: relative;su CSS, llame a scrollspy a través de JavaScript:
+
+Dupdo
+$('body').scrollspy({ target: '#navbar-example' })
+Métodos
+.scrollspy('refresh')
+Cuando use scrollspy junto con la adición o eliminación de elementos del DOM, deberá llamar al método de actualización de la siguiente manera:
+
+Dupdo
+$('[data-spy="scroll"]').each(function () {
+  var $spy = $(this).scrollspy('refresh')
+})
+Opciones
+Las opciones se pueden pasar a través de atributos de datos o JavaScript. Para los atributos de datos, agregue el nombre de la opción a data-, como en data-offset="".
+
+Nombre	escribe	defecto	descripción
+compensar	número	10	Píxeles para compensar desde la parte superior al calcular la posición del desplazamiento.
+Eventos
+Tipo de evento	Descripción
+active.bs.scrollspy	Este evento se activa cada vez que el scrollspy activa un nuevo elemento.Dupdo
+$('#myScrollspy').on('activate.bs.scrollspy', function () {
+  // do something…
+})
+Pestañas alternables tab.js
+Pestañas de ejemplo
+Agregue una funcionalidad de pestaña rápida y dinámica para realizar la transición a través de paneles de contenido local, incluso a través de menús desplegables. Las pestañas anidadas no son compatibles.
+
+Casa
+Perfil
+Desplegable 
+Denim crudo, probablemente no hayas oído hablar de los pantalones cortos de mezclilla Austin. Nesciunt tofu stumptown aliqua, limpieza de maestro de sintetizador retro. Bigote cliché tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh sintetizador de atrapasueños. Jersey cosby eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan ropa americana, carnicero voluptate nisi qui.
+
+Extiende la navegación con pestañas
+Este complemento amplía el componente de navegación con pestañas para agregar áreas con pestañas.
+
+Uso
+Habilite las pestañas tabulables a través de JavaScript (cada pestaña debe activarse individualmente):
+
+Dupdo
+$('#myTabs a').click(function (e) {
+  e.preventDefault()
+  $(this).tab('show')
+})
+Puede activar pestañas individuales de varias formas:
+
+Dupdo
+$('#myTabs a[href="#profile"]').tab('show') // Select tab by name
+$('#myTabs a:first').tab('show') // Select first tab
+$('#myTabs a:last').tab('show') // Select last tab
+$('#myTabs li:eq(2) a').tab('show') // Select third tab (0-indexed)
+Margen
+Puede activar la navegación de una pestaña o píldora sin escribir JavaScript simplemente especificando data-toggle="tab"o data-toggle="pill"en un elemento. Al agregar las clases navy nav-tabsa la pestaña, ulse aplicará el estilo de la pestaña de Bootstrap , mientras que al agregar las clases navy nav-pillsse aplicará el estilo de la píldora .
+
+Dupdo
+<div>
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
+    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
+    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
+    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="home">...</div>
+    <div role="tabpanel" class="tab-pane" id="profile">...</div>
+    <div role="tabpanel" class="tab-pane" id="messages">...</div>
+    <div role="tabpanel" class="tab-pane" id="settings">...</div>
+  </div>
+
+</div>
+Efecto de desvanecimiento
+Para hacer que las pestañas aparezcan gradualmente, agregue .fadea cada una .tab-pane. El primer panel de pestañas también debe .inhacer visible el contenido inicial.
+
+Dupdo
+<div class="tab-content">
+  <div role="tabpanel" class="tab-pane fade in active" id="home">...</div>
+  <div role="tabpanel" class="tab-pane fade" id="profile">...</div>
+  <div role="tabpanel" class="tab-pane fade" id="messages">...</div>
+  <div role="tabpanel" class="tab-pane fade" id="settings">...</div>
+</div>
+Métodos
+$().tab
+Activa un elemento de pestaña y un contenedor de contenido. La pestaña debe tener una data-targeto una hrefapuntando a un nodo contenedor en el DOM. En los ejemplos anteriores, las pestañas son las <a>s con data-toggle="tab"atributos.
+
+.tab('show')
+Selecciona la pestaña dada y muestra su contenido asociado. Cualquier otra pestaña que se haya seleccionado previamente se deselecciona y su contenido asociado se oculta. Vuelve a la persona que llama antes de que se muestre realmente el panel de pestañas (es decir, antes de shown.bs.tabque ocurra el evento).
+
+Dupdo
+$('#someTab').tab('show')
+Eventos
+Cuando se muestra una nueva pestaña, los eventos se activan en el siguiente orden:
+
+hide.bs.tab (en la pestaña activa actual)
+show.bs.tab (en la pestaña que se muestra)
+hidden.bs.tab(en la pestaña activa anterior, la misma que para el hide.bs.tabevento)
+shown.bs.tab(en la pestaña recién activa que se acaba de mostrar, la misma que para el show.bs.tabevento)
+Si ninguna ficha ya estaba activo, entonces el hide.bs.taby hidden.bs.tabeventos no serán despedidos.
+
+Tipo de evento	Descripción
+show.bs.tab	Este evento se activa al mostrar la pestaña, pero antes de que se muestre la nueva pestaña. Utilice event.targety event.relatedTargetpara apuntar a la pestaña activa y la pestaña activa anterior (si está disponible) respectivamente.
+muestra.bs.tab	Este evento se activa en la presentación de pestañas después de que se haya mostrado una pestaña. Utilice event.targety event.relatedTargetpara apuntar a la pestaña activa y la pestaña activa anterior (si está disponible) respectivamente.
+hide.bs.tab	Este evento se activa cuando se va a mostrar una nueva pestaña (y, por lo tanto, se oculta la pestaña activa anterior). Utilice event.targety event.relatedTargetpara apuntar a la pestaña activa actual y la nueva pestaña que pronto estará activa, respectivamente.
+hidden.bs.tab	Este evento se activa después de que se muestra una nueva pestaña (y por lo tanto, la pestaña activa anterior está oculta). Utilice event.targety event.relatedTargetpara apuntar a la pestaña activa anterior y a la nueva pestaña activa, respectivamente.Dupdo
+$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+  e.target // newly activated tab
+  e.relatedTarget // previous active tab
+})
+Información sobre herramientas tooltip.js
+Inspirado en el excelente complemento jQuery.tipsy escrito por Jason Frame; La información sobre herramientas es una versión actualizada, que no se basa en imágenes, utiliza CSS3 para animaciones y atributos de datos para el almacenamiento local de títulos.
+
+La información sobre herramientas con títulos de longitud cero nunca se muestran.
+
+Ejemplos de
+Desplácese sobre los enlaces a continuación para ver información sobre herramientas:
+
+Pantalones ajustados keffiyeh del siguiente nivel , probablemente no hayas oído hablar de ellos. Photo booth beard raw denim tipografía vegana bandolera stumptown. Seitán de la granja a la mesa, la ropa americana fixie de quinua sostenible de 8 bits de mcsweeney tiene un cambray de vinilo de terry richardson. Beard stumptown, cardigans banh mi lomo thundercats. Tofu biodiesel williamsburg marfa, cuatro cambray vegano de limpieza de loko mcsweeney. Un artesano realmente irónico, sea ​​cual sea el keytar , escenas de la granja a la mesa banksy Austin twitter maneja freegan cred raw denim de origen único café viral.
+
+Información sobre herramientas estática
+Hay cuatro opciones disponibles: alineación superior, derecha, inferior e izquierda.
+
+Información sobre herramientas a la izquierda
+ 
+Información sobre herramientas en la parte superior
+ 
+Información sobre herramientas en la parte inferior
+ 
+Información sobre herramientas a la derecha
+Cuatro direcciones
+   
+Dupdo
+<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="left" title="Tooltip on left">Tooltip on left</button>
+
+<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Tooltip on top</button>
+
+<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Tooltip on bottom</button>
+
+<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="right" title="Tooltip on right">Tooltip on right</button>
+Funcionalidad opt-in
+Por motivos de rendimiento, las API de datos de información sobre herramientas y Popover son opcionales, lo que significa que debe inicializarlas usted mismo .
+
+Una forma de inicializar todas las descripciones emergentes de una página sería seleccionarlas por su data-toggleatributo:
+
+Dupdo
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+Uso
+El complemento de información sobre herramientas genera contenido y marcado a pedido y, de forma predeterminada, coloca la información sobre herramientas después de su elemento de activación.
+
+Active la información sobre herramientas a través de JavaScript:
+
+Dupdo
+$('#example').tooltip(options)
+Margen
+El marcado requerido para una información sobre herramientas es solo un dataatributo y titleen el elemento HTML desea tener una información sobre herramientas. El marcado generado de una información sobre herramientas es bastante simple, aunque requiere una posición (de forma predeterminada, establecida toppor el complemento).
+
+Dupdo
+<!-- HTML to write -->
+<a href="#" data-toggle="tooltip" title="Some tooltip text!">Hover over me</a>
+
+<!-- Generated markup by the plugin -->
+<div class="tooltip top" role="tooltip">
+  <div class="tooltip-arrow"></div>
+  <div class="tooltip-inner">
+    Some tooltip text!
+  </div>
+</div>
+Enlaces de varias líneas
+A veces, desea agregar una información sobre herramientas a un hipervínculo que envuelve varias líneas. El comportamiento predeterminado del complemento de información sobre herramientas es centrarlo horizontal y verticalmente. Agregue white-space: nowrap;a sus anclas para evitar esto.
+
+La información sobre herramientas en grupos de botones, grupos de entrada y tablas requieren una configuración especial
+Cuando se utiliza la información de herramientas de elementos dentro de un .btn-groupo una .input-group, o en elementos de una tabla relacionada ( <td>, <th>, <tr>, <thead>, <tbody>, <tfoot>), tendrá que especificar la opción container: 'body'(documentado más adelante) para evitar efectos secundarios no deseados (como el elemento cada vez más amplia y / o perder sus esquinas redondeadas cuando se activa la información sobre herramientas).
+
+No intente mostrar información sobre herramientas en elementos ocultos
+Invocar $(...).tooltip('show')cuándo está el elemento de destino display: none;hará que la información sobre herramientas se coloque incorrectamente.
+
+Información sobre herramientas accesible para usuarios de teclados y tecnologías de asistencia
+Para los usuarios que navegan con un teclado y, en particular, los usuarios de tecnologías de asistencia, solo debe agregar información sobre herramientas a los elementos que se pueden enfocar con el teclado, como enlaces, controles de formulario o cualquier elemento arbitrario con un tabindex="0"atributo.
+
+La información sobre herramientas en elementos deshabilitados requiere elementos de envoltura
+Para agregar una información sobre herramientas a un elemento disabledo .disabled, coloque el elemento dentro de a <div>y aplíquelo en su <div>lugar.
+
+Opciones
+Las opciones se pueden pasar a través de atributos de datos o JavaScript. Para los atributos de datos, agregue el nombre de la opción a data-, como en data-animation="".
+
+Tenga en cuenta que, por razones de seguridad sanitize, las opciones , sanitizeFny whiteListno se pueden proporcionar utilizando atributos de datos.
+
+Nombre	Escribe	Defecto	Descripción
+animación	booleano	cierto	Aplicar una transición de atenuación CSS a la información sobre herramientas
+envase	cadena | falso	falso	
+Agrega la información sobre herramientas a un elemento específico. Ejemplo: container: 'body'. Esta opción es particularmente útil porque le permite colocar la información sobre herramientas en el flujo del documento cerca del elemento de activación, lo que evitará que la información sobre herramientas flote lejos del elemento de activación durante un cambio de tamaño de la ventana.
+
+demora	numero | objeto	0	
+Retraso para mostrar y ocultar la información sobre herramientas (ms): no se aplica al tipo de disparo manual
+
+Si se proporciona un número, se aplica un retraso tanto para ocultar / mostrar
+
+La estructura del objeto es: delay: { "show": 500, "hide": 100 }
+
+html	booleano	falso	Inserte HTML en la información sobre herramientas. Si es falso, se textusará el método de jQuery para insertar contenido en el DOM. Utilice texto si le preocupan los ataques XSS.
+colocación	cadena | función	'cima'	
+Cómo colocar la información sobre herramientas - parte superior | abajo | izquierda | derecha | auto.
+Cuando se especifica "auto", reorientará dinámicamente la información sobre herramientas. Por ejemplo, si la ubicación es "automáticamente a la izquierda", la información sobre herramientas se mostrará a la izquierda cuando sea posible; de ​​lo contrario, se mostrará a la derecha.
+
+Cuando se utiliza una función para determinar la ubicación, se llama con el nodo DOM de información sobre herramientas como primer argumento y el nodo DOM del elemento desencadenante como segundo. El thiscontexto se establece en la instancia de información sobre herramientas.
+
+selector	cuerda	falso	Si se proporciona un selector, los objetos de información sobre herramientas se delegarán a los destinos especificados. En la práctica, esto también se usa para aplicar información sobre herramientas a elementos DOM agregados dinámicamente ( jQuery.onsoporte). Vea esto y un ejemplo informativo .
+plantilla	cuerda	'<div class="tooltip" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>'	
+HTML base para usar al crear la información sobre herramientas.
+
+La información sobre herramientas titlese inyectará en el archivo .tooltip-inner.
+
+.tooltip-arrow se convertirá en la flecha de la información sobre herramientas.
+
+El elemento contenedor más externo debería tener la .tooltipclase.
+
+título	cadena | función	''	
+Valor de título predeterminado si el titleatributo no está presente.
+
+Si se proporciona una función, se llamará con su thisconjunto de referencias al elemento al que se adjunta la información sobre herramientas.
+
+desencadenar	cuerda	'enfoque de desplazamiento'	Cómo se activa la información sobre herramientas: haga clic en | flotar | enfoque | manual. Puede pasar varios factores desencadenantes; sepárelos con un espacio. manualno se puede combinar con ningún otro disparador.
+ventana gráfica	cadena | objeto | función	{selector: 'cuerpo', relleno: 0}	
+Mantiene la información sobre herramientas dentro de los límites de este elemento. Ejemplo: viewport: '#viewport'o{ "selector": "#viewport", "padding": 0 }
+
+Si se proporciona una función, se llama con el nodo DOM del elemento desencadenante como único argumento. El thiscontexto se establece en la instancia de información sobre herramientas.
+
+desinfectar	booleano	cierto	Habilite o deshabilite la desinfección. Si se activa 'template', 'content'y 'title'se desinfectan opciones.
+whiteList	objeto	Valor por defecto	Objeto que contiene atributos y etiquetas permitidos
+sanitizeFn	nulo | función	nulo	Aquí puede proporcionar su propia función de desinfección. Esto puede resultar útil si prefiere utilizar una biblioteca dedicada para realizar la desinfección.
+Atributos de datos para información sobre herramientas individuales
+Las opciones para información sobre herramientas individuales se pueden especificar alternativamente mediante el uso de atributos de datos, como se explicó anteriormente.
+
+Métodos
+$().tooltip(options)
+Adjunta un controlador de información sobre herramientas a una colección de elementos.
+
+.tooltip('show')
+Revela la información sobre herramientas de un elemento. Vuelve a la persona que llama antes de que se muestre realmente la información sobre herramientas (es decir, antes de shown.bs.tooltipque ocurra el evento). Esto se considera una activación "manual" de la información sobre herramientas. La información sobre herramientas con títulos de longitud cero nunca se muestran.
+
+Dupdo
+$('#element').tooltip('show')
+.tooltip('hide')
+Oculta la información sobre herramientas de un elemento. Vuelve a la persona que llama antes de que la información sobre herramientas se haya ocultado (es decir, antes de hidden.bs.tooltipque ocurra el evento). Esto se considera una activación "manual" de la información sobre herramientas.
+
+Dupdo
+$('#element').tooltip('hide')
+.tooltip('toggle')
+Alterna la información sobre herramientas de un elemento. Vuelve a la persona que llama antes de que la información sobre herramientas se haya mostrado u oculta (es decir, antes de que ocurra el evento shown.bs.tooltipo hidden.bs.tooltip). Esto se considera una activación "manual" de la información sobre herramientas.
+
+Dupdo
+$('#element').tooltip('toggle')
+.tooltip('destroy')
+Oculta y destruye la información sobre herramientas de un elemento. Las descripciones emergentes que utilizan la delegación (que se crean mediante la selectoropción ) no se pueden destruir individualmente en los elementos desencadenantes descendientes.
+
+Dupdo
+$('#element').tooltip('destroy')
+Eventos
+Tipo de evento	Descripción
+show.bs.tooltip	Este evento se activa inmediatamente cuando showse llama al método de instancia.
+muestra.bs.tip.tooltip	Este evento se activa cuando la información sobre herramientas se ha hecho visible para el usuario (esperará a que se completen las transiciones CSS).
+hide.bs.tooltip	Este evento se activa inmediatamente cuando hidese llama al método de instancia.
+hidden.bs.tooltip	Este evento se activa cuando la información sobre herramientas ha terminado de ocultarse al usuario (esperará a que se completen las transiciones CSS).
+insert.bs.tooltip	Este evento se activa después del show.bs.tooltipevento cuando la plantilla de información sobre herramientas se ha agregado al DOM.Dupdo
+$('#myTooltip').on('hidden.bs.tooltip', function () {
+  // do something…
+})
+Popovers popover.js
+Agregue pequeñas superposiciones de contenido, como las del iPad, a cualquier elemento para albergar información secundaria.
+
+Los elementos emergentes cuyo título y contenido son de longitud cero nunca se muestran.
+
+Dependencia del complemento
+Los popovers requieren que el complemento de información sobre herramientas se incluya en su versión de Bootstrap.
+
+Funcionalidad opt-in
+Por motivos de rendimiento, las API de datos de información sobre herramientas y Popover son opcionales, lo que significa que debe inicializarlas usted mismo .
+
+Una forma de inicializar todos los elementos emergentes de una página sería seleccionarlos por su data-toggleatributo:
+
+Dupdo
+$(function () {
+  $('[data-toggle="popover"]').popover()
+})
+Los elementos emergentes en grupos de botones, grupos de entrada y tablas requieren una configuración especial
+Al utilizar panecillos de elementos dentro de un .btn-groupo una .input-group, o en elementos de una tabla relacionada ( <td>, <th>, <tr>, <thead>, <tbody>, <tfoot>), tendrá que especificar la opción container: 'body'(documentado más adelante) para evitar efectos secundarios no deseados (como el elemento cada vez más amplia y / o perder sus esquinas redondeadas cuando se activa el popover).
+
+No intente mostrar ventanas emergentes en elementos ocultos
+Invocar $(...).popover('show')cuándo está el elemento de destino display: none;hará que el popover se coloque incorrectamente.
+
+Los elementos emergentes en elementos deshabilitados requieren elementos de envoltura
+Para agregar un elemento emergente a un elemento disabledo .disabled, coloque el elemento dentro de un elemento <div>emergente y aplique el elemento emergente en su <div>lugar.
+
+Enlaces de varias líneas
+A veces, desea agregar una ventana emergente a un hipervínculo que envuelve varias líneas. El comportamiento predeterminado del complemento popover es centrarlo horizontal y verticalmente. Agregue white-space: nowrap;a sus anclas para evitar esto.
+
+Ejemplos de
+Popover estático
+Hay cuatro opciones disponibles: alineación superior, derecha, inferior e izquierda.
+
+Top popover
+Sed posuere consectetur est en lobortis. Aenean eu leo ​​quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.
+
+Popover a la derecha
+Sed posuere consectetur est en lobortis. Aenean eu leo ​​quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.
+
+Fondo de popover
+Sed posuere consectetur est en lobortis. Aenean eu leo ​​quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.
+
+Popover a la izquierda
+Sed posuere consectetur est en lobortis. Aenean eu leo ​​quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.
+
+Demo en vivo
+Dupdo
+<button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button>
+Cuatro direcciones
+   
+Dupdo
+<button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+  Popover on left
+</button>
+
+<button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+  Popover on top
+</button>
+
+<button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+  Popover on bottom
+</button>
+
+<button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+  Popover on right
+</button>
+Descartar en el siguiente clic
+Utilice el focusdisparador para descartar los elementos emergentes en el siguiente clic que haga el usuario.
+
+Se requiere un marcado específico para descartar en el siguiente clic
+Para un comportamiento adecuado entre navegadores y plataformas, debe usar la <a>etiqueta, no la <button>etiqueta, y también debe incluir los atributos role="button"y tabindex.
+
+Dupdo
+<a tabindex="0" class="btn btn-lg btn-danger" role="button" data-toggle="popover" data-trigger="focus" title="Dismissible popover" data-content="And here's some amazing content. It's very engaging. Right?">Dismissible popover</a>
+Uso
+Habilitar popovers a través de JavaScript:
+
+Dupdo
+$('#example').popover(options)
+Opciones
+Las opciones se pueden pasar a través de atributos de datos o JavaScript. Para los atributos de datos, agregue el nombre de la opción a data-, como en data-animation="".
+
+Tenga en cuenta que, por razones de seguridad sanitize, las opciones , sanitizeFny whiteListno se pueden proporcionar utilizando atributos de datos.
+
+Nombre	Escribe	Defecto	Descripción
+animación	booleano	cierto	Aplicar una transición de desvanecimiento CSS al popover
+envase	cadena | falso	falso	
+Agrega el popover a un elemento específico. Ejemplo: container: 'body'. Esta opción es particularmente útil porque le permite colocar la ventana emergente en el flujo del documento cerca del elemento de activación, lo que evitará que la ventana emergente flote lejos del elemento de activación durante un cambio de tamaño de la ventana.
+
+contenido	cadena | función	''	
+Valor de contenido predeterminado si el data-contentatributo no está presente.
+
+Si se proporciona una función, se llamará con su thisreferencia establecida al elemento al que está adjunto el popover.
+
+demora	numero | objeto	0	
+Retraso para mostrar y ocultar el popover (ms): no se aplica al tipo de disparo manual
+
+Si se proporciona un número, se aplica un retraso tanto para ocultar / mostrar
+
+La estructura del objeto es: delay: { "show": 500, "hide": 100 }
+
+html	booleano	falso	Inserte HTML en la ventana emergente. Si es falso, se textusará el método de jQuery para insertar contenido en el DOM. Utilice texto si le preocupan los ataques XSS.
+colocación	cadena | función	'derecho'	
+Cómo colocar el popover - top | abajo | izquierda | derecha | auto.
+Cuando se especifica "auto", reorientará dinámicamente el popover. Por ejemplo, si la ubicación es "automáticamente a la izquierda", la ventana emergente se mostrará a la izquierda cuando sea posible; de ​​lo contrario, se mostrará a la derecha.
+
+Cuando se utiliza una función para determinar la ubicación, se llama con el nodo DOM de popover como primer argumento y el nodo DOM del elemento desencadenante como segundo. El thiscontexto se establece en la instancia de popover.
+
+selector	cuerda	falso	Si se proporciona un selector, los objetos popover se delegarán a los destinos especificados. En la práctica, esto se utiliza para permitir que se agreguen ventanas emergentes al contenido HTML dinámico. Vea esto y un ejemplo informativo .
+plantilla	cuerda	'<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'	
+HTML base para usar al crear el popover.
+
+Los popover titlese inyectarán en el .popover-title.
+
+Los popover contentse inyectarán en el .popover-content.
+
+.arrow se convertirá en la flecha del popover.
+
+El elemento contenedor más externo debería tener la .popoverclase.
+
+título	cadena | función	''	
+Valor de título predeterminado si el titleatributo no está presente.
+
+Si se proporciona una función, se llamará con su thisreferencia establecida al elemento al que está adjunto el popover.
+
+desencadenar	cuerda	'hacer clic'	Cómo se activa el popover: haga clic en | flotar | enfoque | manual. Puede pasar varios factores desencadenantes; sepárelos con un espacio. manualno se puede combinar con ningún otro disparador.
+ventana gráfica	cadena | objeto | función	{selector: 'cuerpo', relleno: 0}	
+Mantiene la ventana emergente dentro de los límites de este elemento. Ejemplo: viewport: '#viewport'o{ "selector": "#viewport", "padding": 0 }
+
+Si se proporciona una función, se llama con el nodo DOM del elemento desencadenante como único argumento. El thiscontexto se establece en la instancia de popover.
+
+desinfectar	booleano	cierto	Habilite o deshabilite la desinfección. Si se activa 'template', 'content'y 'title'se desinfectan opciones.
+whiteList	objeto	Valor por defecto	Objeto que contiene atributos y etiquetas permitidos
+sanitizeFn	nulo | función	nulo	Aquí puede proporcionar su propia función de desinfección. Esto puede resultar útil si prefiere utilizar una biblioteca dedicada para realizar la desinfección.
+Atributos de datos para popovers individuales
+Las opciones para los popovers individuales se pueden especificar alternativamente mediante el uso de atributos de datos, como se explicó anteriormente.
+
+Métodos
+$().popover(options)
+Inicializa popovers para una colección de elementos.
+
+.popover('show')
+Revela el popover de un elemento. Vuelve a la persona que llama antes de que se haya mostrado realmente la ventana emergente (es decir, antes de shown.bs.popoverque ocurra el evento). Esto se considera una activación "manual" del popover. Los elementos emergentes cuyo título y contenido son de longitud cero nunca se muestran.
+
+Dupdo
+$('#element').popover('show')
+.popover('hide')
+Oculta la ventana emergente de un elemento. Vuelve a la persona que llama antes de que la ventana emergente se haya ocultado (es decir, antes de hidden.bs.popoverque ocurra el evento). Esto se considera una activación "manual" del popover.
+
+Dupdo
+$('#element').popover('hide')
+.popover('toggle')
+Alterna la ventana emergente de un elemento. Vuelve a la persona que llama antes de que la ventana emergente se haya mostrado u oculta (es decir, antes de que ocurra el evento shown.bs.popovero hidden.bs.popover). Esto se considera una activación "manual" del popover.
+
+Dupdo
+$('#element').popover('toggle')
+.popover('destroy')
+Oculta y destruye el popover de un elemento. Los popovers que usan la delegación (que se crean usando la selectoropción ) no se pueden destruir individualmente en elementos desencadenantes descendientes.
+
+Dupdo
+$('#element').popover('destroy')
+Eventos
+Tipo de evento	Descripción
+show.bs.popover	Este evento se activa inmediatamente cuando showse llama al método de instancia.
+show.bs.popover	Este evento se activa cuando el popover se ha hecho visible para el usuario (esperará a que se completen las transiciones CSS).
+hide.bs.popover	Este evento se activa inmediatamente cuando hidese llama al método de instancia.
+hidden.bs.popover	Este evento se activa cuando el popover ha terminado de ocultarse al usuario (esperará a que se completen las transiciones CSS).
+insert.bs.popover	Este evento se activa después del show.bs.popoverevento cuando la plantilla popover se ha agregado al DOM.Dupdo
+$('#myPopover').on('hidden.bs.popover', function () {
+  // do something…
+})
+Mensajes de alerta alert.js
+Alertas de ejemplo
+Agregue la funcionalidad de descartar a todos los mensajes de alerta con este complemento.
+
+Cuando se utiliza un .closebotón, debe ser el primer elemento secundario del .alert-dismissibley no puede aparecer contenido de texto antes de él en el marcado.
+
+×¡Santo guacamole! Será mejor que te compruebes, no te ves muy bien.
+×
+¡Oh cielos! ¡Tienes un error!
+Cambie esto y aquello y vuelva a intentarlo. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum.
+
+ 
+
+Uso
+Simplemente agréguelo data-dismiss="alert"a su botón de cierre para proporcionar automáticamente una función de cierre de alerta. Cerrar una alerta la quita del DOM.
+
+Dupdo
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+  <span aria-hidden="true">&times;</span>
+</button>
+Para que sus alertas utilicen una animación al cerrar, asegúrese de que ya se hayan aplicado las clases .fadey .in.
+
+Métodos
+$().alert()
+Hace que una alerta escuche eventos de clic en elementos descendientes que tienen el data-dismiss="alert"atributo. (No es necesario cuando se usa la inicialización automática de la API de datos).
+
+$().alert('close')
+Cierra una alerta eliminándola del DOM. Si las clases .fadey .inestán presentes en el elemento, la alerta desaparecerá antes de que se elimine.
+
+Eventos
+El complemento de alerta de Bootstrap expone algunos eventos para conectarse a la funcionalidad de alerta.
+
+Tipo de evento	Descripción
+close.bs.alert	Este evento se activa inmediatamente cuando closese llama al método de instancia.
+alerta cerrada	Este evento se activa cuando se cierra la alerta (esperará a que se completen las transiciones CSS).Dupdo
+$('#myAlert').on('closed.bs.alert', function () {
+  // do something…
+})
+Botones button.js
+Haz más con los botones. Controle los estados de los botones o cree grupos de botones para más componentes como barras de herramientas.
+
+Compatibilidad entre navegadores
+Firefox persiste en los estados de control de formularios (deshabilitación y verificación) en las cargas de la página . Una solución para esto es usar autocomplete="off". Consulte el error de Mozilla # 654072 .
+
+Con estado
+Agregar data-loading-text="Loading..."para usar un estado de carga en un botón.
+
+Esta función está en desuso desde v3.3.5 y se ha eliminado en v4.
+
+¡Utilice el estado que desee!
+Por el bien de esta demostración, estamos usando data-loading-texty $().button('loading'), pero ese no es el único estado que puede usar. Vea más sobre esto a continuación en la $().button(string)documentación .
+
+Dupdo
+<button type="button" id="myButton" data-loading-text="Loading..." class="btn btn-primary">
+  Loading state
+</button>
+
+<script>
+  $('#myButton').on('click', function () {
+    var $btn = $(this).button('loading')
+    // business logic...
+    $btn.button('reset')
+  })
+</script>
+Palanca única
+Agregar data-toggle="button"para activar la alternancia en un solo botón.
+
+Los botones pre-activados necesitan .activeyaria-pressed="true"
+Para los botones previamente activados, debe agregar la .activeclase y el aria-pressed="true"atributo a buttonusted mismo.
+
+Dupdo
+<button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false">
+  Single toggle
+</button>
+Casilla de verificación / Radio
+Agregue data-toggle="buttons"a una .btn-groupcasilla de verificación o entradas de radio que contengan para habilitar la alternancia en sus respectivos estilos.
+
+Las opciones preseleccionadas necesitan .active
+Para las opciones preseleccionadas, debe agregar la .activeclase a la entrada labelusted mismo.
+
+El estado visual verificado solo se actualiza al hacer clic
+Si el estado marcado de un botón de casilla de verificación se actualiza sin activar un clickevento en el botón (por ejemplo, mediante <input type="reset">o mediante la configuración de la checkedpropiedad de la entrada), deberá alternar la .activeclase en la entrada labelusted mismo.
+
+Dupdo
+<div class="btn-group" data-toggle="buttons">
+  <label class="btn btn-primary active">
+    <input type="checkbox" checked> Checkbox 1 (pre-checked)
+  </label>
+  <label class="btn btn-primary">
+    <input type="checkbox"> Checkbox 2
+  </label>
+  <label class="btn btn-primary">
+    <input type="checkbox"> Checkbox 3
+  </label>
+</div>
+Dupdo
+<div class="btn-group" data-toggle="buttons">
+  <label class="btn btn-primary active">
+    <input type="radio" name="options" id="option1" checked> Radio 1 (preselected)
+  </label>
+  <label class="btn btn-primary">
+    <input type="radio" name="options" id="option2"> Radio 2
+  </label>
+  <label class="btn btn-primary">
+    <input type="radio" name="options" id="option3"> Radio 3
+  </label>
+</div>
+Métodos
+$().button('toggle')
+Alterna el estado de empuje. Da al botón la apariencia de que ha sido activado.
+
+$().button('reset')
+Restablece el estado del botón: cambia el texto al texto original. Este método es asincrónico y regresa antes de que se haya completado realmente el restablecimiento.
+
+$().button(string)
+Cambia texto a cualquier estado de texto definido por datos.
+
+Dupdo
+<button type="button" id="myStateButton" data-complete-text="finished!" class="btn btn-primary">
+  ...
+</button>
+
+<script>
+  $('#myStateButton').on('click', function () {
+    $(this).button('complete') // button text will be "finished!"
+  })
+</script>
+Collapse collapse.js
+Complemento flexible que utiliza un puñado de clases para facilitar el comportamiento de alternancia.
+
+Dependencia del complemento
+Collapse requiere que el complemento de transiciones se incluya en su versión de Bootstrap.
+
+Ejemplo
+Haga clic en los botones de abajo para mostrar y ocultar otro elemento a través de cambios de clase:
+
+.collapse oculta contenido
+.collapsing se aplica durante las transiciones
+.collapse.in muestra contenido
+Puede utilizar un enlace con el hrefatributo o un botón con el data-targetatributo. En ambos casos, data-toggle="collapse"se requiere.
+
+ 
+
+Dupdo
+<a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+  Link with href
+</a>
+<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+  Button with data-target
+</button>
+<div class="collapse" id="collapseExample">
+  <div class="well">
+    ...
+  </div>
+</div>
+Ejemplo de acordeón
+Amplíe el comportamiento de contracción predeterminado para crear un acordeón con el componente del panel.
+
+Elemento de grupo plegable n. ° 1
+Anim pariatur cliché reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, brunch doloroso sin monopatín cupidatat. Food truck quinua nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua le puso un pájaro calamar café de origen único nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, trabajador de cerveza artesanal wes anderson cred nesciunt sapiente ea proident. Ad vegan excepcional carnicero vice lomo. Leggings.
+Elemento de grupo plegable n. ° 2
+Elemento de grupo plegable n. ° 3
+Dupdo
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Collapsible Group Item #1
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingTwo">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Collapsible Group Item #2
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingThree">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Collapsible Group Item #3
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+      <div class="panel-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div>
+</div>
+También es posible intercambiar .panel-bodys por .list-groups.
+
+Grupo de lista contraíble
+Hacer accesibles los controles de expansión / contracción
+Asegúrese de agregar aria-expandedal elemento de control. Este atributo define explícitamente el estado actual del elemento plegable para lectores de pantalla y tecnologías de asistencia similares. Si el elemento plegable está cerrado de forma predeterminada, debería tener un valor de aria-expanded="false". Si ha configurado el elemento plegable para que esté abierto de forma predeterminada utilizando la inclase, configúrelo aria-expanded="true"en el control. El complemento alternará automáticamente este atributo en función de si el elemento plegable se ha abierto o cerrado.
+
+Además, si su elemento de control tiene como objetivo un único elemento plegable, es decir, el data-targetatributo apunta a un idselector, puede agregar un aria-controlsatributo adicional al elemento de control, que contiene el iddel elemento plegable. Los lectores de pantalla modernos y tecnologías de asistencia similares hacen uso de este atributo para proporcionar a los usuarios accesos directos adicionales para navegar directamente al elemento plegable en sí.
+
+Uso
+El complemento colapso utiliza algunas clases para manejar el trabajo pesado:
+
+.collapse oculta el contenido
+.collapse.in muestra el contenido
+.collapsing se agrega cuando comienza la transición y se elimina cuando termina
+Estas clases se pueden encontrar en component-animations.less.
+
+A través de atributos de datos
+Simplemente agregue data-toggle="collapse"y data-targeta al elemento para asignar automáticamente el control de un elemento plegable. El data-targetatributo acepta un selector de CSS para aplicar la contracción. Asegúrese de agregar la clase collapseal elemento contraíble. Si desea que se abra de forma predeterminada, agregue la clase adicional in.
+
+Para agregar una administración de grupo similar a un acordeón a un control plegable, agregue el atributo de datos data-parent="#selector". Consulte la demostración para ver esto en acción.
+
+A través de JavaScript
+Habilitar manualmente con:
+
+Dupdo
+$('.collapse').collapse()
+Opciones
+Las opciones se pueden pasar a través de atributos de datos o JavaScript. Para los atributos de datos, agregue el nombre de la opción a data-, como en data-parent="".
+
+Nombre	escribe	defecto	descripción
+padre	selector	falso	Si se proporciona un selector, todos los elementos contraíbles del padre especificado se cerrarán cuando se muestre este elemento contraíble. (similar al comportamiento tradicional del acordeón, esto depende de la panelclase)
+palanca	booleano	cierto	Alterna el elemento plegable en la invocación
+Métodos
+.collapse(options)
+Activa su contenido como un elemento plegable. Acepta opciones opcionales object.
+
+Dupdo
+$('#myCollapsible').collapse({
+  toggle: false
+})
+.collapse('toggle')
+Alterna un elemento plegable a mostrado u oculto. Vuelve a la persona que llama antes de que el elemento plegable se haya mostrado u ocultado (es decir, antes de que ocurra el evento shown.bs.collapseo hidden.bs.collapse).
+
+.collapse('show')
+Muestra un elemento plegable. Vuelve a la persona que llama antes de que se haya mostrado realmente el elemento plegable (es decir, antes de shown.bs.collapseque ocurra el evento).
+
+.collapse('hide')
+Oculta un elemento plegable. Vuelve a la persona que llama antes de que el elemento plegable se haya ocultado (es decir, antes de hidden.bs.collapseque ocurra el evento).
+
+Eventos
+La clase de colapso de Bootstrap expone algunos eventos para engancharse a la funcionalidad de colapso.
+
+Tipo de evento	Descripción
+show.bs.collapse	Este evento se activa inmediatamente cuando showse llama al método de instancia.
+mostrado.bs.collapse	Este evento se activa cuando un elemento de colapso se ha hecho visible para el usuario (esperará a que se completen las transiciones de CSS).
+hide.bs.collapse	Este evento se dispara inmediatamente cuando hidese llama al método.
+hidden.bs.collapse	Este evento se activa cuando un elemento de colapso se ha ocultado al usuario (esperará a que se completen las transiciones de CSS).Dupdo
+$('#myCollapsible').on('hidden.bs.collapse', function () {
+  // do something…
+})
+Carrusel carrusel.js
+Un componente de presentación de diapositivas para recorrer elementos, como un carrusel. No se admiten carruseles anidados.
+
+Ejemplos de
+  
+Second slide [900x500]AnteriorpróximoDupdo
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <div class="item active">
+      <img src="..." alt="...">
+      <div class="carousel-caption">
+        ...
+      </div>
+    </div>
+    <div class="item">
+      <img src="..." alt="...">
+      <div class="carousel-caption">
+        ...
+      </div>
+    </div>
+    ...
+  </div>
+
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+Problema de accesibilidad
+El componente de carrusel generalmente no cumple con los estándares de accesibilidad. Si necesita cumplir, considere otras opciones para presentar su contenido.
+
+Las animaciones de transición no son compatibles con Internet Explorer 8 y 9
+Bootstrap utiliza exclusivamente CSS3 para sus animaciones, pero Internet Explorer 8 y 9 no admiten las propiedades CSS necesarias. Por lo tanto, no hay animaciones de transición de diapositivas cuando se utilizan estos navegadores. Hemos decidido intencionalmente no incluir alternativas basadas en jQuery para las transiciones.
+
+Se requiere un elemento activo inicial
+La .activeclase debe agregarse a una de las diapositivas. De lo contrario, el carrusel no será visible.
+
+Los iconos de Glyphicon no son necesarios
+Las clases .glyphicon .glyphicon-chevron-lefty .glyphicon .glyphicon-chevron-rightno son necesariamente necesarias para los controles. Bootstrap proporciona .icon-prevy .icon-nextcomo alternativas simples de Unicode.
+
+Subtítulos opcionales
+Agregue títulos a sus diapositivas fácilmente con el .carousel-captionelemento dentro de cualquier archivo .item. Coloque casi cualquier HTML opcional allí y se alineará y formateará automáticamente.
+
+  
+900x500
+Second slide label
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+AnteriorpróximoDupdo
+<div class="item">
+  <img src="..." alt="...">
+  <div class="carousel-caption">
+    <h3>...</h3>
+    <p>...</p>
+  </div>
+</div>
+Uso
+Múltiples carruseles
+Los carruseles requieren el uso de un iden el contenedor más externo (el .carousel) para que los controles del carrusel funcionen correctamente. Cuando agregue varios carruseles, o cuando cambie un carrusel id, asegúrese de actualizar los controles relevantes.
+
+A través de atributos de datos
+Utilice atributos de datos para controlar fácilmente la posición del carrusel. data-slideacepta las palabras clave prevo next, que altera la posición de la diapositiva en relación con su posición actual. Alternativamente, use data-slide-topara pasar un índice de diapositiva sin procesar al carrusel data-slide-to="2", que cambia la posición de la diapositiva a un índice particular que comienza con 0.
+
+El data-ride="carousel"atributo se utiliza para marcar un carrusel como animado a partir de la carga de la página. No se puede usar en combinación con la inicialización de JavaScript explícita (redundante e innecesaria) del mismo carrusel.
+
+A través de JavaScript
+Llamar carrusel manualmente con:
+
+Dupdo
+$('.carousel').carousel()
+Opciones
+Las opciones se pueden pasar a través de atributos de datos o JavaScript. Para los atributos de datos, agregue el nombre de la opción a data-, como en data-interval="".
+
+Nombre	escribe	defecto	descripción
+intervalo	número	5000	La cantidad de tiempo de demora entre el ciclo automático de un elemento. Si es falso, el carrusel no circulará automáticamente.
+pausa	cadena | nulo	"flotar"	Si se establece en "hover", detiene el ciclo del carrusel mouseentery reanuda el ciclo del carrusel mouseleave. Si se establece en null, pasar el cursor sobre el carrusel no lo detendrá.
+envoltura	booleano	cierto	Si el carrusel debe realizar un ciclo continuo o tener paradas bruscas.
+teclado	booleano	cierto	Si el carrusel debería reaccionar a los eventos del teclado.
+Métodos
+.carousel(options)
+Inicializa el carrusel con opciones opcionales objecty comienza a recorrer los elementos.
+
+Dupdo
+$('.carousel').carousel({
+  interval: 2000
+})
+.carousel('cycle')
+Recorre los elementos del carrusel de izquierda a derecha.
+
+.carousel('pause')
+Evita que el carrusel recorra los elementos.
+
+.carousel(number)
+Cicla el carrusel a un fotograma en particular (basado en 0, similar a una matriz).
+
+.carousel('prev')
+Pasa al elemento anterior.
+
+.carousel('next')
+Pasa al siguiente elemento.
+
+Eventos
+La clase de carrusel de Bootstrap expone dos eventos para conectarse a la funcionalidad del carrusel.
+
+Ambos eventos tienen las siguientes propiedades adicionales:
+
+direction: La dirección en la que se desliza el carrusel ( "left"o "right").
+relatedTarget: El elemento DOM que se desliza en su lugar como elemento activo.
+Todos los eventos de carrusel se disparan en el propio carrusel (es decir, en el <div class="carousel">).
+
+Tipo de evento	Descripción
+slide.bs.carousel	Este evento se activa inmediatamente cuando slidese invoca el método de instancia.
+carrusel deslizado	Este evento se activa cuando el carrusel ha completado su transición de diapositivas.Dupdo
+$('#myCarousel').on('slide.bs.carousel', function () {
+  // do something…
+})
+Fijar affix.js
+Ejemplo
+El complemento de afijo se activa position: fixed;y desactiva, emulando el efecto encontrado con position: sticky;. La subnavegación de la derecha es una demostración en vivo del complemento de afijo.
+
+Uso
+Utilice el complemento de afijo a través de atributos de datos o manualmente con su propio JavaScript. En ambas situaciones, debe proporcionar CSS para el posicionamiento y el ancho de su contenido adjunto.
+
+Nota: No utilice el complemento de afijo en un elemento contenido en un elemento relativamente posicionado, como una columna extraída o empujada, debido a un error de renderizado de Safari .
+
+Posicionamiento vía CSS
+El afijo Plugin alterna entre tres clases, cada uno representando un estado particular: .affix, .affix-top, y .affix-bottom. Debe proporcionar los estilos, con la excepción de position: fixed;on .affix, para estas clases usted mismo (independientemente de este complemento) para manejar las posiciones reales.
+
+Así es como funciona el complemento de afijo:
+
+Para comenzar, el complemento agrega .affix-toppara indicar que el elemento está en su posición más alta. En este punto, no se requiere posicionamiento CSS.
+Desplazarse más allá del elemento que desea colocar debería activar la colocación real. Aquí es donde .affixreemplaza .affix-topy establece position: fixed;(proporcionado por CSS de Bootstrap).
+Si se define un desplazamiento inferior, desplazarse más allá debe reemplazarlo .affixpor .affix-bottom. Dado que las compensaciones son opcionales, configurar una requiere que configure el CSS apropiado. En este caso, agregue position: absolute;cuando sea necesario. El complemento utiliza el atributo de datos o la opción de JavaScript para determinar dónde ubicar el elemento desde allí.
+Siga los pasos anteriores para configurar su CSS para cualquiera de las siguientes opciones de uso.
+
+A través de atributos de datos
+Para agregar fácilmente un comportamiento de afijo a cualquier elemento, simplemente agréguelo data-spy="affix"al elemento que desea espiar. Utilice compensaciones para definir cuándo alternar la fijación de un elemento.
+
+Dupdo
+<div data-spy="affix" data-offset-top="60" data-offset-bottom="200">
+  ...
+</div>
+A través de JavaScript
+Llame al complemento de afijo a través de JavaScript:
+
+Dupdo
+$('#myAffix').affix({
+  offset: {
+    top: 100,
+    bottom: function () {
+      return (this.bottom = $('.footer').outerHeight(true))
+    }
+  }
+})
+Opciones
+Las opciones se pueden pasar a través de atributos de datos o JavaScript. Para los atributos de datos, agregue el nombre de la opción a data-, como en data-offset-top="200".
+
+Nombre	escribe	defecto	descripción
+compensar	numero | función | objeto	10	Píxeles para compensar de la pantalla al calcular la posición del desplazamiento. Si se proporciona un solo número, la compensación se aplicará tanto en la dirección superior como en la inferior. Para proporcionar un desplazamiento único, inferior y superior, solo proporcione un objeto offset: { top: 10 }o offset: { top: 10, bottom: 5 }. Utilice una función cuando necesite calcular dinámicamente un desplazamiento.
+objetivo	selector | nodo | elemento jQuery	el windowobjeto	Especifica el elemento de destino del afijo.
+Métodos
+.affix(options)
+Activa su contenido como contenido adjunto. Acepta opciones opcionales object.
+
+Dupdo
+$('#myAffix').affix({
+  offset: 15
+})
+.affix('checkPosition')
+Vuelve a calcular el estado del afijo en función de las dimensiones, la posición y la posición de desplazamiento de los elementos relevantes. El .affix, .affix-topy .affix-bottomlas clases se añaden a o se retira del contenido fijada de acuerdo con el nuevo estado. Este método debe invocarse siempre que se modifiquen las dimensiones del contenido adjunto o del elemento de destino, para garantizar el posicionamiento correcto del contenido adjunto.
+
+Dupdo
+$('#myAffix').affix('checkPosition')
+Eventos
+El complemento de afijo de Bootstrap expone algunos eventos para conectarse a la funcionalidad de afijo.
+
+Tipo de evento	Descripción
+affix.bs.affix	Este evento se activa inmediatamente antes de que se haya fijado el elemento.
+adjunto.bs.affix	Este evento se activa después de que se haya colocado el elemento.
+affix-top.bs.affix	Este evento se activa inmediatamente antes de que el elemento se haya colocado en la parte superior.
+affixed-top.bs.affix	Este evento se activa después de que el elemento se haya colocado en la parte superior.
+affix-bottom.bs.affix	Este evento se activa inmediatamente antes de que el elemento se haya colocado en la parte inferior.
+adherido-fondo.bs.affix	Este evento se activa después de que el elemento se haya colocado en la parte inferior.

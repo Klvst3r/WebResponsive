@@ -1,0 +1,2437 @@
+Documentation
+
+Pagina Inicial
+
+https://getbootstrap.com/docs/3.4/css/
+
+
+
+
+
+https://getbootstrap.com/docs/4.3/getting-started/download/
+
+Templates
+http://localhost/dev/Udemy/WebResponsive/Codes/7.Boostrap/
+
+CSS
+
+https://getbootstrap.com/docs/3.4/css/
+
+Descripción general
+Obtenga información sobre las piezas clave de la infraestructura de Bootstrap, incluido nuestro enfoque para un desarrollo web mejor, más rápido y más sólido.
+
+Tipo de documento HTML5
+Bootstrap hace uso de ciertos elementos HTML y propiedades CSS que requieren el uso del tipo de documento HTML5. Inclúyelo al principio de todos tus proyectos.
+
+Dupdo
+<!doctype html>
+<html lang="en">
+  ...
+</html>
+Móvil primero
+Con Bootstrap 2, agregamos estilos opcionales compatibles con dispositivos móviles para aspectos clave del marco. Con Bootstrap 3, hemos reescrito el proyecto para que sea compatible con dispositivos móviles desde el principio. En lugar de agregar estilos móviles opcionales, se integran directamente en el núcleo. De hecho, Bootstrap es móvil primero . Los primeros estilos móviles se pueden encontrar en toda la biblioteca en lugar de en archivos separados.
+
+Para garantizar una representación adecuada y el zoom táctil, agregue la metaetiqueta de la ventana gráfica a su archivo<head> .
+
+Dupdo
+<meta name="viewport" content="width=device-width, initial-scale=1">
+Puede deshabilitar las capacidades de zoom en dispositivos móviles agregando user-scalable=noa la metaetiqueta de la ventana gráfica. Esto deshabilita el zoom, lo que significa que los usuarios solo pueden desplazarse y hace que su sitio se sienta un poco más como una aplicación nativa. En general, no recomendamos esto en todos los sitios, ¡así que tenga cuidado!
+
+Dupdo
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+Tipografía y enlaces
+Bootstrap establece estilos básicos de visualización, tipografía y enlaces globales. Específicamente nosotros:
+
+Establecer background-color: #fff;en elbody
+Utilice los @font-family-base, @font-size-basey @line-height-baseatributos como nuestra base tipográfica
+Establezca el color del enlace global mediante @link-colory aplique subrayados de enlace solo en:hover
+Estos estilos se pueden encontrar dentro scaffolding.less.
+
+Normalizar.css
+Para una mejor representación en varios navegadores, usamos Normalize.css , un proyecto de Nicolas Gallagher y Jonathan Neal .
+
+
+https://necolas.github.io/normalize.css/8.0.1/normalize.css
+
+
+
+
+
+Sistema de red
+Bootstrap incluye un primer sistema de cuadrícula de fluidos móvil y receptivo que escala adecuadamente hasta 12 columnas a medida que aumenta el tamaño del dispositivo o la ventana gráfica. Incluye clases predefinidas para opciones de diseño fáciles, así como potentes mixins para generar diseños más semánticos .
+
+Introducción
+Los sistemas de cuadrícula se utilizan para crear diseños de página a través de una serie de filas y columnas que albergan su contenido. Así es como funciona el sistema de cuadrícula Bootstrap:
+
+Las filas deben colocarse dentro de un .container(ancho fijo) o .container-fluid(ancho completo) para una alineación y un relleno adecuados.
+Utilice filas para crear grupos horizontales de columnas.
+El contenido debe colocarse dentro de las columnas y solo las columnas pueden ser elementos secundarios inmediatos de las filas.
+Las clases de cuadrícula predefinidas como .rowy .col-xs-4están disponibles para realizar rápidamente diseños de cuadrícula. También se pueden usar menos mixins para diseños más semánticos.
+Las columnas crean medianiles (espacios entre el contenido de la columna) a través de padding. Ese relleno se compensa en filas para la primera y la última columna mediante un margen negativo en .rows.
+El margen negativo es la razón por la que los ejemplos a continuación están desactualizados. Es para que el contenido dentro de las columnas de la cuadrícula esté alineado con el contenido que no es de la cuadrícula.
+Las columnas de la cuadrícula se crean especificando el número de doce columnas disponibles que desea abarcar. Por ejemplo, tres columnas iguales usarían tres .col-xs-4.
+Si se colocan más de 12 columnas dentro de una sola fila, cada grupo de columnas adicionales, como una unidad, se ajustará a una nueva línea.
+Las clases de cuadrícula se aplican a dispositivos con anchos de pantalla mayores o iguales a los tamaños de los puntos de interrupción y anulan las clases de cuadrícula dirigidas a dispositivos más pequeños. Por lo tanto, por ejemplo, aplicar cualquier .col-md-*clase a un elemento no solo afectará su estilo en dispositivos medianos sino también en dispositivos grandes si una .col-lg-*clase no está presente.
+
+
+Opciones de cuadrícula
+Vea cómo funcionan los aspectos del sistema de cuadrícula Bootstrap en múltiples dispositivos con una práctica tabla.
+
+Dispositivos extra pequeños Teléfonos (<768px)	Pequeños dispositivos Tablets (≥768px)	Dispositivos medianos Computadoras de escritorio (≥992px)	Dispositivos grandes Computadoras de escritorio (≥1200px)
+Comportamiento de la cuadrícula	Horizontal en todo momento	Colapsado al inicio, horizontal por encima de los puntos de interrupción
+Ancho contenedor	Ninguno (automático)	750 px	970 px	1170 px
+Prefijo de clase	.col-xs-	.col-sm-	.col-md-	.col-lg-
+# de columnas	12
+Ancho de columna	Auto	~ 62px	~ 81px	~ 97px
+Ancho de canal	30px (15px a cada lado de una columna)
+Encajable	sí
+Compensaciones	sí
+Orden de columnas	sí
+Ejemplo: apilado a horizontal
+Con un solo conjunto de .col-md-*clases de cuadrícula, puede crear un sistema de cuadrícula básico que comienza apilado en dispositivos móviles y tabletas (de rango extra pequeño a pequeño) antes de volverse horizontal en dispositivos de escritorio (medianos). Coloque las columnas de la cuadrícula en cualquier .row.
+
+.col-md-1.col-md-1.col-md-1.col-md-1.col-md-1.col-md-1.col-md-1.col-md-1.col-md-1.col-md-1.col-md-1.col-md-1
+.col-md-8.col-md-4
+.col-md-4.col-md-4.col-md-4
+.col-md-6.col-md-6Dupdo
+<div class="row">
+  <div class="col-md-1">.col-md-1</div>
+  <div class="col-md-1">.col-md-1</div>
+  <div class="col-md-1">.col-md-1</div>
+  <div class="col-md-1">.col-md-1</div>
+  <div class="col-md-1">.col-md-1</div>
+  <div class="col-md-1">.col-md-1</div>
+  <div class="col-md-1">.col-md-1</div>
+  <div class="col-md-1">.col-md-1</div>
+  <div class="col-md-1">.col-md-1</div>
+  <div class="col-md-1">.col-md-1</div>
+  <div class="col-md-1">.col-md-1</div>
+  <div class="col-md-1">.col-md-1</div>
+</div>
+<div class="row">
+  <div class="col-md-8">.col-md-8</div>
+  <div class="col-md-4">.col-md-4</div>
+</div>
+<div class="row">
+  <div class="col-md-4">.col-md-4</div>
+  <div class="col-md-4">.col-md-4</div>
+  <div class="col-md-4">.col-md-4</div>
+</div>
+<div class="row">
+  <div class="col-md-6">.col-md-6</div>
+  <div class="col-md-6">.col-md-6</div>
+</div>
+Ejemplo: recipiente de fluido
+Convierta cualquier diseño de cuadrícula de ancho fijo en un diseño de ancho completo cambiando su más externo .containera .container-fluid.
+
+Dupdo
+<div class="container-fluid">
+  <div class="row">
+    ...
+  </div>
+</div>
+Ejemplo: móvil y escritorio
+¿No quiere que sus columnas simplemente se apilen en dispositivos más pequeños? Use las clases de cuadrícula de dispositivos extra pequeños y medianos agregando .col-xs-* .col-md-*a sus columnas. Vea el ejemplo a continuación para tener una mejor idea de cómo funciona todo.
+
+.col-xs-12 .col-md-8.col-xs-6 .col-md-4
+.col-xs-6 .col-md-4.col-xs-6 .col-md-4.col-xs-6 .col-md-4
+.col-xs-6.col-xs-6Dupdo
+<!-- Stack the columns on mobile by making one full-width and the other half-width -->
+<div class="row">
+  <div class="col-xs-12 col-md-8">.col-xs-12 .col-md-8</div>
+  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+</div>
+
+<!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
+<div class="row">
+  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+</div>
+
+<!-- Columns are always 50% wide, on mobile and desktop -->
+<div class="row">
+  <div class="col-xs-6">.col-xs-6</div>
+  <div class="col-xs-6">.col-xs-6</div>
+</div>
+Ejemplo: móvil, tableta, escritorio
+Aproveche el ejemplo anterior creando diseños aún más dinámicos y potentes con .col-sm-*clases de tableta .
+
+.col-xs-12 .col-sm-6 .col-md-8.col-xs-6 .col-md-4
+.col-xs-6 .col-sm-4.col-xs-6 .col-sm-4.col-xs-6 .col-sm-4Dupdo
+<div class="row">
+  <div class="col-xs-12 col-sm-6 col-md-8">.col-xs-12 .col-sm-6 .col-md-8</div>
+  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+</div>
+<div class="row">
+  <div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
+  <div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
+  <!-- Optional: clear the XS cols if their content doesn't match in height -->
+  <div class="clearfix visible-xs-block"></div>
+  <div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
+</div>
+Ejemplo: envoltura de columna
+Si se colocan más de 12 columnas dentro de una sola fila, cada grupo de columnas adicionales, como una unidad, se ajustará a una nueva línea.
+
+.col-xs-9.col-xs-4
+Dado que 9 + 4 = 13> 12, este div de 4 columnas de ancho se envuelve en una nueva línea como una unidad contigua..col-xs-6
+Las columnas siguientes continúan a lo largo de la nueva línea.Dupdo
+<div class="row">
+  <div class="col-xs-9">.col-xs-9</div>
+  <div class="col-xs-4">.col-xs-4<br>Since 9 + 4 = 13 &gt; 12, this 4-column-wide div gets wrapped onto a new line as one contiguous unit.</div>
+  <div class="col-xs-6">.col-xs-6<br>Subsequent columns continue along the new line.</div>
+</div>
+Se restablece la columna receptiva
+Con los cuatro niveles de cuadrículas disponibles, seguramente se encontrará con problemas en los que, en ciertos puntos de interrupción, las columnas no se borran del todo bien, ya que una es más alta que la otra. Para solucionarlo, use una combinación de ay .clearfixnuestras clases de utilidad receptiva .
+
+.col-xs-6 .col-sm-3
+Cambie el tamaño de su ventana gráfica o compruébelo en su teléfono para ver un ejemplo..col-xs-6 .col-sm-3.col-xs-6 .col-sm-3.col-xs-6 .col-sm-3Dupdo
+<div class="row">
+  <div class="col-xs-6 col-sm-3">.col-xs-6 .col-sm-3</div>
+  <div class="col-xs-6 col-sm-3">.col-xs-6 .col-sm-3</div>
+
+  <!-- Add the extra clearfix for only the required viewport -->
+  <div class="clearfix visible-xs-block"></div>
+
+  <div class="col-xs-6 col-sm-3">.col-xs-6 .col-sm-3</div>
+  <div class="col-xs-6 col-sm-3">.col-xs-6 .col-sm-3</div>
+</div>
+Además de la limpieza de columnas en los puntos de interrupción de respuesta, es posible que deba restablecer las compensaciones, los empujes o los tirones . Vea esto en acción en el ejemplo de la cuadrícula .
+
+Dupdo
+<div class="row">
+  <div class="col-sm-5 col-md-6">.col-sm-5 .col-md-6</div>
+  <div class="col-sm-5 col-sm-offset-2 col-md-6 col-md-offset-0">.col-sm-5 .col-sm-offset-2 .col-md-6 .col-md-offset-0</div>
+</div>
+
+<div class="row">
+  <div class="col-sm-6 col-md-5 col-lg-6">.col-sm-6 .col-md-5 .col-lg-6</div>
+  <div class="col-sm-6 col-md-5 col-md-offset-2 col-lg-6 col-lg-offset-0">.col-sm-6 .col-md-5 .col-md-offset-2 .col-lg-6 .col-lg-offset-0</div>
+</div>
+Quitar canaletas
+Elimina las canaletas de una fila y sus columnas con la .row-no-guttersclase.
+
+.col-xs-12 .col-md-8.col-xs-6 .col-md-4
+.col-xs-6 .col-md-4.col-xs-6 .col-md-4.col-xs-6 .col-md-4
+.col-xs-6.col-xs-6Dupdo
+<div class="row row-no-gutters">
+  <div class="col-xs-12 col-md-8">.col-xs-12 .col-md-8</div>
+  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+</div>
+<div class="row row-no-gutters">
+  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+</div>
+<div class="row row-no-gutters">
+  <div class="col-xs-6">.col-xs-6</div>
+  <div class="col-xs-6">.col-xs-6</div>
+</div>
+Desplazamiento de columnas
+Mueva las columnas a la derecha usando .col-md-offset-*clases. Estas clases aumentan el margen izquierdo de una columna por *columnas. Por ejemplo, se .col-md-offset-4mueve .col-md-4sobre cuatro columnas.
+
+.col-md-4.col-md-4 .col-md-offset-4
+.col-md-3 .col-md-offset-3.col-md-3 .col-md-offset-3
+.col-md-6 .col-md-offset-3Dupdo
+<div class="row">
+  <div class="col-md-4">.col-md-4</div>
+  <div class="col-md-4 col-md-offset-4">.col-md-4 .col-md-offset-4</div>
+</div>
+<div class="row">
+  <div class="col-md-3 col-md-offset-3">.col-md-3 .col-md-offset-3</div>
+  <div class="col-md-3 col-md-offset-3">.col-md-3 .col-md-offset-3</div>
+</div>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">.col-md-6 .col-md-offset-3</div>
+</div>
+También puede anular las compensaciones de los niveles de cuadrícula inferiores con .col-*-offset-0clases.
+
+Dupdo
+<div class="row">
+  <div class="col-xs-6 col-sm-4">
+  </div>
+  <div class="col-xs-6 col-sm-4">
+  </div>
+  <div class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-0">
+  </div>
+</div>
+Columnas anidadas
+Para anidar su contenido con la cuadrícula predeterminada, agregue un nuevo .rowconjunto de .col-sm-*columnas dentro de una .col-sm-*columna existente. Las filas anidadas deben incluir un conjunto de columnas que sumen 12 o menos (no es necesario que utilice las 12 columnas disponibles).
+
+Nivel 1: .col-sm-9
+Nivel 2: .col-xs-8 .col-sm-6Nivel 2: .col-xs-4 .col-sm-6Dupdo
+<div class="row">
+  <div class="col-sm-9">
+    Level 1: .col-sm-9
+    <div class="row">
+      <div class="col-xs-8 col-sm-6">
+        Level 2: .col-xs-8 .col-sm-6
+      </div>
+      <div class="col-xs-4 col-sm-6">
+        Level 2: .col-xs-4 .col-sm-6
+      </div>
+    </div>
+  </div>
+</div>
+Orden de columnas
+Cambie fácilmente el orden de nuestras columnas de cuadrícula integradas con clases de modificador .col-md-push-*y ..col-md-pull-*
+
+.col-md-9 .col-md-push-3.col-md-3 .col-md-pull-9Dupdo
+<div class="row">
+  <div class="col-md-9 col-md-push-3">.col-md-9 .col-md-push-3</div>
+  <div class="col-md-3 col-md-pull-9">.col-md-3 .col-md-pull-9</div>
+</div>
+Menos mixins y variables
+Además de las clases de cuadrícula prediseñadas para diseños rápidos, Bootstrap incluye Menos variables y mixins para generar rápidamente sus propios diseños semánticos simples.
+
+Variables
+Las variables determinan el número de columnas, el ancho del margen y el punto de consulta de medios en el que comenzar las columnas flotantes. Los usamos para generar las clases de cuadrícula predefinidas documentadas anteriormente, así como para los mixins personalizados que se enumeran a continuación.
+
+Dupdo
+@grid-columns:              12;
+@grid-gutter-width:         30px;
+@grid-float-breakpoint:     768px;
+Mixins
+Los mixins se utilizan junto con las variables de cuadrícula para generar CSS semántico para columnas de cuadrícula individuales.
+
+Dupdo
+// Creates a wrapper for a series of columns
+.make-row(@gutter: @grid-gutter-width) {
+  // Then clear the floated columns
+  .clearfix();
+
+  @media (min-width: @screen-sm-min) {
+    margin-left:  (@gutter / -2);
+    margin-right: (@gutter / -2);
+  }
+
+  // Negative margin nested rows out to align the content of columns
+  .row {
+    margin-left:  (@gutter / -2);
+    margin-right: (@gutter / -2);
+  }
+}
+
+// Generate the extra small columns
+.make-xs-column(@columns; @gutter: @grid-gutter-width) {
+  position: relative;
+  // Prevent columns from collapsing when empty
+  min-height: 1px;
+  // Inner gutter via padding
+  padding-left:  (@gutter / 2);
+  padding-right: (@gutter / 2);
+
+  // Calculate width based on number of columns available
+  @media (min-width: @grid-float-breakpoint) {
+    float: left;
+    width: percentage((@columns / @grid-columns));
+  }
+}
+
+// Generate the small columns
+.make-sm-column(@columns; @gutter: @grid-gutter-width) {
+  position: relative;
+  // Prevent columns from collapsing when empty
+  min-height: 1px;
+  // Inner gutter via padding
+  padding-left:  (@gutter / 2);
+  padding-right: (@gutter / 2);
+
+  // Calculate width based on number of columns available
+  @media (min-width: @screen-sm-min) {
+    float: left;
+    width: percentage((@columns / @grid-columns));
+  }
+}
+
+// Generate the small column offsets
+.make-sm-column-offset(@columns) {
+  @media (min-width: @screen-sm-min) {
+    margin-left: percentage((@columns / @grid-columns));
+  }
+}
+.make-sm-column-push(@columns) {
+  @media (min-width: @screen-sm-min) {
+    left: percentage((@columns / @grid-columns));
+  }
+}
+.make-sm-column-pull(@columns) {
+  @media (min-width: @screen-sm-min) {
+    right: percentage((@columns / @grid-columns));
+  }
+}
+
+// Generate the medium columns
+.make-md-column(@columns; @gutter: @grid-gutter-width) {
+  position: relative;
+  // Prevent columns from collapsing when empty
+  min-height: 1px;
+  // Inner gutter via padding
+  padding-left:  (@gutter / 2);
+  padding-right: (@gutter / 2);
+
+  // Calculate width based on number of columns available
+  @media (min-width: @screen-md-min) {
+    float: left;
+    width: percentage((@columns / @grid-columns));
+  }
+}
+
+// Generate the medium column offsets
+.make-md-column-offset(@columns) {
+  @media (min-width: @screen-md-min) {
+    margin-left: percentage((@columns / @grid-columns));
+  }
+}
+.make-md-column-push(@columns) {
+  @media (min-width: @screen-md-min) {
+    left: percentage((@columns / @grid-columns));
+  }
+}
+.make-md-column-pull(@columns) {
+  @media (min-width: @screen-md-min) {
+    right: percentage((@columns / @grid-columns));
+  }
+}
+
+// Generate the large columns
+.make-lg-column(@columns; @gutter: @grid-gutter-width) {
+  position: relative;
+  // Prevent columns from collapsing when empty
+  min-height: 1px;
+  // Inner gutter via padding
+  padding-left:  (@gutter / 2);
+  padding-right: (@gutter / 2);
+
+  // Calculate width based on number of columns available
+  @media (min-width: @screen-lg-min) {
+    float: left;
+    width: percentage((@columns / @grid-columns));
+  }
+}
+
+// Generate the large column offsets
+.make-lg-column-offset(@columns) {
+  @media (min-width: @screen-lg-min) {
+    margin-left: percentage((@columns / @grid-columns));
+  }
+}
+.make-lg-column-push(@columns) {
+  @media (min-width: @screen-lg-min) {
+    left: percentage((@columns / @grid-columns));
+  }
+}
+.make-lg-column-pull(@columns) {
+  @media (min-width: @screen-lg-min) {
+    right: percentage((@columns / @grid-columns));
+  }
+}
+Uso de ejemplo
+Puede modificar las variables a sus propios valores personalizados, o simplemente usar los mixins con sus valores predeterminados. A continuación, se muestra un ejemplo del uso de la configuración predeterminada para crear un diseño de dos columnas con un espacio entre ellas.
+
+Dupdo
+.wrapper {
+  .make-row();
+}
+.content-main {
+  .make-lg-column(8);
+}
+.content-secondary {
+  .make-lg-column(3);
+  .make-lg-column-offset(1);
+}
+Dupdo
+<div class="wrapper">
+  <div class="content-main">...</div>
+  <div class="content-secondary">...</div>
+</div>
+Tipografía
+Encabezados
+Todos los encabezados HTML, <h1>hasta <h6>, están disponibles. .h1Las .h6clases intermedias también están disponibles, para cuando desea hacer coincidir el estilo de fuente de un encabezado pero aún desea que su texto se muestre en línea.
+
+h1. Encabezado de Bootstrap
+Semibold 36px
+h2. Encabezado de Bootstrap
+Semibold 30px
+h3. Encabezado de Bootstrap
+Semibold 24px
+h4. Encabezado de Bootstrap
+Semibold 18px
+h5. Encabezado de Bootstrap
+Semibold 14px
+h6. Encabezado de Bootstrap
+Semibold 12pxDupdo
+<h1>h1. Bootstrap heading</h1>
+<h2>h2. Bootstrap heading</h2>
+<h3>h3. Bootstrap heading</h3>
+<h4>h4. Bootstrap heading</h4>
+<h5>h5. Bootstrap heading</h5>
+<h6>h6. Bootstrap heading</h6>
+Cree un texto secundario más claro en cualquier encabezado con una <small>etiqueta genérica o la .smallclase.
+
+h1. Encabezado de Bootstrap Texto secundario
+h2. Encabezado de Bootstrap Texto secundario
+h3. Encabezado de Bootstrap Texto secundario
+h4. Encabezado de Bootstrap Texto secundario
+h5. Encabezado de Bootstrap Texto secundario
+h6. Encabezado de Bootstrap Texto secundario
+Dupdo
+<h1>h1. Bootstrap heading <small>Secondary text</small></h1>
+<h2>h2. Bootstrap heading <small>Secondary text</small></h2>
+<h3>h3. Bootstrap heading <small>Secondary text</small></h3>
+<h4>h4. Bootstrap heading <small>Secondary text</small></h4>
+<h5>h5. Bootstrap heading <small>Secondary text</small></h5>
+<h6>h6. Bootstrap heading <small>Secondary text</small></h6>
+Copia de cuerpo
+El valor predeterminado global de Bootstrap font-sizees 14px , con un valor line-heightde 1.428 . Esto se aplica a <body>todos los párrafos. Además, los <p>(párrafos) reciben un margen inferior de la mitad de su altura de línea calculada (10px por defecto).
+
+Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.
+
+Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ullamcorper nulla non metus auctor fringilla. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec ullamcorper nulla non metus auctor fringilla.
+
+Mecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non mi porta gravida en eget metus. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
+
+Dupdo
+<p>...</p>
+Texto principal del cuerpo
+Haga que un párrafo se destaque agregando .lead.
+
+Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus.
+
+Dupdo
+<p class="lead">...</p>
+Construido con menos
+La escala tipográfica se basa en dos variables Less en variables.less : @font-size-basey @line-height-base. El primero es el tamaño de fuente base utilizado en todas partes y el segundo es la altura de la línea base. Usamos esas variables y algunas matemáticas simples para crear los márgenes, rellenos y alturas de línea de todo nuestro tipo y más. Personalícelos y Bootstrap se adapta.
+
+Elementos de texto en línea
+Texto marcado
+Para resaltar una serie de texto debido a su relevancia en otro contexto, use la <mark>etiqueta.
+
+Puede utilizar la etiqueta de marca para destacar texto.
+
+Dupdo
+You can use the mark tag to <mark>highlight</mark> text.
+Texto eliminado
+Para indicar bloques de texto que se han eliminado, utilice la <del>etiqueta.
+
+Esta línea de texto debe tratarse como texto eliminado.
+
+Dupdo
+<del>This line of text is meant to be treated as deleted text.</del>
+Texto tachado
+Para indicar bloques de texto que ya no son relevantes, utilice la <s>etiqueta.
+
+Ésta línea de texto se debe de considerar no correcta.
+
+Dupdo
+<s>This line of text is meant to be treated as no longer accurate.</s>
+Texto insertado
+Para indicar adiciones al documento, use la <ins>etiqueta.
+
+Esta línea de texto debe tratarse como una adición al documento.
+
+Dupdo
+<ins>This line of text is meant to be treated as an addition to the document.</ins>
+Texto subrayado
+Para subrayar el texto, utilice la <u>etiqueta.
+
+Esta línea de texto se mostrará subrayada.
+
+Dupdo
+<u>This line of text will render as underlined</u>
+Utilice las etiquetas de énfasis predeterminadas de HTML con estilos ligeros.
+
+Texto pequeño
+Para quitar énfasis en líneas o bloques de texto, use la <small>etiqueta para establecer el texto en un 85% del tamaño del padre. Los elementos de encabezado reciben los suyos propios font-sizepara los <small>elementos anidados .
+
+Alternativamente, puede usar un elemento .smallen línea con en lugar de cualquier <small>.
+
+Esta línea de texto debe tratarse como letra pequeña.
+
+Dupdo
+<small>This line of text is meant to be treated as fine print.</small>
+Audaz
+Para enfatizar un fragmento de texto con un peso de fuente más pesado.
+
+El siguiente fragmento de texto se representa en negrita .
+
+Dupdo
+<strong>rendered as bold text</strong>
+Cursiva
+Para enfatizar un fragmento de texto en cursiva.
+
+El siguiente fragmento de texto se presenta como texto en cursiva .
+
+Dupdo
+<em>rendered as italicized text</em>
+Elementos alternos
+Siéntase libre de usar <b>y <i>en HTML5. <b>está destinado a resaltar palabras o frases sin transmitir importancia adicional, mientras que <i>es principalmente para voz, términos técnicos, etc.
+
+Clases de alineación
+Realinee fácilmente el texto a los componentes con clases de alineación de texto.
+
+Texto alineado a la izquierda.
+
+Texto alineado al centro.
+
+Texto alineado a la derecha.
+
+Texto justificado.
+
+Sin texto ajustado.
+
+Dupdo
+<p class="text-left">Left aligned text.</p>
+<p class="text-center">Center aligned text.</p>
+<p class="text-right">Right aligned text.</p>
+<p class="text-justify">Justified text.</p>
+<p class="text-nowrap">No wrap text.</p>
+Clases de transformación
+Transforme texto en componentes con clases de mayúsculas de texto.
+
+texto en minúsculas.
+
+TEXTO EN MAYÚSCULAS.
+
+Texto En Mayúscula.
+
+Dupdo
+<p class="text-lowercase">Lowercased text.</p>
+<p class="text-uppercase">Uppercased text.</p>
+<p class="text-capitalize">Capitalized text.</p>
+Abreviaturas
+Implementación estilizada del <abbr>elemento HTML para abreviaturas y acrónimos para mostrar la versión ampliada al pasar el mouse. Las abreviaturas con un titleatributo tienen un borde inferior punteado claro y un cursor de ayuda al pasar el mouse, lo que proporciona contexto adicional al pasar el mouse y a los usuarios de tecnologías de asistencia.
+
+Abreviatura básica
+Una abreviatura de la palabra atributo es attr .
+
+Dupdo
+<abbr title="attribute">attr</abbr>
+Inicialismo
+Agregue .initialisma una abreviatura para un tamaño de fuente un poco más pequeño.
+
+HTML es lo mejor desde el pan de molde.
+
+Dupdo
+<abbr title="HyperText Markup Language" class="initialism">HTML</abbr>
+Direcciones
+Presente la información de contacto del antepasado más cercano o de todo el trabajo. Conserve el formato terminando todas las líneas con <br>.
+
+Twitter,
+Inc.1355 Market Street, Suite 900
+San Francisco, CA 94103
+P: (123) 456-7890
+Nombre completo
+first.last@example.com
+Dupdo
+<address>
+  <strong>Twitter, Inc.</strong><br>
+  1355 Market Street, Suite 900<br>
+  San Francisco, CA 94103<br>
+  <abbr title="Phone">P:</abbr> (123) 456-7890
+</address>
+
+<address>
+  <strong>Full Name</strong><br>
+  <a href="mailto:#">first.last@example.com</a>
+</address>
+Blockquotes
+Para citar bloques de contenido de otra fuente dentro de su documento.
+
+Cita en bloque predeterminada
+Envuelva <blockquote>cualquier HTML como cita. Para cotizaciones directas, recomendamos a <p>.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Entero posuere erat a ante.
+
+Dupdo
+<blockquote>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+</blockquote>
+Opciones de blockquote
+Cambios de estilo y contenido para variaciones simples de un estándar <blockquote>.
+
+Nombrar una fuente
+Agregue un <footer>para identificar la fuente. Envuelva el nombre del trabajo de origen <cite>.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Entero posuere erat a ante.
+
+ Alguien famoso en el título fuente
+Dupdo
+<blockquote>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+  <footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>
+</blockquote>
+Pantallas alternativas
+Agregar .blockquote-reversepara una cita en bloque con contenido alineado a la derecha.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Entero posuere erat a ante.
+
+Alguien famoso en el título fuente 
+Dupdo
+<blockquote class="blockquote-reverse">
+  ...
+</blockquote>
+Liza
+Desordenado
+Una lista de elementos en los que el orden no importa explícitamente.
+
+Lorem ipsum dolor sit amet
+Consectetur adipiscing elit
+Integer molestie lorem en massa
+Facilisis en pretium nisl aliquet
+Nulla volutpat aliquam velit
+Phasellus iaculis neque
+Úlceras de purus sodales
+Vestibulum laoreet porttitor sem
+Ac tristique libero volutpat at
+Faucibus porta lacus fringilla vel
+Aenean sit amet erat nunc
+Eget portero lorem
+Dupdo
+<ul>
+  <li>...</li>
+</ul>
+Ordenado
+Una lista de elementos en los que el orden importa explícitamente.
+
+Lorem ipsum dolor sit amet
+Consectetur adipiscing elit
+Integer molestie lorem en massa
+Facilisis en pretium nisl aliquet
+Nulla volutpat aliquam velit
+Faucibus porta lacus fringilla vel
+Aenean sit amet erat nunc
+Eget portero lorem
+Dupdo
+<ol>
+  <li>...</li>
+</ol>
+Sin estilo
+Elimine el list-stylemargen izquierdo y predeterminado de los elementos de la lista (solo hijos inmediatos). Esto solo se aplica a los elementos de la lista de niños inmediatos , lo que significa que también deberá agregar la clase para las listas anidadas.
+
+Lorem ipsum dolor sit amet
+Consectetur adipiscing elit
+Integer molestie lorem en massa
+Facilisis en pretium nisl aliquet
+Nulla volutpat aliquam velit
+Phasellus iaculis neque
+Úlceras de purus sodales
+Vestibulum laoreet porttitor sem
+Ac tristique libero volutpat at
+Faucibus porta lacus fringilla vel
+Aenean sit amet erat nunc
+Eget portero lorem
+Dupdo
+<ul class="list-unstyled">
+  <li>...</li>
+</ul>
+En línea
+Coloque todos los elementos de la lista en una sola línea con display: inline-block;un relleno ligero.
+
+Lorem ipsum Phasellus iaculis Nulla volutpat
+Dupdo
+<ul class="list-inline">
+  <li>...</li>
+</ul>
+Descripción
+Una lista de términos con sus descripciones asociadas.
+
+Listas de descripciones
+Una lista de descripción es perfecta para definir términos.
+Euismod
+Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.
+Donec id elit non mi porta gravida en eget metus.
+Porta Malesuada
+Etiam porta sem malesuada magna mollis euismod.
+Dupdo
+<dl>
+  <dt>...</dt>
+  <dd>...</dd>
+</dl>
+Descripción horizontal
+Haga los términos y descripciones <dl>alineados uno al lado del otro. Comienza apilado como <dl>los mensajes predeterminados , pero cuando la barra de navegación se expande, también lo hacen.
+
+Listas de descripciones
+Una lista de descripción es perfecta para definir términos.
+Euismod
+Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.
+Donec id elit non mi porta gravida en eget metus.
+Porta Malesuada
+Etiam porta sem malesuada magna mollis euismod.
+Felis euismod semper eget lacinia
+Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+Dupdo
+<dl class="dl-horizontal">
+  <dt>...</dt>
+  <dd>...</dd>
+</dl>
+Auto-truncado
+Las listas de descripción horizontal truncarán los términos que sean demasiado largos para caber en la columna de la izquierda text-overflow. En las ventanas gráficas más estrechas, cambiarán al diseño apilado predeterminado.
+
+Código
+En línea
+Envuelva fragmentos de código en línea con <code>.
+
+Por ejemplo, <section>debería estar envuelto como en línea.
+Dupdo
+For example, <code>&lt;section&gt;</code> should be wrapped as inline.
+Entrada del usuario
+Utilice <kbd>para indicar la entrada que normalmente se ingresa a través del teclado.
+
+Para cambiar de directorio, escriba cdseguido del nombre del directorio.
+Para editar la configuración, presione ctrl + ,
+Dupdo
+To switch directories, type <kbd>cd</kbd> followed by the name of the directory.<br>
+To edit settings, press <kbd><kbd>ctrl</kbd> + <kbd>,</kbd></kbd>
+Bloque basico
+Úselo <pre>para varias líneas de código. Asegúrese de evitar los corchetes angulares en el código para una representación adecuada.
+
+<p> Texto de muestra aquí ... </p>
+Dupdo
+<pre>&lt;p&gt;Sample text here...&lt;/p&gt;</pre>
+Opcionalmente, puede agregar la .pre-scrollableclase, que establecerá una altura máxima de 350px y proporcionará una barra de desplazamiento en el eje y.
+
+Variables
+Para indicar variables use la <var>etiqueta.
+
+y = m x + b
+
+Dupdo
+<var>y</var> = <var>m</var><var>x</var> + <var>b</var>
+Salida de muestra
+Para indicar bloques de salida de muestra de un programa, utilice la <samp>etiqueta.
+
+Este texto está destinado a ser tratado como un resultado de muestra de un programa de computadora.
+
+Dupdo
+<samp>This text is meant to be treated as sample output from a computer program.</samp>
+Mesas
+Ejemplo basico
+Para un estilo básico, acolchado ligero y solo separadores horizontales, agregue la clase base .tablea cualquiera <table>. Puede parecer super redundante, pero dado el uso generalizado de tablas para otros complementos como calendarios y selectores de fechas, hemos optado por aislar nuestros estilos de tabla personalizados.
+
+Título de tabla opcional.
+#	Primer nombre	Apellido	Nombre de usuario
+1	Marcos	Otón	@mdo
+2	Jacob	Thornton	@gordo
+3	Larry	el pájaro	@gorjeoDupdo
+<table class="table">
+  ...
+</table>
+Filas de rayas
+Úselo .table-stripedpara agregar rayas de cebra a cualquier fila de la tabla dentro del <tbody>.
+
+Compatibilidad entre navegadores
+El estilo de las tablas con rayas se aplica mediante el :nth-childselector de CSS, que no está disponible en Internet Explorer 8.
+
+#	Primer nombre	Apellido	Nombre de usuario
+1	Marcos	Otón	@mdo
+2	Jacob	Thornton	@gordo
+3	Larry	el pájaro	@gorjeoDupdo
+<table class="table table-striped">
+  ...
+</table>
+Mesa bordeada
+Agregue .table-borderedpara bordes en todos los lados de la tabla y las celdas.
+
+#	Primer nombre	Apellido	Nombre de usuario
+1	Marcos	Otón	@mdo
+2	Jacob	Thornton	@gordo
+3	Larry	el pájaro	@gorjeoDupdo
+<table class="table table-bordered">
+  ...
+</table>
+Hover filas
+Agregar .table-hoverpara habilitar un estado de desplazamiento en las filas de la tabla dentro de un <tbody>.
+
+#	Primer nombre	Apellido	Nombre de usuario
+1	Marcos	Otón	@mdo
+2	Jacob	Thornton	@gordo
+3	Larry	el pájaro	@gorjeoDupdo
+<table class="table table-hover">
+  ...
+</table>
+Mesa condensada
+Agregue .table-condensedpara hacer las mesas más compactas cortando el acolchado de las celdas a la mitad.
+
+#	Primer nombre	Apellido	Nombre de usuario
+1	Marcos	Otón	@mdo
+2	Jacob	Thornton	@gordo
+3	Larry el pájaro	@gorjeoDupdo
+<table class="table table-condensed">
+  ...
+</table>
+Clases contextuales
+Utilice clases contextuales para colorear filas de tablas o celdas individuales.
+
+Clase	Descripción
+.active	Aplica el color de desplazamiento a una fila o celda en particular
+.success	Indica una acción exitosa o positiva
+.info	Indica un cambio o acción informativa neutral
+.warning	Indica una advertencia que podría necesitar atención.
+.danger	Indica una acción peligrosa o potencialmente negativa
+#	Encabezado de columna	Encabezado de columna	Encabezado de columna
+1	Contenido de la columna	Contenido de la columna	Contenido de la columna
+2	Contenido de la columna	Contenido de la columna	Contenido de la columna
+3	Contenido de la columna	Contenido de la columna	Contenido de la columna
+4	Contenido de la columna	Contenido de la columna	Contenido de la columna
+5	Contenido de la columna	Contenido de la columna	Contenido de la columna
+6	Contenido de la columna	Contenido de la columna	Contenido de la columna
+7	Contenido de la columna	Contenido de la columna	Contenido de la columna
+8	Contenido de la columna	Contenido de la columna	Contenido de la columna
+9	Contenido de la columna	Contenido de la columna	Contenido de la columnaDupdo
+<!-- On rows -->
+<tr class="active">...</tr>
+<tr class="success">...</tr>
+<tr class="warning">...</tr>
+<tr class="danger">...</tr>
+<tr class="info">...</tr>
+
+<!-- On cells (`td` or `th`) -->
+<tr>
+  <td class="active">...</td>
+  <td class="success">...</td>
+  <td class="warning">...</td>
+  <td class="danger">...</td>
+  <td class="info">...</td>
+</tr>
+Transmitir significado a las tecnologías de asistencia
+El uso del color para agregar significado a una fila de una tabla o celda individual solo proporciona una indicación visual, que no se transmitirá a los usuarios de tecnologías de asistencia, como los lectores de pantalla. Asegúrese de que la información indicada por el color sea obvia a partir del contenido en sí (el texto visible en la fila / celda de la tabla relevante) o se incluya a través de medios alternativos, como texto adicional oculto con la .sr-onlyclase.
+
+Tablas receptivas
+Crear tablas de respuesta envolviendo ninguna .tablede .table-responsivehacerlos desplazarse horizontalmente en dispositivos pequeños (menos de 768px). Cuando visualice en algo más grande que 768px de ancho, no verá ninguna diferencia en estas tablas.
+
+Recorte / truncamiento vertical
+Se utilizan tablas receptivas overflow-y: hidden, que recorta cualquier contenido que vaya más allá de los bordes inferiores o superiores de la tabla. En particular, esto puede eliminar los menús desplegables y otros widgets de terceros.
+
+Firefox y conjuntos de campo
+Firefox tiene un estilo de conjunto de campos incómodo widthque interfiere con la tabla receptiva. Esto no se puede anular sin un truco específico de Firefox que no proporcionamos en Bootstrap:
+
+Dupdo
+@-moz-document url-prefix() {
+  fieldset { display: table-cell; }
+}
+Para obtener más información, lea esta respuesta de Stack Overflow .
+
+#	Encabezado de la tabla	Encabezado de la tabla	Encabezado de la tabla	Encabezado de la tabla	Encabezado de la tabla	Encabezado de la tabla
+1	Celda de tabla	Celda de tabla	Celda de tabla	Celda de tabla	Celda de tabla	Celda de tabla
+2	Celda de tabla	Celda de tabla	Celda de tabla	Celda de tabla	Celda de tabla	Celda de tabla
+3	Celda de tabla	Celda de tabla	Celda de tabla	Celda de tabla	Celda de tabla	Celda de tabla
+#	Encabezado de la tabla	Encabezado de la tabla	Encabezado de la tabla	Encabezado de la tabla	Encabezado de la tabla	Encabezado de la tabla
+1	Celda de tabla	Celda de tabla	Celda de tabla	Celda de tabla	Celda de tabla	Celda de tabla
+2	Celda de tabla	Celda de tabla	Celda de tabla	Celda de tabla	Celda de tabla	Celda de tabla
+3	Celda de tabla	Celda de tabla	Celda de tabla	Celda de tabla	Celda de tabla	Celda de tablaDupdo
+<div class="table-responsive">
+  <table class="table">
+    ...
+  </table>
+</div>
+Formularios
+Ejemplo basico
+Los controles de formulario individuales reciben automáticamente un estilo global. Todos los elementos textuales <input>, <textarea>y <select>con .form-controlestán configurados en width: 100%;forma predeterminada. Envuelva las etiquetas y los controles .form-grouppara lograr un espaciado óptimo.
+
+Dirección de correo electrónico
+Correo electrónico
+Contraseña
+Contraseña
+Entrada de archivoNo file chosen
+Ejemplo de texto de ayuda a nivel de bloque aquí.
+
+Me echa un vistazo
+Dupdo
+<form>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputFile">File input</label>
+    <input type="file" id="exampleInputFile">
+    <p class="help-block">Example block-level help text here.</p>
+  </div>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox"> Check me out
+    </label>
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+No mezcle grupos de formularios con grupos de entrada
+No mezcle grupos de formularios directamente con grupos de entrada . En su lugar, anide el grupo de entrada dentro del grupo de formulario.
+
+Formulario en línea
+Agregue .form-inlinea su formulario (que no tiene que ser a <form>) para controles alineados a la izquierda y de bloque en línea. Esto solo se aplica a los formularios dentro de las ventanas gráficas que tienen al menos 768 px de ancho.
+
+Puede requerir anchos personalizados
+Las entradas y selecciones se han width: 100%;aplicado de forma predeterminada en Bootstrap. Dentro de los formularios en línea, lo restablecemos para width: auto;que varios controles puedan residir en la misma línea. Dependiendo de su diseño, es posible que se requieran anchos personalizados adicionales.
+
+Siempre agregue etiquetas
+Los lectores de pantalla tendrán problemas con sus formularios si no incluye una etiqueta para cada entrada. Para estos formularios en línea, puede ocultar las etiquetas usando la .sr-onlyclase. Existen otros métodos alternativos para proporcionar una etiqueta para las tecnologías de asistencia, como el atributo aria-label, aria-labelledbyo title. Si ninguno de estos está presente, los lectores de pantalla pueden recurrir al uso del placeholderatributo, si está presente, pero tenga en cuenta que placeholderno se recomienda su uso como reemplazo de otros métodos de etiquetado.
+
+Nombre 
+fulano de tal
+ Correo electrónico 
+jane.doe@example.com
+ 
+Dupdo
+<form class="form-inline">
+  <div class="form-group">
+    <label for="exampleInputName2">Name</label>
+    <input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail2">Email</label>
+    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="jane.doe@example.com">
+  </div>
+  <button type="submit" class="btn btn-default">Send invitation</button>
+</form>
+Dirección de correo electrónico
+Correo electrónico
+ Contraseña
+Contraseña
+  Recuérdame 
+Dupdo
+<form class="form-inline">
+  <div class="form-group">
+    <label class="sr-only" for="exampleInputEmail3">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
+  </div>
+  <div class="form-group">
+    <label class="sr-only" for="exampleInputPassword3">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword3" placeholder="Password">
+  </div>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox"> Remember me
+    </label>
+  </div>
+  <button type="submit" class="btn btn-default">Sign in</button>
+</form>
+Monto (en dólares) PS
+Monto
+.00 
+Dupdo
+<form class="form-inline">
+  <div class="form-group">
+    <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+    <div class="input-group">
+      <div class="input-group-addon">$</div>
+      <input type="text" class="form-control" id="exampleInputAmount" placeholder="Amount">
+      <div class="input-group-addon">.00</div>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Transfer cash</button>
+</form>
+Forma horizontal
+Use las clases de cuadrícula predefinidas de Bootstrap para alinear etiquetas y grupos de controles de formulario en un diseño horizontal agregando .form-horizontalal formulario (que no tiene que ser a <form>). Al hacerlo, .form-groups cambia para que se comporte como filas de cuadrícula, por lo que no es necesario .row.
+
+Correo electrónico
+Correo electrónico
+Contraseña
+Contraseña
+Recuérdame
+Dupdo
+<form class="form-horizontal">
+  <div class="form-group">
+    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+    <div class="col-sm-10">
+      <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+    <div class="col-sm-10">
+      <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox"> Remember me
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default">Sign in</button>
+    </div>
+  </div>
+</form>
+Controles compatibles
+Ejemplos de controles de formulario estándar admitidos en un diseño de formulario de ejemplo.
+
+Entradas
+Control de formulario más común, campos de entrada basados ​​en texto. Incluye soporte para todo tipo de HTML5: text, password, datetime, datetime-local, date, month, time, week, number, email, url, search, tel, y color.
+
+Se requiere declaración de tipo
+Las entradas solo tendrán un estilo completo si typese declaran correctamente.
+
+Entrada de texto
+Dupdo
+<input type="text" class="form-control" placeholder="Text input">
+Grupos de entrada
+Para agregar texto o botones integrados antes y / o después de cualquier texto basado en texto <input>, consulte el componente de grupo de entrada .
+
+Textarea
+Control de formulario que admite varias líneas de texto. Cambie el rowsatributo según sea necesario.
+
+Textarea
+Dupdo
+<textarea class="form-control" rows="3"></textarea>
+Casillas de verificación y radios
+Las casillas de verificación son para seleccionar una o varias opciones en una lista, mientras que las radios son para seleccionar una opción entre muchas.
+
+Casillas desactivadas y radios son compatibles, sino también para proporcionar un cursor "no permitidas" en vuelo estacionario del padre <label>, tendrá que añadir la .disabledclase a los padres .radio, .radio-inline, .checkbox, o .checkbox-inline.
+
+Predeterminado (apilado)
+Opción uno es esto y eso ---- asegúrate de incluir por qué es bueno
+La opción dos está deshabilitada
+
+Opción uno es esto y eso ---- asegúrate de incluir por qué es bueno
+La opción dos puede ser otra cosa y al seleccionarla se anulará la selección de la opción uno
+La opción tres está deshabilitada
+Dupdo
+<div class="checkbox">
+  <label>
+    <input type="checkbox" value="">
+    Option one is this and that&mdash;be sure to include why it's great
+  </label>
+</div>
+<div class="checkbox disabled">
+  <label>
+    <input type="checkbox" value="" disabled>
+    Option two is disabled
+  </label>
+</div>
+
+<div class="radio">
+  <label>
+    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+    Option one is this and that&mdash;be sure to include why it's great
+  </label>
+</div>
+<div class="radio">
+  <label>
+    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+    Option two can be something else and selecting it will deselect option one
+  </label>
+</div>
+<div class="radio disabled">
+  <label>
+    <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" disabled>
+    Option three is disabled
+  </label>
+</div>
+Casillas de verificación y radios en línea
+Utilice las clases .checkbox-inlineo .radio-inlineen una serie de casillas de verificación o radios para los controles que aparecen en la misma línea.
+
+1 2 3
+
+1 2 3
+Dupdo
+<label class="checkbox-inline">
+  <input type="checkbox" id="inlineCheckbox1" value="option1"> 1
+</label>
+<label class="checkbox-inline">
+  <input type="checkbox" id="inlineCheckbox2" value="option2"> 2
+</label>
+<label class="checkbox-inline">
+  <input type="checkbox" id="inlineCheckbox3" value="option3"> 3
+</label>
+
+<label class="radio-inline">
+  <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1
+</label>
+<label class="radio-inline">
+  <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 2
+</label>
+<label class="radio-inline">
+  <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 3
+</label>
+Casillas de verificación y radios sin texto de etiqueta
+Si no tiene texto dentro del <label>, la entrada se coloca como cabría esperar. Actualmente solo funciona en casillas de verificación y radios que no están en línea. Recuerde proporcionar algún tipo de etiqueta para las tecnologías de asistencia (por ejemplo, el uso aria-label).
+
+
+
+Dupdo
+<div class="checkbox">
+  <label>
+    <input type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+  </label>
+</div>
+<div class="radio">
+  <label>
+    <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
+  </label>
+</div>
+Selecciona
+Tenga en cuenta que muchos menús de selección nativos, es decir, en Safari y Chrome, tienen esquinas redondeadas que no se pueden modificar mediante las border-radiuspropiedades.
+
+
+1
+Dupdo
+<select class="form-control">
+  <option>1</option>
+  <option>2</option>
+  <option>3</option>
+  <option>4</option>
+  <option>5</option>
+</select>
+Para los <select>controles con el multipleatributo, se muestran múltiples opciones de forma predeterminada.
+
+12345Dupdo
+<select multiple class="form-control">
+  <option>1</option>
+  <option>2</option>
+  <option>3</option>
+  <option>4</option>
+  <option>5</option>
+</select>
+Control estático
+Cuando necesite colocar texto sin formato junto a una etiqueta de formulario dentro de un formulario, use la .form-control-staticclase en un <p>.
+
+Correo electrónico
+email@example.com
+
+Contraseña
+Contraseña
+Dupdo
+<form class="form-horizontal">
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Email</label>
+    <div class="col-sm-10">
+      <p class="form-control-static">email@example.com</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputPassword" class="col-sm-2 control-label">Password</label>
+    <div class="col-sm-10">
+      <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+    </div>
+  </div>
+</form>
+Correo electrónicoemail@example.com Contraseña
+Contraseña
+ 
+Dupdo
+<form class="form-inline">
+  <div class="form-group">
+    <label class="sr-only">Email</label>
+    <p class="form-control-static">email@example.com</p>
+  </div>
+  <div class="form-group">
+    <label for="inputPassword2" class="sr-only">Password</label>
+    <input type="password" class="form-control" id="inputPassword2" placeholder="Password">
+  </div>
+  <button type="submit" class="btn btn-default">Confirm identity</button>
+</form>
+Estado de enfoque
+Eliminamos los outlineestilos predeterminados en algunos controles de formulario y aplicamos un box-shadowen su lugar para :focus.
+
+Demonstrative focus state
+:focusEstado de demostración
+La entrada de ejemplo anterior utiliza estilos personalizados en nuestra documentación para demostrar el :focusestado de un .form-control.
+
+Estado discapacitado
+Agregue el disabledatributo booleano en una entrada para evitar interacciones del usuario. Las entradas deshabilitadas aparecen más claras y agregan un not-allowedcursor.
+
+Entrada inhabilitada aquí ...
+Dupdo
+<input class="form-control" id="disabledInput" type="text" placeholder="Disabled input here..." disabled>
+Fieldsets deshabilitados
+Agregue el disabledatributo a <fieldset>para deshabilitar todos los controles dentro de a la <fieldset>vez.
+
+Advertencia sobre la funcionalidad de enlace de <a>
+Por defecto, los navegadores tratar a todos los controles de forma nativa ( <input>, <select>y <button>elementos) dentro de una <fieldset disabled>como discapacitados, evitando tanto las interacciones de teclado y ratón sobre ellos. Sin embargo, si su formulario también incluye <a ... class="btn btn-*">elementos, solo se les dará un estilo de pointer-events: none. Como se señaló en la sección sobre el estado deshabilitado para los botones (y específicamente en la subsección para los elementos de anclaje), esta propiedad CSS aún no está estandarizada y no es totalmente compatible con Opera 18 y versiones anteriores, o en Internet Explorer 11, y ganó No impide que los usuarios del teclado puedan enfocar o activar estos enlaces. Entonces, para estar seguro, use JavaScript personalizado para deshabilitar dichos enlaces.
+
+Compatibilidad entre navegadores
+Si bien Bootstrap aplicará estos estilos en todos los navegadores, Internet Explorer 11 y versiones anteriores no son totalmente compatibles con el disabledatributo en un <fieldset>. Utilice JavaScript personalizado para deshabilitar el conjunto de campos en estos navegadores.
+
+
+Entrada inhabilitada
+Entrada inhabilitada
+Menú de selección desactivado
+Selección de discapacitados
+No puedo comprobar esto
+Dupdo
+<form>
+  <fieldset disabled>
+    <div class="form-group">
+      <label for="disabledTextInput">Disabled input</label>
+      <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input">
+    </div>
+    <div class="form-group">
+      <label for="disabledSelect">Disabled select menu</label>
+      <select id="disabledSelect" class="form-control">
+        <option>Disabled select</option>
+      </select>
+    </div>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox"> Can't check this
+      </label>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </fieldset>
+</form>
+Estado de solo lectura
+Agregue el readonlyatributo booleano en una entrada para evitar la modificación del valor de la entrada. Las entradas de solo lectura aparecen más claras (al igual que las entradas desactivadas), pero retienen el cursor estándar.
+
+Entrada de solo lectura aquí ...
+Dupdo
+<input class="form-control" type="text" placeholder="Readonly input here…" readonly>
+Texto de ayuda
+Texto de ayuda a nivel de bloque para controles de formulario.
+
+Asociación de texto de ayuda con controles de formulario
+El texto de ayuda debe asociarse explícitamente con el control de formulario relacionado con el uso del aria-describedbyatributo. Esto garantizará que las tecnologías de asistencia, como los lectores de pantalla, anuncien este texto de ayuda cuando el usuario se enfoque o ingrese al control.
+
+Entrada con texto de ayuda
+Un bloque de texto de ayuda que se divide en una nueva línea y puede extenderse más allá de una línea.
+Dupdo
+<label for="inputHelpBlock">Input with help text</label>
+<input type="text" id="inputHelpBlock" class="form-control" aria-describedby="helpBlock">
+...
+<span id="helpBlock" class="help-block">A block of help text that breaks onto a new line and may extend beyond one line.</span>
+Estados de validación
+Bootstrap incluye estilos de validación para estados de error, advertencia y éxito en los controles de formulario. Para usar, agregar .has-warning, .has-erroro .has-successal elemento padre. Any .control-label, .form-controly .help-blockdentro de ese elemento recibirán los estilos de validación.
+
+Transmitir el estado de validación a las tecnologías de asistencia y a los usuarios daltónicos
+El uso de estos estilos de validación para indicar el estado de un control de formulario solo proporciona una indicación visual basada en el color, que no se transmitirá a los usuarios de tecnologías de asistencia, como lectores de pantalla, ni a los usuarios daltónicos.
+
+Asegúrese de que también se proporcione una indicación alternativa del estado. Por ejemplo, puede incluir una sugerencia sobre el estado en el <label>texto del control de formulario en sí (como es el caso en el siguiente ejemplo de código), incluir un Glyphicon (con el texto alternativo apropiado usando la .sr-onlyclase - vea los ejemplos de Glyphicon ), o proporcionando un bloque de texto de ayuda adicional . Específicamente para las tecnologías de asistencia, también se puede asignar un aria-invalid="true"atributo a los controles de formularios no válidos .
+
+Entrada con éxito
+Un bloque de texto de ayuda que se divide en una nueva línea y puede extenderse más allá de una línea.
+Entrada con advertencia
+Entrada con error
+Casilla de verificación con éxito
+Casilla de verificación con advertencia
+Casilla de verificación con error
+Dupdo
+<div class="form-group has-success">
+  <label class="control-label" for="inputSuccess1">Input with success</label>
+  <input type="text" class="form-control" id="inputSuccess1" aria-describedby="helpBlock2">
+  <span id="helpBlock2" class="help-block">A block of help text that breaks onto a new line and may extend beyond one line.</span>
+</div>
+<div class="form-group has-warning">
+  <label class="control-label" for="inputWarning1">Input with warning</label>
+  <input type="text" class="form-control" id="inputWarning1">
+</div>
+<div class="form-group has-error">
+  <label class="control-label" for="inputError1">Input with error</label>
+  <input type="text" class="form-control" id="inputError1">
+</div>
+<div class="has-success">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" id="checkboxSuccess" value="option1">
+      Checkbox with success
+    </label>
+  </div>
+</div>
+<div class="has-warning">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" id="checkboxWarning" value="option1">
+      Checkbox with warning
+    </label>
+  </div>
+</div>
+<div class="has-error">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" id="checkboxError" value="option1">
+      Checkbox with error
+    </label>
+  </div>
+</div>
+Con iconos opcionales
+También puede agregar íconos de comentarios opcionales con la adición de .has-feedbacky el ícono correcto.
+
+Los iconos de comentarios solo funcionan con <input class="form-control">elementos textuales .
+
+Iconos, etiquetas y grupos de entrada
+Se requiere el posicionamiento manual de los íconos de retroalimentación para las entradas sin una etiqueta y para los grupos de entrada con un complemento a la derecha. Se le recomienda encarecidamente que proporcione etiquetas para todas las entradas por motivos de accesibilidad. Si desea evitar que se muestren las etiquetas, escóndelas con la .sr-onlyclase. Si debe prescindir de las etiquetas, ajuste el topvalor del icono de comentarios. Para los grupos de entrada, ajuste el rightvalor a un valor de píxel apropiado según el ancho de su complemento.
+
+Transmitir el significado del icono a las tecnologías de asistencia
+Para garantizar que las tecnologías de asistencia, como los lectores de pantalla, transmitan correctamente el significado de un icono, se debe incluir texto oculto adicional con la .sr-onlyclase y asociarlo explícitamente con el control de formulario que se relaciona con el uso aria-describedby. Alternativamente, asegúrese de que el significado (por ejemplo, el hecho de que haya una advertencia para un campo de entrada de texto en particular) se transmita de alguna otra forma, como cambiar el texto del actual <label>asociado con el control de formulario.
+
+Aunque los siguientes ejemplos ya mencionan el estado de validación de sus respectivos controles de formulario en el <label>texto mismo, la técnica anterior (usando .sr-onlytexto y aria-describedby) se ha incluido con fines ilustrativos.
+
+Entrada con éxito
+(éxito)
+Entrada con advertencia
+(advertencia)
+Entrada con error
+(error)
+Grupo de entrada con éxito
+@
+(éxito)Dupdo
+<div class="form-group has-success has-feedback">
+  <label class="control-label" for="inputSuccess2">Input with success</label>
+  <input type="text" class="form-control" id="inputSuccess2" aria-describedby="inputSuccess2Status">
+  <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+  <span id="inputSuccess2Status" class="sr-only">(success)</span>
+</div>
+<div class="form-group has-warning has-feedback">
+  <label class="control-label" for="inputWarning2">Input with warning</label>
+  <input type="text" class="form-control" id="inputWarning2" aria-describedby="inputWarning2Status">
+  <span class="glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true"></span>
+  <span id="inputWarning2Status" class="sr-only">(warning)</span>
+</div>
+<div class="form-group has-error has-feedback">
+  <label class="control-label" for="inputError2">Input with error</label>
+  <input type="text" class="form-control" id="inputError2" aria-describedby="inputError2Status">
+  <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+  <span id="inputError2Status" class="sr-only">(error)</span>
+</div>
+<div class="form-group has-success has-feedback">
+  <label class="control-label" for="inputGroupSuccess1">Input group with success</label>
+  <div class="input-group">
+    <span class="input-group-addon">@</span>
+    <input type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status">
+  </div>
+  <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+  <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
+</div>
+Iconos opcionales en formas horizontales e integradas
+Entrada con éxito
+(éxito)
+Grupo de entrada con éxito
+@
+(éxito)Dupdo
+<form class="form-horizontal">
+  <div class="form-group has-success has-feedback">
+    <label class="control-label col-sm-3" for="inputSuccess3">Input with success</label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control" id="inputSuccess3" aria-describedby="inputSuccess3Status">
+      <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+      <span id="inputSuccess3Status" class="sr-only">(success)</span>
+    </div>
+  </div>
+  <div class="form-group has-success has-feedback">
+    <label class="control-label col-sm-3" for="inputGroupSuccess2">Input group with success</label>
+    <div class="col-sm-9">
+      <div class="input-group">
+        <span class="input-group-addon">@</span>
+        <input type="text" class="form-control" id="inputGroupSuccess2" aria-describedby="inputGroupSuccess2Status">
+      </div>
+      <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+      <span id="inputGroupSuccess2Status" class="sr-only">(success)</span>
+    </div>
+  </div>
+</form>
+Entrada con éxito 
+(éxito)
+
+Grupo de entrada con éxito  @
+(éxito)
+Dupdo
+<form class="form-inline">
+  <div class="form-group has-success has-feedback">
+    <label class="control-label" for="inputSuccess4">Input with success</label>
+    <input type="text" class="form-control" id="inputSuccess4" aria-describedby="inputSuccess4Status">
+    <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+    <span id="inputSuccess4Status" class="sr-only">(success)</span>
+  </div>
+</form>
+<form class="form-inline">
+  <div class="form-group has-success has-feedback">
+    <label class="control-label" for="inputGroupSuccess3">Input group with success</label>
+    <div class="input-group">
+      <span class="input-group-addon">@</span>
+      <input type="text" class="form-control" id="inputGroupSuccess3" aria-describedby="inputGroupSuccess3Status">
+    </div>
+    <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+    <span id="inputGroupSuccess3Status" class="sr-only">(success)</span>
+  </div>
+</form>
+Iconos opcionales con .sr-onlyetiquetas ocultas
+Si usa la .sr-onlyclase para ocultar un control de formulario <label>(en lugar de usar otras opciones de etiquetado, como el aria-labelatributo), Bootstrap ajustará automáticamente la posición del icono una vez que se haya agregado.
+
+Etiqueta oculta
+(éxito)
+Grupo de entrada con éxito
+@
+(éxito)Dupdo
+<div class="form-group has-success has-feedback">
+  <label class="control-label sr-only" for="inputSuccess5">Hidden label</label>
+  <input type="text" class="form-control" id="inputSuccess5" aria-describedby="inputSuccess5Status">
+  <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+  <span id="inputSuccess5Status" class="sr-only">(success)</span>
+</div>
+<div class="form-group has-success has-feedback">
+  <label class="control-label sr-only" for="inputGroupSuccess4">Input group with success</label>
+  <div class="input-group">
+    <span class="input-group-addon">@</span>
+    <input type="text" class="form-control" id="inputGroupSuccess4" aria-describedby="inputGroupSuccess4Status">
+  </div>
+  <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+  <span id="inputGroupSuccess4Status" class="sr-only">(success)</span>
+</div>
+Control de tamaño
+Establezca alturas usando clases como .input-lgy establezca anchos usando clases de columna de cuadrícula como .col-lg-*.
+
+Dimensionamiento de altura
+Cree controles de formulario más altos o más cortos que coincidan con el tamaño de los botones.
+
+.input-lg
+Entrada predeterminada
+.input-sm
+
+.input-lg
+
+Selección predeterminada
+
+.input-sm
+Dupdo
+<input class="form-control input-lg" type="text" placeholder=".input-lg">
+<input class="form-control" type="text" placeholder="Default input">
+<input class="form-control input-sm" type="text" placeholder=".input-sm">
+
+<select class="form-control input-lg">...</select>
+<select class="form-control">...</select>
+<select class="form-control input-sm">...</select>
+Tamaños de grupo de forma horizontal
+Cambie rápidamente el tamaño de las etiquetas y los controles de formulario .form-horizontalagregando .form-group-lgo .form-group-sm.
+
+Etiqueta grande
+Entrada grande
+Pequeña etiqueta
+Pequeña entrada
+Dupdo
+<form class="form-horizontal">
+  <div class="form-group form-group-lg">
+    <label class="col-sm-2 control-label" for="formGroupInputLarge">Large label</label>
+    <div class="col-sm-10">
+      <input class="form-control" type="text" id="formGroupInputLarge" placeholder="Large input">
+    </div>
+  </div>
+  <div class="form-group form-group-sm">
+    <label class="col-sm-2 control-label" for="formGroupInputSmall">Small label</label>
+    <div class="col-sm-10">
+      <input class="form-control" type="text" id="formGroupInputSmall" placeholder="Small input">
+    </div>
+  </div>
+</form>
+Dimensionamiento de columna
+Envuelva las entradas en columnas de la cuadrícula, o en cualquier elemento principal personalizado, para aplicar fácilmente los anchos deseados.
+
+.col-xs-2
+.col-xs-3
+.col-xs-4
+Dupdo
+<div class="row">
+  <div class="col-xs-2">
+    <input type="text" class="form-control" placeholder=".col-xs-2">
+  </div>
+  <div class="col-xs-3">
+    <input type="text" class="form-control" placeholder=".col-xs-3">
+  </div>
+  <div class="col-xs-4">
+    <input type="text" class="form-control" placeholder=".col-xs-4">
+  </div>
+</div>
+Botones
+Etiquetas de botón
+Utilice las clases de botones en una <a>, <button>o <input>elemento.
+
+  
+Dupdo
+<a class="btn btn-default" href="#" role="button">Link</a>
+<button class="btn btn-default" type="submit">Button</button>
+<input class="btn btn-default" type="button" value="Input">
+<input class="btn btn-default" type="submit" value="Submit">
+Uso específico del contexto
+Si bien las clases de botones se pueden usar en elementos <a>y <button>, solo los <button>elementos son compatibles con nuestros componentes de navegación y barra de navegación.
+
+Enlaces que actúan como botones
+Si los <a>elementos se utilizan para actuar como botones, activando la funcionalidad en la página, en lugar de navegar a otro documento o sección dentro de la página actual, también se les debe asignar un role="button".
+
+Representación en varios navegadores
+Como práctica recomendada<button> , recomendamos encarecidamente utilizar el elemento siempre que sea posible para garantizar una representación coincidente en todos los navegadores.
+
+Entre otras cosas, hay un error en Firefox <30 que nos impide configurar los botones basados ​​en line-heightof <input>, lo que hace que no coincidan exactamente con la altura de otros botones en Firefox.
+
+Opciones
+Utilice cualquiera de las clases de botones disponibles para crear rápidamente un botón con estilo.
+
+      
+Dupdo
+<!-- Standard button -->
+<button type="button" class="btn btn-default">Default</button>
+
+<!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+<button type="button" class="btn btn-primary">Primary</button>
+
+<!-- Indicates a successful or positive action -->
+<button type="button" class="btn btn-success">Success</button>
+
+<!-- Contextual button for informational alert messages -->
+<button type="button" class="btn btn-info">Info</button>
+
+<!-- Indicates caution should be taken with this action -->
+<button type="button" class="btn btn-warning">Warning</button>
+
+<!-- Indicates a dangerous or potentially negative action -->
+<button type="button" class="btn btn-danger">Danger</button>
+
+<!-- Deemphasize a button by making it look like a link while maintaining button behavior -->
+<button type="button" class="btn btn-link">Link</button>
+Transmitir significado a las tecnologías de asistencia
+El uso del color para agregar significado a un botón solo proporciona una indicación visual, que no se transmitirá a los usuarios de tecnologías de asistencia, como los lectores de pantalla. Asegúrese de que la información indicada por el color sea obvia a partir del contenido en sí (el texto visible del botón) o se incluya a través de medios alternativos, como texto adicional oculto con la .sr-onlyclase.
+
+Tamaños
+¿Te apetecen botones más grandes o más pequeños? Agregue .btn-lg, .btn-smo .btn-xspara tamaños adicionales.
+
+ 
+
+ 
+
+ 
+
+ 
+
+Dupdo
+<p>
+  <button type="button" class="btn btn-primary btn-lg">Large button</button>
+  <button type="button" class="btn btn-default btn-lg">Large button</button>
+</p>
+<p>
+  <button type="button" class="btn btn-primary">Default button</button>
+  <button type="button" class="btn btn-default">Default button</button>
+</p>
+<p>
+  <button type="button" class="btn btn-primary btn-sm">Small button</button>
+  <button type="button" class="btn btn-default btn-sm">Small button</button>
+</p>
+<p>
+  <button type="button" class="btn btn-primary btn-xs">Extra small button</button>
+  <button type="button" class="btn btn-default btn-xs">Extra small button</button>
+</p>
+Cree botones a nivel de bloque, aquellos que abarquen todo el ancho de un padre, agregando .btn-block.
+
+Dupdo
+<button type="button" class="btn btn-primary btn-lg btn-block">Block level button</button>
+<button type="button" class="btn btn-default btn-lg btn-block">Block level button</button>
+Estado activo
+Los botones aparecerán presionados (con un fondo más oscuro, un borde más oscuro y una sombra insertada) cuando estén activos. Para los <button>elementos, esto se hace a través de :active. Para los <a>elementos, se acabó .active. Sin embargo, puede usar .activeen <button>s (e incluir el aria-pressed="true"atributo) si necesita replicar el estado activo mediante programación.
+
+Elemento de botón
+No es necesario agregar, :activeya que es una pseudoclase, pero si necesita forzar la misma apariencia, continúe y agregue .active.
+
+ 
+
+Dupdo
+<button type="button" class="btn btn-primary btn-lg active">Primary button</button>
+<button type="button" class="btn btn-default btn-lg active">Button</button>
+Elemento de ancla
+Agrega la .activeclase a los <a>botones.
+
+ 
+
+Dupdo
+<a href="#" class="btn btn-primary btn-lg active" role="button">Primary link</a>
+<a href="#" class="btn btn-default btn-lg active" role="button">Link</a>
+Estado discapacitado
+Haga que los botones parezcan imposibles de hacer clic desvaneciéndolos con opacity.
+
+Elemento de botón
+Agregue el disabledatributo a los <button>botones.
+
+ 
+
+Dupdo
+<button type="button" class="btn btn-lg btn-primary" disabled="disabled">Primary button</button>
+<button type="button" class="btn btn-default btn-lg" disabled="disabled">Button</button>
+Compatibilidad entre navegadores
+Si agrega el disabledatributo a <button>, Internet Explorer 9 y versiones anteriores mostrarán el texto en gris con una sombra de texto desagradable que no podemos corregir.
+
+Elemento de ancla
+Agrega la .disabledclase a los <a>botones.
+
+ 
+
+Dupdo
+<a href="#" class="btn btn-primary btn-lg disabled" role="button">Primary link</a>
+<a href="#" class="btn btn-default btn-lg disabled" role="button">Link</a>
+Usamos aquí .disabledcomo una clase de utilidad, similar a la .activeclase común , por lo que no se requiere ningún prefijo.
+
+Advertencia sobre la funcionalidad del enlace
+Esta clase usa pointer-events: nonepara intentar deshabilitar la funcionalidad de enlace de <a>s, pero esa propiedad CSS aún no está estandarizada y no es totalmente compatible con Opera 18 y versiones anteriores, o en Internet Explorer 11. Además, incluso en los navegadores que sí admiten pointer-events: none, keyboard la navegación no se ve afectada, lo que significa que los usuarios videntes del teclado y los usuarios de tecnologías de asistencia aún podrán activar estos enlaces. Entonces, para estar seguro, use JavaScript personalizado para deshabilitar dichos enlaces.
+
+Imagenes
+Imágenes receptivas
+Las imágenes en Bootstrap 3 se pueden hacer receptivas mediante la adición de la .img-responsiveclase. Esto se aplica max-width: 100%;, height: auto;y display: block;de la imagen para que se escala muy bien al elemento padre.
+
+Para centrar las imágenes que usan la .img-responsiveclase, use en .center-blocklugar de .text-center. Consulte la sección de clases de ayuda para obtener más detalles sobre el .center-blockuso.
+
+Imágenes SVG e IE 8-10
+En Internet Explorer 8-10, las imágenes SVG .img-responsivetienen un tamaño desproporcionado. Para solucionar este problema, agregue width: 100% \9;donde sea necesario. Bootstrap no aplica esto automáticamente ya que causa complicaciones a otros formatos de imagen.
+
+Dupdo
+<img src="..." class="img-responsive" alt="Responsive image">
+Formas de imagen
+Agregue clases a un <img>elemento para diseñar imágenes fácilmente en cualquier proyecto.
+
+Compatibilidad entre navegadores
+Tenga en cuenta que Internet Explorer 8 carece de soporte para esquinas redondeadas.
+
+140 x 140 140 x 140 140 x 140
+Dupdo
+<img src="..." alt="..." class="img-rounded">
+<img src="..." alt="..." class="img-circle">
+<img src="..." alt="..." class="img-thumbnail">
+Clases de ayuda
+Colores contextuales
+Transmita significado a través del color con un puñado de clases de utilidad de énfasis. Estos también se pueden aplicar a los enlaces y se oscurecerán al pasar el mouse al igual que nuestros estilos de enlace predeterminados.
+
+Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh.
+
+Nullam id dolor id nibh ultricies vehicula ut id elit.
+
+Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+
+Mecenas sed diam eget risus varius blandit sit amet non magna.
+
+Etiam porta sem malesuada magna mollis euismod.
+
+Donec ullamcorper nulla non metus auctor fringilla.
+
+Dupdo
+<p class="text-muted">...</p>
+<p class="text-primary">...</p>
+<p class="text-success">...</p>
+<p class="text-info">...</p>
+<p class="text-warning">...</p>
+<p class="text-danger">...</p>
+Lidiar con la especificidad
+A veces, las clases de énfasis no se pueden aplicar debido a la especificidad de otro selector. En la mayoría de los casos, una solución alternativa suficiente es ajustar el texto <span>con la clase.
+
+Transmitir significado a las tecnologías de asistencia
+El uso del color para agregar significado solo proporciona una indicación visual, que no se transmitirá a los usuarios de tecnologías de asistencia, como los lectores de pantalla. Asegúrese de que la información indicada por el color sea obvia a partir del contenido en sí (los colores contextuales solo se usan para reforzar el significado que ya está presente en el texto / marcado), o se incluye a través de medios alternativos, como texto adicional oculto con la .sr-onlyclase .
+
+Antecedentes contextuales
+De manera similar a las clases de color de texto contextual, establezca fácilmente el fondo de un elemento en cualquier clase contextual. Los componentes de anclaje se oscurecerán al pasar el mouse, al igual que las clases de texto.
+
+Nullam id dolor id nibh ultricies vehicula ut id elit.
+
+Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+
+Mecenas sed diam eget risus varius blandit sit amet non magna.
+
+Etiam porta sem malesuada magna mollis euismod.
+
+Donec ullamcorper nulla non metus auctor fringilla.
+
+Dupdo
+<p class="bg-primary">...</p>
+<p class="bg-success">...</p>
+<p class="bg-info">...</p>
+<p class="bg-warning">...</p>
+<p class="bg-danger">...</p>
+Lidiar con la especificidad
+A veces, las clases de fondo contextuales no se pueden aplicar debido a la especificidad de otro selector. En algunos casos, una solución alternativa suficiente es envolver el contenido de su elemento en un <div>con la clase.
+
+Transmitir significado a las tecnologías de asistencia
+Al igual que con los colores contextuales , asegúrese de que cualquier significado que se transmita a través del color también se transmita en un formato que no sea meramente presentativo.
+
+Cerrar icono
+Utilice el icono de cierre genérico para descartar contenido como modales y alertas.
+
+×
+
+Dupdo
+<button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+Carets
+Utilice signos de intercalación para indicar la dirección y la funcionalidad del menú desplegable. Tenga en cuenta que el signo de intercalación predeterminado se invertirá automáticamente en los menús desplegables .
+
+Dupdo
+<span class="caret"></span>
+Flotadores rápidos
+Flotar un elemento a la izquierda o derecha con una clase. !importantse incluye para evitar problemas de especificidad. Las clases también se pueden utilizar como mixins.
+
+Dupdo
+<div class="pull-left">...</div>
+<div class="pull-right">...</div>
+Dupdo
+// Classes
+.pull-left {
+  float: left !important;
+}
+.pull-right {
+  float: right !important;
+}
+
+// Usage as mixins
+.element {
+  .pull-left();
+}
+.another-element {
+  .pull-right();
+}
+No apto para uso en barras de navegación.
+Para alinear componentes en barras de navegación con clases de utilidad, use .navbar-lefto en su .navbar-rightlugar. Consulte los documentos de la barra de navegación para obtener más detalles.
+
+Bloques de contenido central
+Establecer un elemento display: blocky centrar a través de margin. Disponible como mixin y class.
+
+Dupdo
+<div class="center-block">...</div>
+Dupdo
+// Class
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// Usage as a mixin
+.element {
+  .center-block();
+}
+Clearfix
+Borre fácilmente los mensajes de correo electrónico floatagregando .clearfix al elemento principal . Utiliza el micro clearfix popularizado por Nicolas Gallagher. También se puede utilizar como mixin.
+
+Dupdo
+<!-- Usage as a class -->
+<div class="clearfix">...</div>
+Dupdo
+// Mixin itself
+.clearfix() {
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+// Usage as a mixin
+.element {
+  .clearfix();
+}
+Mostrar y ocultar contenido
+Forzar que un elemento se muestre u oculte ( incluso para lectores de pantalla ) con el uso de .showy .hiddenclases. Estas clases se utilizan !importantpara evitar conflictos de especificidad, al igual que los flotadores rápidos . Solo están disponibles para alternar el nivel de bloque. También se pueden utilizar como mixins.
+
+.hideestá disponible, pero no siempre afecta a los lectores de pantalla y está obsoleto a partir de la v3.0.1. Utilice .hiddeno en su .sr-onlylugar.
+
+Además, .invisiblese puede usar para alternar solo la visibilidad de un elemento, lo que significa displayque no se modifica y el elemento aún puede afectar el flujo del documento.
+
+Dupdo
+<div class="show">...</div>
+<div class="hidden">...</div>
+Dupdo
+// Classes
+.show {
+  display: block !important;
+}
+.hidden {
+  display: none !important;
+}
+.invisible {
+  visibility: hidden;
+}
+
+// Usage as mixins
+.element {
+  .show();
+}
+.another-element {
+  .hidden();
+}
+Lector de pantalla y contenido de navegación por teclado
+Ocultar un elemento a todos los dispositivos excepto a los lectores de pantalla con .sr-only. Combine .sr-onlycon .sr-only-focusablepara mostrar el elemento nuevamente cuando esté enfocado (por ejemplo, por un usuario que solo usa el teclado). Necesario para seguir las mejores prácticas de accesibilidad . También se puede utilizar como mixins.
+
+Dupdo
+<a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+Dupdo
+// Usage as a mixin
+.skip-navigation {
+  .sr-only();
+  .sr-only-focusable();
+}
+Reemplazo de imagen
+Utilice la .text-hideclase o mixin para ayudar a reemplazar el contenido de texto de un elemento con una imagen de fondo.
+
+Dupdo
+<h1 class="text-hide">Custom heading</h1>
+Dupdo
+// Usage as a mixin
+.heading {
+  .text-hide();
+}
+Utilidades receptivas
+Para un desarrollo optimizado para dispositivos móviles más rápido, use estas clases de utilidad para mostrar y ocultar contenido por dispositivo a través de consultas de medios. También se incluyen clases de utilidad para alternar el contenido cuando se imprime.
+
+Intente utilizarlos de forma limitada y evite crear versiones completamente diferentes del mismo sitio. En su lugar, utilícelos para complementar la presentación de cada dispositivo.
+
+Clases disponibles
+Utilice una o una combinación de las clases disponibles para alternar el contenido entre los puntos de interrupción de la vista.
+
+Dispositivos extra pequeños
+Teléfonos (<768px)
+Pequeños dispositivos
+Tabletas (≥768px)
+Dispositivos medianos
+Computadoras de escritorio (≥992px)
+Grandes dispositivos
+Computadoras de escritorio (≥1200px)
+.visible-xs-*	Visible	Oculto	Oculto	Oculto
+.visible-sm-*	Oculto	Visible	Oculto	Oculto
+.visible-md-*	Oculto	Oculto	Visible	Oculto
+.visible-lg-*	Oculto	Oculto	Oculto	Visible
+.hidden-xs	Oculto	Visible	Visible	Visible
+.hidden-sm	Visible	Oculto	Visible	Visible
+.hidden-md	Visible	Visible	Oculto	Visible
+.hidden-lg	Visible	Visible	Visible	Oculto
+A partir de la versión 3.2.0, las .visible-*-*clases para cada punto de interrupción vienen en tres variaciones, una para cada displayvalor de propiedad CSS que se enumera a continuación.
+
+Grupo de clases	CSS display
+.visible-*-block	display: block;
+.visible-*-inline	display: inline;
+.visible-*-inline-block	display: inline-block;
+Por lo tanto, para las pequeñas extra ( xspantallas), por ejemplo, los disponibles .visible-*-*clases son: .visible-xs-block, .visible-xs-inliney .visible-xs-inline-block.
+
+Las clases .visible-xs, .visible-sm, .visible-md, y .visible-lgtambién existen, pero están en desuso a partir del v3.2.0 . Son aproximadamente equivalentes a .visible-*-block, excepto con casos especiales adicionales para <table>elementos relacionados con alternancia .
+
+Clases de impresión
+De manera similar a las clases receptivas habituales, utilícelas para alternar el contenido para imprimir.
+
+Clases	Navegador	Impresión
+.visible-print-block
+.visible-print-inline
+.visible-print-inline-block	Oculto	Visible
+.hidden-print	Visible	Oculto
+La clase .visible-printtambién existe, pero está obsoleta a partir de la v3.2.0. Es aproximadamente equivalente a .visible-print-block, excepto con casos especiales adicionales para <table>elementos relacionados.
+
+Casos de prueba
+Cambie el tamaño de su navegador o cargue en diferentes dispositivos para probar las clases de utilidad de respuesta.
+
+Visible en ...
+Las marcas de verificación verdes indican que el elemento está visible en su ventana gráfica actual.
+
+Extra Pequeño
+Pequeña
+Medio
+✔ Visible en grande
+Extra pequeño y pequeño
+✔ Visible en tamaño mediano y grande
+Extra pequeño y mediano
+✔ Visible en pequeños y grandes
+✔ Visible en x-small y large
+Pequeño y mediano
+Oculto en ...
+Aquí, las marcas de verificación verdes también indican que el elemento está oculto en su ventana gráfica actual.
+
+Extra Pequeño
+Pequeña
+Medio
+✔ Oculto en grande
+Extra pequeño y pequeño
+✔ Oculto en medianos y grandes
+Extra pequeño y mediano
+✔ Oculto en pequeños y grandes
+✔ Oculto en x-small y large
+Pequeño y mediano
+Usando menos
+El CSS de Bootstrap se basa en Less, un preprocesador con funcionalidad adicional como variables, mixins y funciones para compilar CSS. Aquellos que buscan usar los archivos de origen Less en lugar de nuestros archivos CSS compilados pueden hacer uso de las numerosas variables y mixins que usamos en todo el marco.
+
+Las variables de cuadrícula y los mixins se tratan en la sección Sistema de cuadrícula .
+
+Compilación de Bootstrap
+Bootstrap se puede utilizar de al menos dos formas: con el CSS compilado o con los archivos de origen Less. Para compilar los archivos Less, consulte la sección Introducción para saber cómo configurar su entorno de desarrollo para ejecutar los comandos necesarios.
+
+Las herramientas de compilación de terceros pueden funcionar con Bootstrap, pero nuestro equipo principal no las admite.
+
+Variables
+Las variables se utilizan en todo el proyecto como una forma de centralizar y compartir valores de uso común como colores, espaciado o pilas de fuentes. Para obtener un desglose completo, consulte el Personalizador .
+
+Colores
+Utilice fácilmente dos esquemas de color: escala de grises y semántica. Los colores en escala de grises proporcionan un acceso rápido a los tonos de negro más utilizados, mientras que la semántica incluye varios colores asignados a valores contextuales significativos.
+
+Dupdo
+@gray-darker:  lighten(#000, 13.5%); // #222
+@gray-dark:    lighten(#000, 20%);   // #333
+@gray:         lighten(#000, 33.5%); // #555
+@gray-light:   lighten(#000, 46.7%); // #777
+@gray-lighter: lighten(#000, 93.5%); // #eee
+Dupdo
+@brand-primary: darken(#428bca, 6.5%); // #337ab7
+@brand-success: #5cb85c;
+@brand-info:    #5bc0de;
+@brand-warning: #f0ad4e;
+@brand-danger:  #d9534f;
+Utilice cualquiera de estas variables de color tal como están o reasignelas a variables más significativas para su proyecto.
+
+Dupdo
+// Use as-is
+.masthead {
+  background-color: @brand-primary;
+}
+
+// Reassigned variables in Less
+@alert-message-background: @brand-info;
+.alert {
+  background-color: @alert-message-background;
+}
+Andamio
+Unas cuantas variables para personalizar rápidamente elementos clave del esqueleto de su sitio.
+
+Dupdo
+// Scaffolding
+@body-bg:    #fff;
+@text-color: @black-50;
+Enlaces
+Diseñe fácilmente sus enlaces con el color correcto con un solo valor.
+
+Dupdo
+// Variables
+@link-color:       @brand-primary;
+@link-hover-color: darken(@link-color, 15%);
+
+// Usage
+a {
+  color: @link-color;
+  text-decoration: none;
+
+  &:hover {
+    color: @link-hover-color;
+    text-decoration: underline;
+  }
+}
+Tenga en cuenta que @link-hover-colorutiliza una función, otra herramienta increíble de Less, para crear automáticamente el color de desplazamiento correcto. Se puede utilizar darken, lighten, saturate, y desaturate.
+
+Tipografía
+Configure fácilmente su tipo de letra, tamaño de texto, interlineado y más con algunas variables rápidas. Bootstrap también hace uso de estos para proporcionar mezclas tipográficas fáciles.
+
+Dupdo
+@font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif;
+@font-family-serif:       Georgia, "Times New Roman", Times, serif;
+@font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace;
+@font-family-base:        @font-family-sans-serif;
+
+@font-size-base:          14px;
+@font-size-large:         ceil((@font-size-base * 1.25)); // ~18px
+@font-size-small:         ceil((@font-size-base * 0.85)); // ~12px
+
+@font-size-h1:            floor((@font-size-base * 2.6)); // ~36px
+@font-size-h2:            floor((@font-size-base * 2.15)); // ~30px
+@font-size-h3:            ceil((@font-size-base * 1.7)); // ~24px
+@font-size-h4:            ceil((@font-size-base * 1.25)); // ~18px
+@font-size-h5:            @font-size-base;
+@font-size-h6:            ceil((@font-size-base * 0.85)); // ~12px
+
+@line-height-base:        1.428571429; // 20/14
+@line-height-computed:    floor((@font-size-base * @line-height-base)); // ~20px
+
+@headings-font-family:    inherit;
+@headings-font-weight:    500;
+@headings-line-height:    1.1;
+@headings-color:          inherit;
+Iconos
+Dos variables rápidas para personalizar la ubicación y el nombre de archivo de sus iconos.
+
+Dupdo
+@icon-font-path:          "../fonts/";
+@icon-font-name:          "glyphicons-halflings-regular";
+Componentes
+Los componentes de Bootstrap utilizan algunas variables predeterminadas para establecer valores comunes. Estos son los más utilizados.
+
+Dupdo
+@padding-base-vertical:          6px;
+@padding-base-horizontal:        12px;
+
+@padding-large-vertical:         10px;
+@padding-large-horizontal:       16px;
+
+@padding-small-vertical:         5px;
+@padding-small-horizontal:       10px;
+
+@padding-xs-vertical:            1px;
+@padding-xs-horizontal:          5px;
+
+@line-height-large:              1.33;
+@line-height-small:              1.5;
+
+@border-radius-base:             4px;
+@border-radius-large:            6px;
+@border-radius-small:            3px;
+
+@component-active-color:         #fff;
+@component-active-bg:            @brand-primary;
+
+@caret-width-base:               4px;
+@caret-width-large:              5px;
+Proveedor de mixins
+Los mixins de proveedores son mixins que ayudan a admitir varios navegadores al incluir todos los prefijos de proveedores relevantes en su CSS compilado.
+
+Tamaño de caja
+Restablece el modelo de caja de tus componentes con una sola mezcla. Para obtener contexto, consulte este útil artículo de Mozilla .
+
+El mixin está obsoleto a partir de la v3.2.0, con la introducción de Autoprefixer. Para preservar la compatibilidad con versiones anteriores, Bootstrap continuará usando el mixin internamente hasta que Bootstrap v4.
+
+Dupdo
+.box-sizing(@box-model) {
+  -webkit-box-sizing: @box-model; // Safari <= 5
+     -moz-box-sizing: @box-model; // Firefox <= 19
+          box-sizing: @box-model;
+}
+Esquinas redondeadas
+Hoy en día, todos los navegadores modernos admiten la border-radiuspropiedad sin prefijo . Como tal, no hay .border-radius()mezcla, pero Bootstrap incluye atajos para redondear rápidamente dos esquinas en un lado particular de un objeto.
+
+Dupdo
+.border-top-radius(@radius) {
+  border-top-right-radius: @radius;
+   border-top-left-radius: @radius;
+}
+.border-right-radius(@radius) {
+  border-bottom-right-radius: @radius;
+     border-top-right-radius: @radius;
+}
+.border-bottom-radius(@radius) {
+  border-bottom-right-radius: @radius;
+   border-bottom-left-radius: @radius;
+}
+.border-left-radius(@radius) {
+  border-bottom-left-radius: @radius;
+     border-top-left-radius: @radius;
+}
+Sombras de caja (gota)
+Si su público objetivo utiliza los mejores y más recientes navegadores y dispositivos, asegúrese de usar la box-shadowpropiedad por sí sola. Si necesita soporte para dispositivos Android (pre-v4) e iOS (pre-iOS 5) más antiguos, use el mixin obsoleto para elegir el -webkitprefijo requerido .
+
+El mixin está obsoleto a partir de la v3.1.0, ya que Bootstrap no es compatible oficialmente con las plataformas obsoletas que no admiten la propiedad estándar. Para preservar la compatibilidad con versiones anteriores, Bootstrap continuará usando el mixin internamente hasta que Bootstrap v4.
+
+Asegúrese de usar rgba()colores en las sombras de su caja para que se mezclen lo más perfectamente posible con los fondos.
+
+Dupdo
+.box-shadow(@shadow: 0 1px 3px rgba(0,0,0,.25)) {
+  -webkit-box-shadow: @shadow; // iOS <4.3 & Android <4.1
+          box-shadow: @shadow;
+}
+Transiciones
+Múltiples mezclas para mayor flexibilidad. Configure toda la información de transición con uno, o especifique un retraso y una duración separados según sea necesario.
+
+Los mixins están obsoletos a partir de la v3.2.0, con la introducción de Autoprefixer. Para preservar la compatibilidad con versiones anteriores, Bootstrap continuará usando los mixins internamente hasta que Bootstrap v4.
+
+Dupdo
+.transition(@transition) {
+  -webkit-transition: @transition;
+          transition: @transition;
+}
+.transition-property(@transition-property) {
+  -webkit-transition-property: @transition-property;
+          transition-property: @transition-property;
+}
+.transition-delay(@transition-delay) {
+  -webkit-transition-delay: @transition-delay;
+          transition-delay: @transition-delay;
+}
+.transition-duration(@transition-duration) {
+  -webkit-transition-duration: @transition-duration;
+          transition-duration: @transition-duration;
+}
+.transition-timing-function(@timing-function) {
+  -webkit-transition-timing-function: @timing-function;
+          transition-timing-function: @timing-function;
+}
+.transition-transform(@transition) {
+  -webkit-transition: -webkit-transform @transition;
+     -moz-transition: -moz-transform @transition;
+       -o-transition: -o-transform @transition;
+          transition: transform @transition;
+}
+Transformaciones
+Gire, escale, traslade (mueva) o sesgue cualquier objeto.
+
+Los mixins están obsoletos a partir de la v3.2.0, con la introducción de Autoprefixer. Para preservar la compatibilidad con versiones anteriores, Bootstrap continuará usando los mixins internamente hasta que Bootstrap v4.
+
+Dupdo
+.rotate(@degrees) {
+  -webkit-transform: rotate(@degrees);
+      -ms-transform: rotate(@degrees); // IE9 only
+          transform: rotate(@degrees);
+}
+.scale(@ratio; @ratio-y...) {
+  -webkit-transform: scale(@ratio, @ratio-y);
+      -ms-transform: scale(@ratio, @ratio-y); // IE9 only
+          transform: scale(@ratio, @ratio-y);
+}
+.translate(@x; @y) {
+  -webkit-transform: translate(@x, @y);
+      -ms-transform: translate(@x, @y); // IE9 only
+          transform: translate(@x, @y);
+}
+.skew(@x; @y) {
+  -webkit-transform: skew(@x, @y);
+      -ms-transform: skewX(@x) skewY(@y); // See https://github.com/twbs/bootstrap/issues/4885; IE9+
+          transform: skew(@x, @y);
+}
+.translate3d(@x; @y; @z) {
+  -webkit-transform: translate3d(@x, @y, @z);
+          transform: translate3d(@x, @y, @z);
+}
+
+.rotateX(@degrees) {
+  -webkit-transform: rotateX(@degrees);
+      -ms-transform: rotateX(@degrees); // IE9 only
+          transform: rotateX(@degrees);
+}
+.rotateY(@degrees) {
+  -webkit-transform: rotateY(@degrees);
+      -ms-transform: rotateY(@degrees); // IE9 only
+          transform: rotateY(@degrees);
+}
+.perspective(@perspective) {
+  -webkit-perspective: @perspective;
+     -moz-perspective: @perspective;
+          perspective: @perspective;
+}
+.perspective-origin(@perspective) {
+  -webkit-perspective-origin: @perspective;
+     -moz-perspective-origin: @perspective;
+          perspective-origin: @perspective;
+}
+.transform-origin(@origin) {
+  -webkit-transform-origin: @origin;
+     -moz-transform-origin: @origin;
+      -ms-transform-origin: @origin; // IE9 only
+          transform-origin: @origin;
+}
+Animaciones
+Un solo mixin para usar todas las propiedades de animación de CSS3 en una declaración y otros mixins para propiedades individuales.
+
+Los mixins están obsoletos a partir de la v3.2.0, con la introducción de Autoprefixer. Para preservar la compatibilidad con versiones anteriores, Bootstrap continuará usando los mixins internamente hasta que Bootstrap v4.
+
+Dupdo
+.animation(@animation) {
+  -webkit-animation: @animation;
+          animation: @animation;
+}
+.animation-name(@name) {
+  -webkit-animation-name: @name;
+          animation-name: @name;
+}
+.animation-duration(@duration) {
+  -webkit-animation-duration: @duration;
+          animation-duration: @duration;
+}
+.animation-timing-function(@timing-function) {
+  -webkit-animation-timing-function: @timing-function;
+          animation-timing-function: @timing-function;
+}
+.animation-delay(@delay) {
+  -webkit-animation-delay: @delay;
+          animation-delay: @delay;
+}
+.animation-iteration-count(@iteration-count) {
+  -webkit-animation-iteration-count: @iteration-count;
+          animation-iteration-count: @iteration-count;
+}
+.animation-direction(@direction) {
+  -webkit-animation-direction: @direction;
+          animation-direction: @direction;
+}
+Opacidad
+Establezca la opacidad para todos los navegadores y proporcione un filterrespaldo para IE8.
+
+Dupdo
+.opacity(@opacity) {
+  opacity: @opacity;
+  // IE8 filter
+  @opacity-ie: (@opacity * 100);
+  filter: ~"alpha(opacity=@{opacity-ie})";
+}
+Texto del marcador
+Proporcione contexto para los controles de formulario dentro de cada campo.
+
+Dupdo
+.placeholder(@color: @input-color-placeholder) {
+  &::-moz-placeholder           { color: @color; } // Firefox
+  &:-ms-input-placeholder       { color: @color; } // Internet Explorer 10+
+  &::-webkit-input-placeholder  { color: @color; } // Safari and Chrome
+}
+Columnas
+Genere columnas a través de CSS dentro de un solo elemento.
+
+Dupdo
+.content-columns(@width; @count; @gap) {
+  -webkit-column-width: @width;
+     -moz-column-width: @width;
+          column-width: @width;
+  -webkit-column-count: @count;
+     -moz-column-count: @count;
+          column-count: @count;
+  -webkit-column-gap: @gap;
+     -moz-column-gap: @gap;
+          column-gap: @gap;
+}
+Gradientes
+Convierte fácilmente dos colores en un degradado de fondo. Avanza más y establece una dirección, usa tres colores o usa un degradado radial. Con una sola mezcla, obtienes todas las sintaxis prefijadas que necesitas.
+
+Dupdo
+#gradient > .vertical(#333; #000);
+#gradient > .horizontal(#333; #000);
+#gradient > .radial(#333; #000);
+También puede especificar el ángulo de un degradado lineal estándar de dos colores:
+
+Dupdo
+#gradient > .directional(#333; #000; 45deg);
+Si necesita un degradado de estilo de rayas de barbero, también es fácil. Simplemente especifique un solo color y superpondremos una franja blanca translúcida.
+
+Dupdo
+#gradient > .striped(#333; 45deg);
+Sube la apuesta y usa tres colores en su lugar. Establezca el primer color, el segundo color, la parada de color del segundo color (un valor porcentual como 25%) y el tercer color con estos mixins:
+
+Dupdo
+#gradient > .vertical-three-colors(#777; #333; 25%; #000);
+#gradient > .horizontal-three-colors(#777; #333; 25%; #000);
+¡Aviso! Si alguna vez necesita eliminar un degradado, asegúrese de eliminar cualquier IE específico filterque haya agregado. Puedes hacerlo usando el .reset-filter()mixin al lado background-image: none;.
+
+Mixins de utilidad
+Los mixins de utilidad son mixins que combinan propiedades CSS que de otro modo no estarían relacionadas para lograr una meta o tarea específica.
+
+Clearfix
+Olvídese de agregar class="clearfix"a cualquier elemento y en su lugar agregue el .clearfix()mixin donde corresponda. Utiliza el micro clearfix de Nicolas Gallagher .
+
+Dupdo
+// Mixin
+.clearfix() {
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+// Usage
+.container {
+  .clearfix();
+}
+Centrado horizontal
+Centre rápidamente cualquier elemento dentro de su padre. Requiere widtho max-widthdebe configurarse.
+
+Dupdo
+// Mixin
+.center-block() {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// Usage
+.container {
+  width: 940px;
+  .center-block();
+}
+Ayudantes de dimensionamiento
+Especifique las dimensiones de un objeto más fácilmente.
+
+Dupdo
+// Mixins
+.size(@width; @height) {
+  width: @width;
+  height: @height;
+}
+.square(@size) {
+  .size(@size; @size);
+}
+
+// Usage
+.image { .size(400px; 300px); }
+.avatar { .square(48px); }
+Áreas de texto redimensionables
+Configure fácilmente las opciones de cambio de tamaño para cualquier área de texto o cualquier otro elemento. Tiene como valor predeterminado el comportamiento normal del navegador ( both).
+
+Dupdo
+.resizable(@direction: both) {
+  // Options: horizontal, vertical, both
+  resize: @direction;
+  // Safari fix
+  overflow: auto;
+}
+Truncar texto
+Trunca fácilmente el texto con puntos suspensivos con un solo mixin. Requiere que el elemento esté blocko inline-blocknivelado.
+
+Dupdo
+// Mixin
+.text-overflow() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Usage
+.branch-name {
+  display: inline-block;
+  max-width: 200px;
+  .text-overflow();
+}
+Imágenes de retina
+Especifique dos rutas de imagen y las dimensiones de la imagen @ 1x, y Bootstrap proporcionará una consulta de medios @ 2x. Si tiene muchas imágenes para publicar, considere escribir el CSS de la imagen de la retina manualmente en una sola consulta de medios.
+
+Dupdo
+.img-retina(@file-1x; @file-2x; @width-1x; @height-1x) {
+  background-image: url("@{file-1x}");
+
+  @media
+  only screen and (-webkit-min-device-pixel-ratio: 2),
+  only screen and (   min--moz-device-pixel-ratio: 2),
+  only screen and (     -o-min-device-pixel-ratio: 2/1),
+  only screen and (        min-device-pixel-ratio: 2),
+  only screen and (                min-resolution: 192dpi),
+  only screen and (                min-resolution: 2dppx) {
+    background-image: url("@{file-2x}");
+    background-size: @width-1x @height-1x;
+  }
+}
+
+// Usage
+.jumbotron {
+  .img-retina("/img/bg-1x.png", "/img/bg-2x.png", 100px, 100px);
+}
+Usando Sass
+Si bien Bootstrap se basa en Less, también tiene un puerto oficial de Sass . Lo mantenemos en un repositorio de GitHub separado y manejamos las actualizaciones con un script de conversión.
+
+Qué está incluido
+Dado que el puerto de Sass tiene un repositorio separado y sirve a una audiencia ligeramente diferente, el contenido del proyecto difiere mucho del proyecto principal de Bootstrap. Esto asegura que el puerto Sass sea lo más compatible posible con tantos sistemas basados ​​en Sass como sea posible.
+
+Sendero	Descripción
+lib/	Código de gema Ruby (configuración de Sass, integraciones de Rails y Compass)
+tasks/	Scripts de conversión (convirtiendo el flujo ascendente de Less en Sass)
+test/	Pruebas de compilación
+templates/	Manifiesto del paquete de brújula
+vendor/assets/	Archivos de fuentes, JavaScript y Sass
+Rakefile	Tareas internas, como rastrillar y convertir
+Visite el repositorio de GitHub del puerto de Sass para ver estos archivos en acción.
+
+Instalación
+Para obtener información sobre cómo instalar y usar Bootstrap for Sass, consulte el archivo Léame del repositorio de GitHub . Es la fuente más actualizada e incluye información para usar con Rails, Compass y proyectos estándar de Sass.
+
+
+Búsqueda...
+Descripción general
+Sistema de red
+Tipografía
+Código
+Mesas
+Formularios
+Botones
+Imagenes
+Clases de ayuda
+Utilidades receptivas
+Usando menos
+Usando Sass
+Volver arriba
+Tema de vista previa

@@ -1,0 +1,1660 @@
+Componentes
+Más de una docena de componentes reutilizables creados para proporcionar iconografía, menús desplegables, grupos de entrada, navegación, alertas y mucho más.
+
+Glifos
+Glifos disponibles
+Incluye más de 250 glifos en formato de fuente del conjunto Glyphicon Halflings. Los medianos Glyphicons normalmente no están disponibles de forma gratuita, pero su creador los ha puesto a disposición para Bootstrap sin costo alguno. Como agradecimiento, solo le pedimos que incluya un enlace a Glyphicons siempre que sea posible.
+
+
+Cómo utilizar
+Por razones de desempeño, todos los iconos requieren una clase base y clases de iconos individuales. Para usarlo, coloque el siguiente código en cualquier lugar. Asegúrese de dejar un espacio entre el icono y el texto para el acolchado apropiado.
+
+No mezclar con otros componentes
+Las clases de iconos no se pueden combinar directamente con otros componentes. No deben usarse junto con otras clases en el mismo elemento. En su lugar, agregue un anidado <span>y aplique las clases de icono al <span>.
+
+Solo para uso en elementos vacíos
+Las clases de iconos solo deben usarse en elementos que no contienen contenido de texto y no tienen elementos secundarios.
+
+Cambiar la ubicación de la fuente del icono
+Bootstrap asume que los archivos de fuentes de iconos se ubicarán en el ../fonts/directorio, en relación con los archivos CSS compilados. Mover o cambiar el nombre de esos archivos de fuentes significa actualizar el CSS de una de estas tres formas:
+
+Cambie las variables @icon-font-pathy / o @icon-font-nameen los archivos de origen Less.
+Utilice la opción de URL relativas proporcionada por el compilador Less.
+Cambie las url()rutas en el CSS compilado.
+Utilice la opción que mejor se adapte a su configuración de desarrollo específica.
+
+Íconos accesibles
+Las versiones modernas de tecnologías de asistencia anunciarán contenido generado por CSS, así como caracteres Unicode específicos. Para evitar resultados imprevistos y confusos en los lectores de pantalla (especialmente cuando los iconos se utilizan únicamente para decoración), los ocultamos con el aria-hidden="true"atributo.
+
+Si está utilizando un ícono para transmitir significado (en lugar de solo como un elemento decorativo), asegúrese de que este significado también se transmita a las tecnologías de asistencia; por ejemplo, incluya contenido adicional, oculto visualmente con la .sr-onlyclase.
+
+Si está creando controles sin otro texto (como un <button>que solo contiene un icono), siempre debe proporcionar contenido alternativo para identificar el propósito del control, de modo que tenga sentido para los usuarios de tecnologías de asistencia. En este caso, puede agregar un aria-labelatributo en el propio control.
+
+Dupdo
+<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+Ejemplos de
+Úselos en botones, grupos de botones para una barra de herramientas, navegación o entradas de formulario antepuestas.
+
+Dupdo
+<button type="button" class="btn btn-default" aria-label="Left Align">
+  <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+</button>
+
+<button type="button" class="btn btn-default btn-lg">
+  <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Star
+</button>
+Un icono que se utiliza en una alerta para transmitir que se trata de un mensaje de error, con .sr-onlytexto adicional para transmitir esta pista a los usuarios de tecnologías de asistencia.
+
+ Error:Introduzca una dirección de correo electrónico válida
+Dupdo
+<div class="alert alert-danger" role="alert">
+  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  <span class="sr-only">Error:</span>
+  Enter a valid email address
+</div>
+Listas deplegables
+Menú contextual conmutable para mostrar listas de enlaces. Se hizo interactivo con el complemento JavaScript desplegable .
+
+Ejemplo
+Envuelva el disparador del menú desplegable y el menú desplegable dentro .dropdown, u otro elemento que declare position: relative;. Luego agregue el HTML del menú.
+
+Acción
+Otra accion
+Algo mas aqui
+Dupdo
+<div class="dropdown">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    Dropdown
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
+Los menús desplegables se pueden cambiar para expandirse hacia arriba (en lugar de hacia abajo) agregando .dropupal padre.
+
+Dupdo
+<div class="dropup">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Dropup
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
+Alineación
+De forma predeterminada, un menú desplegable se coloca automáticamente al 100% desde la parte superior y a lo largo del lado izquierdo de su padre. Agregue .dropdown-menu-righta .dropdown-menupara alinear a la derecha el menú desplegable.
+
+Puede requerir un posicionamiento adicional
+Los menús desplegables se colocan automáticamente a través de CSS dentro del flujo normal del documento. Esto significa que los padres con ciertas overflowpropiedades pueden recortar los menús desplegables o aparecer fuera de los límites de la ventana gráfica. Aborde estos problemas por su cuenta a medida que surjan.
+
+.pull-rightAlineación obsoleta
+A partir de la v3.1.0, hemos dejado de utilizar los .pull-rightmenús desplegables. Para alinear un menú a la derecha, use .dropdown-menu-right. Los componentes de navegación alineados a la derecha en la barra de navegación utilizan una versión mixta de esta clase para alinear automáticamente el menú. Para anularlo, utilice .dropdown-menu-left.
+
+Dupdo
+<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dLabel">
+  ...
+</ul>
+Encabezados
+Agregue un encabezado para etiquetar secciones de acciones en cualquier menú desplegable.
+
+Encabezado desplegable
+Acción
+Otra accion
+Algo mas aqui
+Encabezado desplegable
+Enlace separado
+Dupdo
+<ul class="dropdown-menu" aria-labelledby="dropdownMenu3">
+  ...
+  <li class="dropdown-header">Dropdown header</li>
+  ...
+</ul>
+Divisor
+Agregue un divisor para separar series de enlaces en un menú desplegable.
+
+Acción
+Otra accion
+Algo mas aqui
+Enlace separado
+Dupdo
+<ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
+  ...
+  <li role="separator" class="divider"></li>
+  ...
+</ul>
+Elementos de menú deshabilitados
+Agregue .disableda <li>en el menú desplegable para deshabilitar el enlace.
+
+Enlace regular
+Enlace desactivado
+Otro enlace
+Dupdo
+<ul class="dropdown-menu" aria-labelledby="dropdownMenu4">
+  <li><a href="#">Regular link</a></li>
+  <li class="disabled"><a href="#">Disabled link</a></li>
+  <li><a href="#">Another link</a></li>
+</ul>
+Grupos de botones
+Agrupe una serie de botones en una sola línea con el grupo de botones. Agregue el comportamiento de estilo de casilla de verificación y radio de JavaScript opcional con nuestro complemento de botones .
+
+La información sobre herramientas y los elementos emergentes en los grupos de botones requieren una configuración especial
+Cuando use información sobre herramientas o ventanas emergentes en elementos dentro de a .btn-group, tendrá que especificar la opción container: 'body'para evitar efectos secundarios no deseados (como que el elemento se ensanche y / o pierda sus esquinas redondeadas cuando se activa la información sobre herramientas o ventana emergente).
+
+Asegúrese de corregir roley proporcionar una etiqueta
+Para que las tecnologías de asistencia, como los lectores de pantalla, transmitan que una serie de botones está agrupada, es necesario proporcionar un roleatributo apropiado . Para los grupos de botones, esto sería role="group", mientras que las barras de herramientas deberían tener una extensión role="toolbar".
+
+Una excepción son los grupos que solo contienen un único control (por ejemplo, los grupos de botones justificados con <button>elementos) o un menú desplegable.
+
+Además, los grupos y las barras de herramientas deben tener una etiqueta explícita, ya que la mayoría de las tecnologías de asistencia no los anunciarán, a pesar de la presencia del roleatributo correcto . En los ejemplos proporcionados aquí, usamos aria-label, pero aria-labelledbytambién se pueden usar alternativas como .
+
+Ejemplo basico
+Envuelva una serie de botones con .btnin .btn-group.
+
+Dupdo
+<div class="btn-group" role="group" aria-label="...">
+  <button type="button" class="btn btn-default">Left</button>
+  <button type="button" class="btn btn-default">Middle</button>
+  <button type="button" class="btn btn-default">Right</button>
+</div>
+Barra de herramientas de botones
+Combine conjuntos de <div class="btn-group">en a <div class="btn-toolbar">para componentes más complejos.
+
+Dupdo
+<div class="btn-toolbar" role="toolbar" aria-label="...">
+  <div class="btn-group" role="group" aria-label="...">...</div>
+  <div class="btn-group" role="group" aria-label="...">...</div>
+  <div class="btn-group" role="group" aria-label="...">...</div>
+</div>
+Dimensionamiento
+En lugar de aplicar clases de tamaño de botón a cada botón de un grupo, simplemente agréguelo .btn-group-*a cada uno .btn-group, incluso al anidar varios grupos.
+
+
+
+
+Dupdo
+<div class="btn-group btn-group-lg" role="group" aria-label="...">...</div>
+<div class="btn-group" role="group" aria-label="...">...</div>
+<div class="btn-group btn-group-sm" role="group" aria-label="...">...</div>
+<div class="btn-group btn-group-xs" role="group" aria-label="...">...</div>
+Anidamiento
+Coloque un .btn-groupdentro de otro .btn-groupcuando desee que los menús desplegables se mezclen con una serie de botones.
+
+Dupdo
+<div class="btn-group" role="group" aria-label="...">
+  <button type="button" class="btn btn-default">1</button>
+  <button type="button" class="btn btn-default">2</button>
+
+  <div class="btn-group" role="group">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Dropdown
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+      <li><a href="#">Dropdown link</a></li>
+      <li><a href="#">Dropdown link</a></li>
+    </ul>
+  </div>
+</div>
+Variación vertical
+Haga que un conjunto de botones aparezca apilado verticalmente en lugar de horizontalmente. Aquí no se admiten los menús desplegables de botones divididos.
+
+Dupdo
+<div class="btn-group-vertical" role="group" aria-label="...">
+  ...
+</div>
+Grupos de botones justificados
+Haga que un grupo de botones se estire en tamaños iguales para abarcar todo el ancho de su padre. También funciona con menús desplegables de botones dentro del grupo de botones.
+
+Manejo de fronteras
+Debido al HTML y CSS específicos que se utilizan para justificar los botones (es decir display: table-cell), los bordes entre ellos se duplican. En los grupos de botones normales, margin-left: -1pxse utiliza para apilar los bordes en lugar de eliminarlos. Sin embargo, marginno funciona con display: table-cell. Como resultado, dependiendo de sus personalizaciones para Bootstrap, es posible que desee eliminar o volver a colorear los bordes.
+
+IE8 y fronteras
+Internet Explorer 8 no representa los bordes de los botones en un grupo de botones justificado, ya sea en elementos <a>o en <button>elementos. Para evitar eso, envuelva cada botón en otro .btn-group.
+
+Consulte el n. ° 12476 para obtener más información.
+
+Con <a>elementos
+Simplemente envuelva una serie de .btns en .btn-group.btn-group-justified.
+
+
+Dupdo
+<div class="btn-group btn-group-justified" role="group" aria-label="...">
+  ...
+</div>
+Enlaces que actúan como botones
+Si los <a>elementos se utilizan para actuar como botones, activando la funcionalidad en la página, en lugar de navegar a otro documento o sección dentro de la página actual, también se les debe asignar un role="button".
+
+Con <button>elementos
+Para usar grupos de botones justificados con <button>elementos, debe envolver cada botón en un grupo de botones . La mayoría de los navegadores no aplican correctamente nuestro CSS para justificar los <button>elementos, pero como admitimos los menús desplegables de botones, podemos solucionarlo.
+
+Dupdo
+<div class="btn-group btn-group-justified" role="group" aria-label="...">
+  <div class="btn-group" role="group">
+    <button type="button" class="btn btn-default">Left</button>
+  </div>
+  <div class="btn-group" role="group">
+    <button type="button" class="btn btn-default">Middle</button>
+  </div>
+  <div class="btn-group" role="group">
+    <button type="button" class="btn btn-default">Right</button>
+  </div>
+</div>
+Menús desplegables de botones
+Use cualquier botón para activar un menú desplegable colocándolo dentro de un .btn-groupy proporcionando el marcado de menú adecuado.
+
+Dependencia del complemento
+Los menús desplegables de botones requieren que el complemento desplegable se incluya en su versión de Bootstrap.
+
+Desplegables de un solo botón
+Convierta un botón en un menú desplegable con algunos cambios de marcado básicos.
+
+     Dupdo
+<!-- Single button -->
+<div class="btn-group">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Action <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
+Menú desplegable de botones divididos
+De manera similar, cree menús desplegables de botones divididos con los mismos cambios de marcado, solo que con un botón separado.
+
+     Dupdo
+<!-- Split button -->
+<div class="btn-group">
+  <button type="button" class="btn btn-danger">Action</button>
+  <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <span class="caret"></span>
+    <span class="sr-only">Toggle Dropdown</span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
+Dimensionamiento
+Los menús desplegables de botones funcionan con botones de todos los tamaños.
+
+Dupdo
+<!-- Large button group -->
+<div class="btn-group">
+  <button class="btn btn-default btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Large button <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    ...
+  </ul>
+</div>
+
+<!-- Small button group -->
+<div class="btn-group">
+  <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Small button <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    ...
+  </ul>
+</div>
+
+<!-- Extra small button group -->
+<div class="btn-group">
+  <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Extra small button <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    ...
+  </ul>
+</div>
+Variación dropup
+Active los menús desplegables encima de los elementos agregando .dropupal elemento principal.
+
+Dupdo
+<div class="btn-group dropup">
+  <button type="button" class="btn btn-default">Dropup</button>
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <span class="caret"></span>
+    <span class="sr-only">Toggle Dropdown</span>
+  </button>
+  <ul class="dropdown-menu">
+    <!-- Dropdown menu links -->
+  </ul>
+</div>
+Grupos de entrada
+Amplíe los controles de formulario agregando texto o botones antes, después o en ambos lados de cualquier texto basado <input>. Úselo .input-groupcon .input-group-addono .input-group-btnpara anteponer o agregar elementos a un solo .form-control.
+
+<input>Solo textuales
+Evite el uso de <select>elementos aquí, ya que no se pueden diseñar completamente en los navegadores WebKit.
+
+Evite el uso de <textarea>elementos aquí ya que su rowsatributo no será respetado en algunos casos.
+
+La información sobre herramientas y los elementos emergentes en los grupos de entrada requieren una configuración especial
+Cuando use información sobre herramientas o ventanas emergentes en elementos dentro de un .input-group, deberá especificar la opción container: 'body'para evitar efectos secundarios no deseados (como que el elemento se ensanche y / o pierda sus esquinas redondeadas cuando se active la información sobre herramientas o ventana emergente).
+
+No mezclar con otros componentes
+No mezcle grupos de formularios o clases de columnas de cuadrícula directamente con grupos de entrada. En su lugar, anide el grupo de entrada dentro del grupo de formulario o elemento relacionado con la cuadrícula.
+
+Siempre agregue etiquetas
+Los lectores de pantalla tendrán problemas con sus formularios si no incluye una etiqueta para cada entrada. Para estos grupos de entrada, asegúrese de que cualquier etiqueta o funcionalidad adicional se transmita a las tecnologías de asistencia.
+
+La técnica exacta a utilizar (visibles <label>elementos, <label>elementos ocultos utilizando la .sr-onlyclase, o el uso de la aria-label, aria-labelledby, aria-describedby, titleo placeholderatributo) y qué información adicional tendrá que ser transmitido variará dependiendo del tipo exacto de interfaz de control que se va a implementar. Los ejemplos de esta sección proporcionan algunos enfoques sugeridos para casos específicos.
+
+Ejemplo basico
+Coloque un complemento o un botón a cada lado de una entrada. También puede colocar uno a ambos lados de una entrada.
+
+No admitimos varios complementos ( .input-group-addono .input-group-btn) en un solo lado.
+
+No admitimos varios controles de formulario en un solo grupo de entrada.
+
+@
+Nombre de usuario
+
+Nombre de usuario del destinatario
+@ example.com
+PS
+.00
+Tu URL personalizada
+https://example.com/users/
+Dupdo
+<div class="input-group">
+  <span class="input-group-addon" id="basic-addon1">@</span>
+  <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+</div>
+
+<div class="input-group">
+  <input type="text" class="form-control" placeholder="Recipient's username" aria-describedby="basic-addon2">
+  <span class="input-group-addon" id="basic-addon2">@example.com</span>
+</div>
+
+<div class="input-group">
+  <span class="input-group-addon">$</span>
+  <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+  <span class="input-group-addon">.00</span>
+</div>
+
+<label for="basic-url">Your vanity URL</label>
+<div class="input-group">
+  <span class="input-group-addon" id="basic-addon3">https://example.com/users/</span>
+  <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+</div>
+Dimensionamiento
+Agregue las clases de tamaño de formulario relativas a .input-groupsí mismo y el contenido interno cambiará de tamaño automáticamente, sin necesidad de repetir las clases de tamaño de control de formulario en cada elemento.
+
+@
+Nombre de usuario
+
+@
+Nombre de usuario
+
+@
+Nombre de usuario
+Dupdo
+<div class="input-group input-group-lg">
+  <span class="input-group-addon" id="sizing-addon1">@</span>
+  <input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon1">
+</div>
+
+<div class="input-group">
+  <span class="input-group-addon" id="sizing-addon2">@</span>
+  <input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon2">
+</div>
+
+<div class="input-group input-group-sm">
+  <span class="input-group-addon" id="sizing-addon3">@</span>
+  <input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon3">
+</div>
+Casillas de verificación y complementos de radio
+Coloque cualquier casilla de verificación u opción de radio dentro del complemento de un grupo de entrada en lugar de texto.
+
+
+
+Dupdo
+<div class="row">
+  <div class="col-lg-6">
+    <div class="input-group">
+      <span class="input-group-addon">
+        <input type="checkbox" aria-label="...">
+      </span>
+      <input type="text" class="form-control" aria-label="...">
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+  <div class="col-lg-6">
+    <div class="input-group">
+      <span class="input-group-addon">
+        <input type="radio" aria-label="...">
+      </span>
+      <input type="text" class="form-control" aria-label="...">
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+</div><!-- /.row -->
+Complementos de botón
+Los botones de los grupos de entrada son un poco diferentes y requieren un nivel adicional de anidamiento. En lugar de .input-group-addon, deberá usar .input-group-btnpara ajustar los botones. Esto es necesario debido a los estilos de navegador predeterminados que no se pueden anular.
+
+Buscar...
+Buscar...
+Dupdo
+<div class="row">
+  <div class="col-lg-6">
+    <div class="input-group">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button">Go!</button>
+      </span>
+      <input type="text" class="form-control" placeholder="Search for...">
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+  <div class="col-lg-6">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Search for...">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button">Go!</button>
+      </span>
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+</div><!-- /.row -->
+Botones con desplegables
+Dupdo
+<div class="row">
+  <div class="col-lg-6">
+    <div class="input-group">
+      <div class="input-group-btn">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+          <li><a href="#">Action</a></li>
+          <li><a href="#">Another action</a></li>
+          <li><a href="#">Something else here</a></li>
+          <li role="separator" class="divider"></li>
+          <li><a href="#">Separated link</a></li>
+        </ul>
+      </div><!-- /btn-group -->
+      <input type="text" class="form-control" aria-label="...">
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+  <div class="col-lg-6">
+    <div class="input-group">
+      <input type="text" class="form-control" aria-label="...">
+      <div class="input-group-btn">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action <span class="caret"></span></button>
+        <ul class="dropdown-menu dropdown-menu-right">
+          <li><a href="#">Action</a></li>
+          <li><a href="#">Another action</a></li>
+          <li><a href="#">Something else here</a></li>
+          <li role="separator" class="divider"></li>
+          <li><a href="#">Separated link</a></li>
+        </ul>
+      </div><!-- /btn-group -->
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+</div><!-- /.row -->
+Botones segmentados
+ 
+ Dupdo
+<div class="input-group">
+  <div class="input-group-btn">
+    <!-- Button and dropdown menu -->
+  </div>
+  <input type="text" class="form-control" aria-label="...">
+</div>
+
+<div class="input-group">
+  <input type="text" class="form-control" aria-label="...">
+  <div class="input-group-btn">
+    <!-- Button and dropdown menu -->
+  </div>
+</div>
+Varios botones
+Si bien solo puede tener un complemento por lado, puede tener varios botones dentro de uno solo .input-group-btn.
+
+ 
+ Dupdo
+<div class="input-group">
+  <div class="input-group-btn">
+    <!-- Buttons -->
+  </div>
+  <input type="text" class="form-control" aria-label="...">
+</div>
+
+<div class="input-group">
+  <input type="text" class="form-control" aria-label="...">
+  <div class="input-group-btn">
+    <!-- Buttons -->
+  </div>
+</div>
+Navs
+Los navegadores disponibles en Bootstrap tienen marcado compartido, comenzando con la .navclase base , así como estados compartidos. Intercambia clases de modificadores para cambiar entre cada estilo.
+
+El uso de navegadores para paneles de pestañas requiere el complemento de pestañas de JavaScript
+Para pestañas con áreas tabulables, debe utilizar el complemento JavaScript de pestañas . El marcado también requerirá roleatributos ARIA y adicionales ; consulte el marcado de ejemplo del complemento para obtener más detalles.
+
+Hacer que los navegadores utilizados como navegación sean accesibles
+Si está utilizando navegadores para proporcionar una barra de navegación, asegúrese de agregar un role="navigation"al contenedor principal más lógico del <ul>, o envuelva un <nav>elemento alrededor de toda la navegación. No agregue el rol a <ul>sí mismo, ya que esto evitaría que las tecnologías de asistencia lo anuncien como una lista real.
+
+Pestañas
+Tenga en cuenta que la .nav-tabsclase requiere la .navclase base.
+
+Casa
+Perfil
+Mensajes
+Dupdo
+<ul class="nav nav-tabs">
+  <li role="presentation" class="active"><a href="#">Home</a></li>
+  <li role="presentation"><a href="#">Profile</a></li>
+  <li role="presentation"><a href="#">Messages</a></li>
+</ul>
+Pastillas
+Toma ese mismo HTML, pero usa .nav-pillsen su lugar:
+
+Casa
+Perfil
+Mensajes
+Dupdo
+<ul class="nav nav-pills">
+  <li role="presentation" class="active"><a href="#">Home</a></li>
+  <li role="presentation"><a href="#">Profile</a></li>
+  <li role="presentation"><a href="#">Messages</a></li>
+</ul>
+Las pastillas también se pueden apilar verticalmente. Solo agregue .nav-stacked.
+
+Casa
+Perfil
+Mensajes
+Dupdo
+<ul class="nav nav-pills nav-stacked">
+  ...
+</ul>
+Justificado
+Haga fácilmente pestañas o píldoras del mismo ancho que su padre en pantallas de más de 768 px con .nav-justified. En pantallas más pequeñas, los enlaces de navegación se apilan.
+
+Los enlaces de navegación de la barra de navegación justificados no son compatibles actualmente.
+
+Safari y navegaciones justificadas receptivas
+A partir de la versión 9.1.2, Safari presenta un error en el que cambiar el tamaño de su navegador horizontalmente provoca errores de representación en la navegación justificada que se borran al actualizar. Este error también se muestra en el ejemplo de navegación justificado .
+
+Casa
+Perfil
+Mensajes
+
+Casa
+Perfil
+Mensajes
+Dupdo
+<ul class="nav nav-tabs nav-justified">
+  ...
+</ul>
+<ul class="nav nav-pills nav-justified">
+  ...
+</ul>
+Enlaces deshabilitados
+Para cualquier componente de navegación (pestañas o píldoras), agregue .disabledpara enlaces grises y sin efectos de desplazamiento .
+
+La funcionalidad del enlace no se ve afectada
+Esta clase solo cambiará la <a>apariencia del, no su funcionalidad. Utilice JavaScript personalizado para deshabilitar los enlaces aquí.
+
+Enlace en el que se puede hacer clic
+Enlace en el que se puede hacer clic
+Enlace desactivado
+Dupdo
+<ul class="nav nav-pills">
+  ...
+  <li role="presentation" class="disabled"><a href="#">Disabled link</a></li>
+  ...
+</ul>
+Usar menús desplegables
+Agregue menús desplegables con un poco de HTML adicional y el complemento JavaScript desplegable .
+
+Pestañas con menús desplegables
+Casa
+Ayudar
+Desplegable 
+Dupdo
+<ul class="nav nav-tabs">
+  ...
+  <li role="presentation" class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+      Dropdown <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+      ...
+    </ul>
+  </li>
+  ...
+</ul>
+Pastillas con menús desplegables
+Casa
+Ayudar
+Desplegable 
+Dupdo
+<ul class="nav nav-pills">
+  ...
+  <li role="presentation" class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+      Dropdown <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+      ...
+    </ul>
+  </li>
+  ...
+</ul>
+Barra de navegación
+Barra de navegación predeterminada
+Las barras de navegación son metacomponentes receptivos que sirven como encabezados de navegación para su aplicación o sitio. Comienzan contraídas (y se pueden alternar) en las vistas móviles y se vuelven horizontales a medida que aumenta el ancho de la ventana gráfica disponible.
+
+Los enlaces de navegación de la barra de navegación justificados no son compatibles actualmente.
+
+Contenido desbordante
+Dado que Bootstrap no sabe cuánto espacio necesita el contenido en su barra de navegación, es posible que tenga problemas con el contenido envuelto en una segunda fila. Para resolver esto, puede:
+
+Reduzca la cantidad o el ancho de los elementos de la barra de navegación.
+Oculte ciertos elementos de la barra de navegación en ciertos tamaños de pantalla utilizando clases de utilidad receptivas .
+Cambie el punto en el que su barra de navegación cambia entre el modo contraído y horizontal. Personalice la @grid-float-breakpointvariable o agregue su propia consulta de medios.
+Requiere complemento de JavaScript
+Si JavaScript está deshabilitado y la ventana gráfica es lo suficientemente estrecha como para que la barra de navegación se colapse, será imposible expandir la barra de navegación y ver el contenido dentro del .navbar-collapse.
+
+La barra de navegación receptiva requiere que el complemento de colapso se incluya en su versión de Bootstrap.
+
+Cambiar el punto de interrupción de la barra de navegación móvil contraída
+La barra de navegación se colapsa en su vista móvil vertical cuando la ventana gráfica es más estrecha que @grid-float-breakpoint, y se expande en su vista horizontal no móvil cuando la ventana gráfica tiene al menos @grid-float-breakpointancho. Ajuste esta variable en la fuente Less para controlar cuándo la barra de navegación se contrae / expande. El valor predeterminado es 768px(la pantalla "pequeña" o "tableta" más pequeña).
+
+Hacer accesibles las barras de navegación
+Asegúrese de usar un <nav>elemento o, si usa un elemento más genérico como a <div>, agregue a role="navigation"a cada barra de navegación para identificarla explícitamente como una región histórica para los usuarios de tecnologías de asistencia.
+
+Marca
+Enlace(Actual)
+Enlace
+Desplegable 
+Búsqueda
+ 
+Enlace
+Desplegable 
+Dupdo
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Brand</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="navbar-form navbar-left">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+Imagen de marca
+Reemplace la marca de la barra de navegación con su propia imagen cambiando el texto por un archivo <img>. Dado que .navbar-brandtiene su propio relleno y altura, es posible que deba anular algo de CSS según su imagen.
+
+MarcaDupdo
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">
+        <img alt="Brand" src="...">
+      </a>
+    </div>
+  </div>
+</nav>
+Formularios
+Coloque el contenido del formulario dentro .navbar-formpara una alineación vertical adecuada y un comportamiento contraído en ventanas de visualización estrechas. Utilice las opciones de alineación para decidir dónde reside dentro del contenido de la barra de navegación.
+
+Como aviso, .navbar-formcomparte gran parte de su código con .form-inlinevia mixin. Algunos controles de formulario, como los grupos de entrada, pueden requerir anchos fijos para mostrarse correctamente dentro de una barra de navegación.
+
+Marca
+Búsqueda
+ Dupdo
+<form class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Search">
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+Advertencias sobre dispositivos móviles
+Hay algunas advertencias con respecto al uso de controles de formulario dentro de elementos fijos en dispositivos móviles. Consulte nuestros documentos de soporte del navegador para obtener más detalles.
+
+Siempre agregue etiquetas
+Los lectores de pantalla tendrán problemas con sus formularios si no incluye una etiqueta para cada entrada. Para estos formularios en línea, puede ocultar las etiquetas usando la .sr-onlyclase. Existen otros métodos alternativos para proporcionar una etiqueta para las tecnologías de asistencia, como el atributo aria-label, aria-labelledbyo title. Si ninguno de estos está presente, los lectores de pantalla pueden recurrir al uso del placeholderatributo, si está presente, pero tenga en cuenta que placeholderno se recomienda su uso como reemplazo de otros métodos de etiquetado.
+
+Botones
+Agregue la .navbar-btnclase a los <button>elementos que no residen en <form>para centrarlos verticalmente en la barra de navegación.
+
+Marca
+Dupdo
+<button type="button" class="btn btn-default navbar-btn">Sign in</button>
+Uso específico del contexto
+Al igual que las clases de botones estándar , .navbar-btnse pueden utilizar en los elementos <a>y <input>. Sin embargo, .navbar-btnni las clases de botones estándar ni las clases de botones estándar deben usarse en <a>elementos dentro de .navbar-nav.
+
+Texto
+Envuelva cadenas de texto en un elemento con .navbar-text, generalmente, una <p>etiqueta para el interlineado y el color adecuados.
+
+Marca
+Firmado como Mark OttoDupdo
+<p class="navbar-text">Signed in as Mark Otto</p>
+Enlaces que no son de navegación
+Para las personas que usan enlaces estándar que no están dentro del componente de navegación de la barra de navegación normal, use la .navbar-linkclase para agregar los colores adecuados para las opciones predeterminadas e inversas de la barra de navegación.
+
+Marca
+Firmado como Mark OttoDupdo
+<p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link">Mark Otto</a></p>
+Alineación de componentes
+Alinee los enlaces de navegación, formularios, botones o texto mediante las clases de utilidad .navbar-lefto .navbar-right. Ambas clases agregarán un flotante CSS en la dirección especificada. Por ejemplo, para alinear los enlaces de navegación, colóquelos en un lugar separado <ul>con la clase de utilidad respectiva aplicada.
+
+Estas clases son versiones mixtas de .pull-lefty .pull-right, pero están dirigidas a consultas de medios para un manejo más fácil de los componentes de la barra de navegación en todos los tamaños de dispositivos.
+
+Alineación a la derecha de múltiples componentes
+Las barras de navegación tienen actualmente una limitación con varias .navbar-rightclases. Para espaciar adecuadamente el contenido, usamos un margen negativo en el último .navbar-rightelemento. Cuando hay varios elementos que usan esa clase, estos márgenes no funcionan como se esperaba.
+
+Revisaremos esto cuando podamos reescribir ese componente en v4.
+
+Fijo en la parte superior
+Agregue .navbar-fixed-tope incluya un .containero .container-fluidpara centrar y rellenar el contenido de la barra de navegación.
+
+Marca
+Casa
+Enlace
+Enlace
+Dupdo
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    ...
+  </div>
+</nav>
+Requiere acolchado corporal
+La barra de navegación fija se superpondrá a su otro contenido, a menos que agregue paddingen la parte superior del archivo <body>. Pruebe sus propios valores o utilice nuestro fragmento a continuación. Consejo: De forma predeterminada, la barra de navegación tiene 50 píxeles de alto.
+
+Dupdo
+body { padding-top: 70px; }
+Asegúrese de incluir esto después del CSS principal de Bootstrap.
+
+Fijo al fondo
+Agregue .navbar-fixed-bottome incluya un .containero .container-fluidpara centrar y rellenar el contenido de la barra de navegación.
+
+Marca
+Casa
+Enlace
+Enlace
+Dupdo
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container">
+    ...
+  </div>
+</nav>
+Requiere acolchado corporal
+La barra de navegación fija se superpondrá a su otro contenido, a menos que agregue paddingal final del archivo <body>. Pruebe sus propios valores o utilice nuestro fragmento a continuación. Consejo: De forma predeterminada, la barra de navegación tiene 50 píxeles de alto.
+
+Dupdo
+body { padding-bottom: 70px; }
+Asegúrese de incluir esto después del CSS principal de Bootstrap.
+
+Tapa estática
+Cree una barra de navegación de ancho completo que se desplaza con la página agregando .navbar-static-tope incluye un .containero .container-fluidpara centrar y rellenar el contenido de la barra de navegación.
+
+A diferencia de las .navbar-fixed-*clases, no es necesario cambiar ningún relleno en el body.
+
+Marca
+Casa
+Enlace
+Enlace
+Dupdo
+<nav class="navbar navbar-default navbar-static-top">
+  <div class="container">
+    ...
+  </div>
+</nav>
+Barra de navegación invertida
+Modifique el aspecto de la barra de navegación agregando .navbar-inverse.
+
+Marca
+Casa
+Enlace
+Enlace
+Dupdo
+<nav class="navbar navbar-inverse">
+  ...
+</nav>
+Migas de pan
+Indique la ubicación de la página actual dentro de una jerarquía de navegación.
+
+Los separadores se agregan automáticamente en CSS a través de :beforey content.
+
+Casa
+Casa Biblioteca
+Casa Biblioteca Datos
+Dupdo
+<ol class="breadcrumb">
+  <li><a href="#">Home</a></li>
+  <li><a href="#">Library</a></li>
+  <li class="active">Data</li>
+</ol>
+Paginación
+Proporcione enlaces de paginación para su sitio o aplicación con el componente de paginación de varias páginas o la alternativa más simple de buscapersonas .
+
+Paginación predeterminada
+Paginación simple inspirada en Rdio, ideal para aplicaciones y resultados de búsqueda. El bloque grande es difícil de pasar por alto, fácilmente escalable y proporciona grandes áreas de clic.
+
+«12345»
+Dupdo
+<nav aria-label="Page navigation">
+  <ul class="pagination">
+    <li>
+      <a href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+    <li>
+      <a href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+Etiquetar el componente de paginación
+El componente de paginación debe estar envuelto en un <nav>elemento para identificarlo como una sección de navegación para lectores de pantalla y otras tecnologías de asistencia. Además, como una página es probable que tenga más de una sección de navegación ya (como la navegación principal en la cabecera, o una barra lateral de navegación), es aconsejable proporcionar un descriptivo aria-labelpara el <nav>que refleja su propósito. Por ejemplo, si el componente de paginación se utiliza para navegar entre un conjunto de resultados de búsqueda, una etiqueta adecuada podría ser aria-label="Search results pages".
+
+Estados desactivados y activos
+Los enlaces se pueden personalizar para diferentes circunstancias. Úselo .disabledpara enlaces en los que no se puede hacer clic y .activepara indicar la página actual.
+
+«1(Actual)2345»
+Dupdo
+<nav aria-label="...">
+  <ul class="pagination">
+    <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+    <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+    ...
+  </ul>
+</nav>
+Le recomendamos que cambie los anclajes activos o deshabilitados por <span>, u omita el ancla en el caso de las flechas anterior / siguiente, para eliminar la funcionalidad de clic y conservar los estilos deseados.
+
+Dupdo
+<nav aria-label="...">
+  <ul class="pagination">
+    <li class="disabled">
+      <span>
+        <span aria-hidden="true">&laquo;</span>
+      </span>
+    </li>
+    <li class="active">
+      <span>1 <span class="sr-only">(current)</span></span>
+    </li>
+    ...
+  </ul>
+</nav>
+Dimensionamiento
+¿Te apetece una paginación más grande o más pequeña? Agregue .pagination-lgo .pagination-smpara tamaños adicionales.
+
+«12345»
+«12345»
+«12345»
+Dupdo
+<nav aria-label="..."><ul class="pagination pagination-lg">...</ul></nav>
+<nav aria-label="..."><ul class="pagination">...</ul></nav>
+<nav aria-label="..."><ul class="pagination pagination-sm">...</ul></nav>
+Buscapersonas
+Vínculos rápidos anteriores y siguientes para implementaciones de paginación simples con marcas y estilos ligeros. Es ideal para sitios simples como blogs o revistas.
+
+Ejemplo predeterminado
+De forma predeterminada, el buscapersonas centra los enlaces.
+
+Anterior próximo
+Dupdo
+<nav aria-label="...">
+  <ul class="pager">
+    <li><a href="#">Previous</a></li>
+    <li><a href="#">Next</a></li>
+  </ul>
+</nav>
+Enlaces alineados
+Alternativamente, puede alinear cada enlace a los lados:
+
+← MayorMás reciente →
+Dupdo
+<nav aria-label="...">
+  <ul class="pager">
+    <li class="previous"><a href="#"><span aria-hidden="true">&larr;</span> Older</a></li>
+    <li class="next"><a href="#">Newer <span aria-hidden="true">&rarr;</span></a></li>
+  </ul>
+</nav>
+Estado inhabilitado opcional
+Los enlaces de buscapersonas también usan la .disabledclase de utilidad general de la paginación.
+
+← MayorMás reciente →
+Dupdo
+<nav aria-label="...">
+  <ul class="pager">
+    <li class="previous disabled"><a href="#"><span aria-hidden="true">&larr;</span> Older</a></li>
+    <li class="next"><a href="#">Newer <span aria-hidden="true">&rarr;</span></a></li>
+  </ul>
+</nav>
+Etiquetas
+Ejemplo
+Encabezado de ejemplo Nuevo
+Encabezado de ejemplo Nuevo
+Encabezado de ejemplo Nuevo
+Encabezado de ejemplo Nuevo
+Encabezado de ejemplo Nuevo
+Encabezado de ejemplo Nuevo
+Dupdo
+<h3>Example heading <span class="label label-default">New</span></h3>
+Variaciones disponibles
+Agregue cualquiera de las clases de modificadores mencionadas a continuación para cambiar la apariencia de una etiqueta.
+
+Peligro de advertencia de información de éxito primaria predeterminada
+Dupdo
+<span class="label label-default">Default</span>
+<span class="label label-primary">Primary</span>
+<span class="label label-success">Success</span>
+<span class="label label-info">Info</span>
+<span class="label label-warning">Warning</span>
+<span class="label label-danger">Danger</span>
+¿Tienes toneladas de etiquetas?
+Pueden surgir problemas de renderizado cuando tiene docenas de etiquetas en línea dentro de un contenedor estrecho, cada una con su propio inline-blockelemento (como un icono). La forma de evitar esto es establecer display: inline-block;. Para el contexto y un ejemplo, vea # 13219 .
+
+Insignias
+Resalte fácilmente elementos nuevos o no leídos agregando <span class="badge">a enlaces, navegadores Bootstrap y más.
+
+Bandeja de entrada 42
+
+Dupdo
+<a href="#">Inbox <span class="badge">42</span></a>
+
+<button class="btn btn-primary" type="button">
+  Messages <span class="badge">4</span>
+</button>
+Auto colapsando
+Cuando no hay elementos nuevos o no leídos, las insignias simplemente se colapsarán (a través del :emptyselector de CSS ) siempre que no exista contenido dentro.
+
+Compatibilidad entre navegadores
+Las insignias no se colapsan automáticamente en Internet Explorer 8 porque carecen de soporte para el :emptyselector.
+
+Se adapta a los estados de navegación activos
+Se incluyen estilos integrados para colocar insignias en estados activos en la navegación de píldoras.
+
+Casa 42
+Perfil
+Mensajes 3
+Dupdo
+<ul class="nav nav-pills" role="tablist">
+  <li role="presentation" class="active"><a href="#">Home <span class="badge">42</span></a></li>
+  <li role="presentation"><a href="#">Profile</a></li>
+  <li role="presentation"><a href="#">Messages <span class="badge">3</span></a></li>
+</ul>
+Jumbotron
+Un componente liviano y flexible que opcionalmente puede extender toda la ventana gráfica para mostrar contenido clave en su sitio.
+
+¡Hola Mundo!
+Esta es una unidad de héroe simple, un componente simple estilo jumbotron para llamar la atención sobre el contenido o la información destacados.
+
+
+Dupdo
+<div class="jumbotron">
+  <h1>Hello, world!</h1>
+  <p>...</p>
+  <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+</div>
+Para hacer el jumbotron de ancho completo y sin esquinas redondeadas, colóquelo afuera de todos los .containersy en su lugar agregue un .containeradentro.
+
+Dupdo
+<div class="jumbotron">
+  <div class="container">
+    ...
+  </div>
+</div>
+Encabezado de página
+Un caparazón simple para h1espaciar y segmentar adecuadamente secciones de contenido en una página. Puede utilizar el elemento h1predeterminado de ' small, así como la mayoría de los demás componentes (con estilos adicionales).
+
+Ejemplo de encabezado de página Subtexto para encabezado
+Dupdo
+<div class="page-header">
+  <h1>Example page header <small>Subtext for header</small></h1>
+</div>
+Miniaturas
+Amplíe el sistema de cuadrículas de Bootstrap con el componente de miniaturas para mostrar fácilmente cuadrículas de imágenes, videos, texto y más.
+
+Si está buscando una presentación similar a Pinterest de miniaturas de diferentes alturas y / o anchos, deberá usar un complemento de terceros como Masonry , Isotope o Salvattore .
+
+Ejemplo predeterminado
+De forma predeterminada, las miniaturas de Bootstrap están diseñadas para mostrar imágenes vinculadas con un marcado mínimo requerido.
+
+100% x180
+100% x180
+100% x180
+100% x180Dupdo
+<div class="row">
+  <div class="col-xs-6 col-md-3">
+    <a href="#" class="thumbnail">
+      <img src="..." alt="...">
+    </a>
+  </div>
+  ...
+</div>
+Contenido personalizado
+Con un poco de marcado adicional, es posible agregar cualquier tipo de contenido HTML como encabezados, párrafos o botones en miniaturas.
+
+100% x200
+Etiqueta de miniatura
+Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida en eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+
+ 
+
+100% x200
+Etiqueta de miniatura
+Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida en eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+
+ 
+
+100% x200
+Etiqueta de miniatura
+Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida en eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+
+ 
+
+Dupdo
+<div class="row">
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <img src="..." alt="...">
+      <div class="caption">
+        <h3>Thumbnail label</h3>
+        <p>...</p>
+        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+Alertas
+Proporcione mensajes de retroalimentación contextual para las acciones típicas de los usuarios con un puñado de mensajes de alerta flexibles y disponibles.
+
+Ejemplos de
+Envuelva cualquier texto y un botón de descarte opcional en .alertuna de las cuatro clases contextuales (p. Ej., .alert-success) Para mensajes de alerta básicos.
+
+Sin clase predeterminada
+Las alertas no tienen clases predeterminadas, solo clases base y modificadora. Una alerta gris predeterminada no tiene mucho sentido, por lo que debe especificar un tipo a través de la clase contextual. Elija entre éxito, información, advertencia o peligro.
+
+¡Bien hecho! Ha leído correctamente este importante mensaje de alerta.
+¡Aviso! Esta alerta necesita su atención, pero no es muy importante.
+¡Advertencia! Será mejor que te revises, no te ves muy bien.
+¡Oh cielos! Cambie algunas cosas e intente enviar de nuevo.
+Dupdo
+<div class="alert alert-success" role="alert">...</div>
+<div class="alert alert-info" role="alert">...</div>
+<div class="alert alert-warning" role="alert">...</div>
+<div class="alert alert-danger" role="alert">...</div>
+Alertas descartables
+Aproveche cualquier alerta agregando un .alert-dismissiblebotón de cierre opcional .
+
+Requiere el complemento de alerta de JavaScript
+Para que las alertas descartables funcionen completamente, debe utilizar el complemento de JavaScript de alertas .
+
+×¡Advertencia! Será mejor que te revises, no te ves muy bien.
+Dupdo
+<div class="alert alert-warning alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <strong>Warning!</strong> Better check yourself, you're not looking too good.
+</div>
+Garantice un comportamiento adecuado en todos los dispositivos
+Asegúrese de utilizar el <button>elemento con el data-dismiss="alert"atributo de datos.
+
+Enlaces en alertas
+Utilice la .alert-linkclase de utilidad para proporcionar rápidamente enlaces de colores coincidentes dentro de cualquier alerta.
+
+¡Bien hecho! Ha leído correctamente este importante mensaje de alerta .
+¡Aviso! Esta alerta necesita su atención , pero no es muy importante.
+¡Advertencia! Será mejor que te revises, no te ves muy bien .
+¡Oh cielos! Cambie algunas cosas e intente enviar de nuevo.
+Dupdo
+<div class="alert alert-success" role="alert">
+  <a href="#" class="alert-link">...</a>
+</div>
+<div class="alert alert-info" role="alert">
+  <a href="#" class="alert-link">...</a>
+</div>
+<div class="alert alert-warning" role="alert">
+  <a href="#" class="alert-link">...</a>
+</div>
+<div class="alert alert-danger" role="alert">
+  <a href="#" class="alert-link">...</a>
+</div>
+Barras de progreso
+Proporcione comentarios actualizados sobre el progreso de un flujo de trabajo o acción con barras de progreso simples pero flexibles.
+
+Compatibilidad entre navegadores
+Las barras de progreso utilizan transiciones y animaciones CSS3 para lograr algunos de sus efectos. Estas funciones no son compatibles con Internet Explorer 9 y versiones anteriores de Firefox. Opera 12 no admite animaciones.
+
+Compatibilidad con la política de seguridad de contenido (CSP)
+Si su sitio web tiene una Política de seguridad de contenido (CSP) que no lo permite style-src 'unsafe-inline', no podrá usar styleatributos en línea para establecer el ancho de la barra de progreso como se muestra en nuestros ejemplos a continuación. Los métodos alternativos para establecer los anchos que son compatibles con los CSP estrictos incluyen el uso de un poco de JavaScript personalizado (que establece element.style.width) o el uso de clases CSS personalizadas.
+
+Ejemplo basico
+Barra de progreso predeterminada.
+
+60% completoDupdo
+<div class="progress">
+  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+    <span class="sr-only">60% Complete</span>
+  </div>
+</div>
+Con etiqueta
+Elimine la clase <span>with .sr-onlyde la barra de progreso para mostrar un porcentaje visible.
+
+60%Dupdo
+<div class="progress">
+  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+    60%
+  </div>
+</div>
+Para asegurarse de que el texto de la etiqueta permanezca legible incluso para porcentajes bajos, considere agregar un min-widtha la barra de progreso.
+
+0%
+2%Dupdo
+<div class="progress">
+  <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;">
+    0%
+  </div>
+</div>
+<div class="progress">
+  <div class="progress-bar" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 2%;">
+    2%
+  </div>
+</div>
+Alternativas contextuales
+Las barras de progreso usan algunos de los mismos botones y clases de alerta para estilos consistentes.
+
+40% completo (éxito)
+20% completo
+60% completo (advertencia)
+80% completo (peligro)Dupdo
+<div class="progress">
+  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+    <span class="sr-only">40% Complete (success)</span>
+  </div>
+</div>
+<div class="progress">
+  <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+    <span class="sr-only">20% Complete</span>
+  </div>
+</div>
+<div class="progress">
+  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+    <span class="sr-only">60% Complete (warning)</span>
+  </div>
+</div>
+<div class="progress">
+  <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+    <span class="sr-only">80% Complete (danger)</span>
+  </div>
+</div>
+A rayas
+Utiliza un degradado para crear un efecto de rayas. No disponible en IE9 y a continuación.
+
+40% completo (éxito)
+20% completo
+60% completo (advertencia)
+80% completo (peligro)Dupdo
+<div class="progress">
+  <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+    <span class="sr-only">40% Complete (success)</span>
+  </div>
+</div>
+<div class="progress">
+  <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+    <span class="sr-only">20% Complete</span>
+  </div>
+</div>
+<div class="progress">
+  <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+    <span class="sr-only">60% Complete (warning)</span>
+  </div>
+</div>
+<div class="progress">
+  <div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+    <span class="sr-only">80% Complete (danger)</span>
+  </div>
+</div>
+Animado
+Agregue .activepara .progress-bar-stripedanimar las rayas de derecha a izquierda. No disponible en IE9 y a continuación.
+
+45% completo
+Dupdo
+<div class="progress">
+  <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
+    <span class="sr-only">45% Complete</span>
+  </div>
+</div>
+Apilado
+Coloque varias barras en la misma .progresspara apilarlas.
+
+35% completo (éxito)20% completo (advertencia)10% completo (peligro)Dupdo
+<div class="progress">
+  <div class="progress-bar progress-bar-success" style="width: 35%">
+    <span class="sr-only">35% Complete (success)</span>
+  </div>
+  <div class="progress-bar progress-bar-warning progress-bar-striped" style="width: 20%">
+    <span class="sr-only">20% Complete (warning)</span>
+  </div>
+  <div class="progress-bar progress-bar-danger" style="width: 10%">
+    <span class="sr-only">10% Complete (danger)</span>
+  </div>
+</div>
+Objeto multimedia
+Estilos de objetos abstractos para construir varios tipos de componentes (como comentarios de blogs, tweets, etc.) que presentan una imagen alineada a la izquierda o a la derecha junto con el contenido textual.
+
+Medios predeterminados
+Los medios predeterminados muestran un objeto de medios (imágenes, video, audio) a la izquierda o derecha de un bloque de contenido.
+
+64 x 64	
+Encabezado de medios
+Cras sentarse amet nibh libero, en gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+64 x 64	
+Encabezado de medios
+Cras sentarse amet nibh libero, en gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+64 x 64	
+Encabezado de medios anidados
+Cras sentarse amet nibh libero, en gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+Encabezado de medios
+Cras sentarse amet nibh libero, en gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.	64 x 64
+64 x 64	
+Encabezado de medios
+Cras sentarse amet nibh libero, en gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.	64 x 64Dupdo
+<div class="media">
+  <div class="media-left">
+    <a href="#">
+      <img class="media-object" src="..." alt="...">
+    </a>
+  </div>
+  <div class="media-body">
+    <h4 class="media-heading">Media heading</h4>
+    ...
+  </div>
+</div>
+Las clases .pull-lefty .pull-righttambién existen y se utilizaron anteriormente como parte del componente multimedia, pero están obsoletas para ese uso a partir de la v3.3.0. Son aproximadamente equivalentes a .media-lefty .media-right, excepto que .media-rightdeben colocarse después de .media-bodyen el html.
+
+Alineación de medios
+Las imágenes u otros medios se pueden alinear en la parte superior, media o inferior. El valor predeterminado está alineado en la parte superior.
+
+64 x 64	
+Medios alineados en la parte superior
+Cras sentarse amet nibh libero, en gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+
+Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+
+64 x 64	
+Medios alineados al medio
+Cras sentarse amet nibh libero, en gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+
+Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+
+64 x 64	
+Medios alineados en la parte inferior
+Cras sentarse amet nibh libero, en gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+
+Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+
+Dupdo
+<div class="media">
+  <div class="media-left media-middle">
+    <a href="#">
+      <img class="media-object" src="..." alt="...">
+    </a>
+  </div>
+  <div class="media-body">
+    <h4 class="media-heading">Middle aligned media</h4>
+    ...
+  </div>
+</div>
+Lista de medios
+Con un poco de marcado adicional, puede usar medios dentro de la lista (útil para hilos de comentarios o listas de artículos).
+
+64 x 64	
+Encabezado de medios
+Cras sentarse amet nibh libero, en gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
+
+64 x 64	
+Encabezado de medios anidados
+Cras sentarse amet nibh libero, en gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
+64 x 64	
+Encabezado de medios anidados
+Cras sentarse amet nibh libero, en gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
+64 x 64	
+Encabezado de medios anidados
+Cras sentarse amet nibh libero, en gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.Dupdo
+<ul class="media-list">
+  <li class="media">
+    <div class="media-left">
+      <a href="#">
+        <img class="media-object" src="..." alt="...">
+      </a>
+    </div>
+    <div class="media-body">
+      <h4 class="media-heading">Media heading</h4>
+      ...
+    </div>
+  </li>
+</ul>
+Grupo de lista
+Los grupos de listas son un componente flexible y poderoso para mostrar no solo listas simples de elementos, sino también complejas con contenido personalizado.
+
+Ejemplo basico
+El grupo de lista más básico es simplemente una lista desordenada con elementos de lista y las clases adecuadas. Construir sobre él con las opciones que siguen, o su propio CSS según sea necesario.
+
+Cras justo odio
+Dapibus ac facilisis en
+Morbi leo risus
+Porta ac consectetur ac
+Vestibulum en eros
+Dupdo
+<ul class="list-group">
+  <li class="list-group-item">Cras justo odio</li>
+  <li class="list-group-item">Dapibus ac facilisis in</li>
+  <li class="list-group-item">Morbi leo risus</li>
+  <li class="list-group-item">Porta ac consectetur ac</li>
+  <li class="list-group-item">Vestibulum at eros</li>
+</ul>
+Insignias
+Agregue el componente de insignias a cualquier elemento del grupo de lista y se colocará automáticamente a la derecha.
+
+14Cras justo odio
+2Dapibus ac facilisis en
+1Morbi leo risus
+Dupdo
+<ul class="list-group">
+  <li class="list-group-item">
+    <span class="badge">14</span>
+    Cras justo odio
+  </li>
+</ul>
+Elementos vinculados
+Vincula los elementos del grupo de listas mediante el uso de etiquetas de anclaje en lugar de elementos de la lista (eso también significa un padre en <div>lugar de un <ul>). No hay necesidad de padres individuales alrededor de cada elemento.
+
+Cras justo odio
+Dapibus ac facilisis en
+Morbi leo risus
+Porta ac consectetur ac
+Vestibulum en eros
+Dupdo
+<div class="list-group">
+  <a href="#" class="list-group-item active">
+    Cras justo odio
+  </a>
+  <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+  <a href="#" class="list-group-item">Morbi leo risus</a>
+  <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+  <a href="#" class="list-group-item">Vestibulum at eros</a>
+</div>
+Elementos de botón
+Los elementos del grupo de listas pueden ser botones en lugar de elementos de lista (lo que también significa padre en <div>lugar de <ul>). No hay necesidad de padres individuales alrededor de cada elemento. No use las .btnclases estándar aquí.
+
+Cras justo odio
+Dapibus ac facilisis en
+Morbi leo risus
+Porta ac consectetur ac
+Vestibulum en eros
+Dupdo
+<div class="list-group">
+  <button type="button" class="list-group-item">Cras justo odio</button>
+  <button type="button" class="list-group-item">Dapibus ac facilisis in</button>
+  <button type="button" class="list-group-item">Morbi leo risus</button>
+  <button type="button" class="list-group-item">Porta ac consectetur ac</button>
+  <button type="button" class="list-group-item">Vestibulum at eros</button>
+</div>
+Elementos deshabilitados
+Agréguelo .disableda .list-group-itempara atenuarlo para que parezca deshabilitado.
+
+Cras justo odio
+Dapibus ac facilisis en
+Morbi leo risus
+Porta ac consectetur ac
+Vestibulum en eros
+Dupdo
+<div class="list-group">
+  <a href="#" class="list-group-item disabled">
+    Cras justo odio
+  </a>
+  <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+  <a href="#" class="list-group-item">Morbi leo risus</a>
+  <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+  <a href="#" class="list-group-item">Vestibulum at eros</a>
+</div>
+Clases contextuales
+Utilice clases contextuales para diseñar elementos de la lista, predeterminados o vinculados. También incluye .activeestado.
+
+Dapibus ac facilisis en
+Cras sit amet nibh libero
+Porta ac consectetur ac
+Vestibulum en eros
+Dapibus ac facilisis en
+Cras sit amet nibh libero
+Porta ac consectetur ac
+Vestibulum en eros
+Dupdo
+<ul class="list-group">
+  <li class="list-group-item list-group-item-success">Dapibus ac facilisis in</li>
+  <li class="list-group-item list-group-item-info">Cras sit amet nibh libero</li>
+  <li class="list-group-item list-group-item-warning">Porta ac consectetur ac</li>
+  <li class="list-group-item list-group-item-danger">Vestibulum at eros</li>
+</ul>
+<div class="list-group">
+  <a href="#" class="list-group-item list-group-item-success">Dapibus ac facilisis in</a>
+  <a href="#" class="list-group-item list-group-item-info">Cras sit amet nibh libero</a>
+  <a href="#" class="list-group-item list-group-item-warning">Porta ac consectetur ac</a>
+  <a href="#" class="list-group-item list-group-item-danger">Vestibulum at eros</a>
+</div>
+Contenido personalizado
+Agregue casi cualquier HTML dentro, incluso para grupos de listas vinculadas como el siguiente.
+
+Encabezado de elemento de grupo de lista
+Donec id elit non mi porta gravida en eget metus. Mecenas sed diam eget risus varius blandit.
+
+Encabezado de elemento de grupo de lista
+Donec id elit non mi porta gravida en eget metus. Mecenas sed diam eget risus varius blandit.
+
+Encabezado de elemento de grupo de lista
+Donec id elit non mi porta gravida en eget metus. Mecenas sed diam eget risus varius blandit.
+
+Dupdo
+<div class="list-group">
+  <a href="#" class="list-group-item active">
+    <h4 class="list-group-item-heading">List group item heading</h4>
+    <p class="list-group-item-text">...</p>
+  </a>
+</div>
+Paneles
+Si bien no siempre es necesario, a veces es necesario poner su DOM en una caja. Para esas situaciones, pruebe el componente de panel.
+
+Ejemplo basico
+De forma predeterminada, todo lo .panelque se hace es aplicar un borde básico y un relleno para contener algo de contenido.
+
+Ejemplo de panel básico
+Dupdo
+<div class="panel panel-default">
+  <div class="panel-body">
+    Basic panel example
+  </div>
+</div>
+Panel con encabezado
+Agregue fácilmente un contenedor de encabezado a su panel con .panel-heading. También puede incluir cualquiera <h1>, <h6>con una .panel-titleclase para agregar un encabezado con estilo. Sin embargo, los tamaños de fuente de <h1>- <h6>están anulados por .panel-heading.
+
+Para que el color de los enlaces sea adecuado, asegúrese de colocar los enlaces en los encabezados .panel-title.
+
+Encabezado del panel sin título
+Contenido del panel
+Título del panel
+Contenido del panel
+Dupdo
+<div class="panel panel-default">
+  <div class="panel-heading">Panel heading without title</div>
+  <div class="panel-body">
+    Panel content
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Panel title</h3>
+  </div>
+  <div class="panel-body">
+    Panel content
+  </div>
+</div>
+Panel con pie de página
+Envuelva los botones o el texto secundario en formato .panel-footer. Tenga en cuenta que los pies de página del panel no heredan colores y bordes cuando se utilizan variaciones contextuales, ya que no están destinados a estar en primer plano.
+
+Contenido del panel
+Pie de página del panel
+Dupdo
+<div class="panel panel-default">
+  <div class="panel-body">
+    Panel content
+  </div>
+  <div class="panel-footer">Panel footer</div>
+</div>
+Alternativas contextuales
+Al igual que otros componentes, haga que un panel sea más significativo para un contexto particular agregando cualquiera de las clases de estado contextuales.
+
+Título del panel
+Contenido del panel
+Título del panel
+Contenido del panel
+Título del panel
+Contenido del panel
+Título del panel
+Contenido del panel
+Título del panel
+Contenido del panel
+Dupdo
+<div class="panel panel-primary">...</div>
+<div class="panel panel-success">...</div>
+<div class="panel panel-info">...</div>
+<div class="panel panel-warning">...</div>
+<div class="panel panel-danger">...</div>
+Con mesas
+Agregue cualquier sin borde .tabledentro de un panel para un diseño perfecto. Si hay un .panel-body, agregamos un borde adicional en la parte superior de la mesa para separarlo.
+
+Título del panel
+Parte del contenido del panel predeterminado aquí. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo ​​quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula ut id elit.
+
+#	Primer nombre	Apellido	Nombre de usuario
+1	Marcos	Otón	@mdo
+2	Jacob	Thornton	@gordo
+3	Larry	el pájaro	@gorjeoDupdo
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Panel heading</div>
+  <div class="panel-body">
+    <p>...</p>
+  </div>
+
+  <!-- Table -->
+  <table class="table">
+    ...
+  </table>
+</div>
+Si no hay cuerpo de panel, el componente se mueve del encabezado del panel a la mesa sin interrupción.
+
+Título del panel
+#	Primer nombre	Apellido	Nombre de usuario
+1	Marcos	Otón	@mdo
+2	Jacob	Thornton	@gordo
+3	Larry	el pájaro	@gorjeoDupdo
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Panel heading</div>
+
+  <!-- Table -->
+  <table class="table">
+    ...
+  </table>
+</div>
+Con grupos de lista
+Incluya fácilmente grupos de listas de ancho completo dentro de cualquier panel.
+
+Título del panel
+Parte del contenido del panel predeterminado aquí. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo ​​quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula ut id elit.
+
+Cras justo odio
+Dapibus ac facilisis en
+Morbi leo risus
+Porta ac consectetur ac
+Vestibulum en eros
+Dupdo
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Panel heading</div>
+  <div class="panel-body">
+    <p>...</p>
+  </div>
+
+  <!-- List group -->
+  <ul class="list-group">
+    <li class="list-group-item">Cras justo odio</li>
+    <li class="list-group-item">Dapibus ac facilisis in</li>
+    <li class="list-group-item">Morbi leo risus</li>
+    <li class="list-group-item">Porta ac consectetur ac</li>
+    <li class="list-group-item">Vestibulum at eros</li>
+  </ul>
+</div>
+Inserción receptiva
+Permita que los navegadores determinen las dimensiones del video o la presentación de diapositivas en función del ancho de su bloque contenedor mediante la creación de una proporción intrínseca que se escalará correctamente en cualquier dispositivo.
+
+Las reglas se aplican directamente a <iframe>, <embed>, <video>, y <object>elementos; Opcionalmente, use una clase descendiente explícita .embed-responsive-itemcuando desee hacer coincidir el estilo de otros atributos.
+
+Pro-Tip! No es necesario que lo incluya frameborder="0"en su <iframe>correo electrónico, ya que lo anulamos por usted.

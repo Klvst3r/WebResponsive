@@ -1,0 +1,28 @@
+@font-face{
+	font: family; 'mifuente';
+	src:  url(fonts/Rakoon_PersonalUse.ttf);
+}
+
+#fuene-personalizada {
+	font-family:  'mifuente';
+	font-size; 48px;
+}
+
+#fuente-google{
+	font-famly:  'Lobster', cursive;
+}
+
+.caja1{
+	width: 100px;
+	height: 100px;
+	/*background: #000;*/
+	/*background: blue;*/
+	/*background: rgb(255, 135, 64);*/
+	background: rgba(255, 135, 64, 0.5);
+}
+
+.caja2{
+	width: 200px;
+	height: 200px;
+	background-image:  url(../img/imagen.jpeg);
+}
