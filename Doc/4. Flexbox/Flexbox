@@ -1,0 +1,16 @@
+Flexbox
+
+Que es Flexbox
+
+- Es una forma de diseñar en CSS que nos permite de manera fácil, ordenar elementos dentro de un contenedor-
+- Diseño Responsive
+- No se usan los floats
+- Fácil posicionamiento de elementos anidados
+- El orden de los elementos puede ser cambiado fácilmente
+- Compatibilidad
+	- Google Chrome > v.29
+	- Microsoft Edge > 11
+	- Mozilla Firefox > 22
+	- Safari > 10
+	- Opera > 48
+
