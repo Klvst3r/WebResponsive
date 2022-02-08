@@ -14,3 +14,15 @@ Que es Flexbox
 	- Safari > 10
 	- Opera > 48
 
+
+Propiedades de Flexbox
+
+- Display: flex | inline-flex
+- Flex-direction: row | column
+- Flex-wrap: wrap | nowrap | wrapreverse
+- Flex-basis: longitud
+- Justify-content: flex-start | flex-end | center
+- Align-self:  flex-start | flex-end | center
+- Align-content:  flex-start | flex-end | center
+- order
+
